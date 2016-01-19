@@ -499,7 +499,10 @@ CONFIG_SECURITY_PERF_EVENTS_RESTRICT is set, or 1 otherwise.
 >=0: Disallow raw tracepoint access by users without CAP_IOC_LOCK
 >=1: Disallow CPU event access by users without CAP_SYS_ADMIN
 >=2: Disallow kernel profiling by users without CAP_SYS_ADMIN
+<<<<<<< HEAD
 >=3: Disallow all event access by users without CAP_SYS_ADMIN
+=======
+>>>>>>> 84ebc769377... BACKPORT: perf tools: Document the perf sysctls
 
 ==============================================================
 
