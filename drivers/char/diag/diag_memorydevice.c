@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 /* Copyright (c) 2014-2015, The Linux Foundation. All rights reserved.
-=======
-/* Copyright (c) 2014-2016, The Linux Foundation. All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -146,11 +142,7 @@ int diag_md_write(int id, unsigned char *buf, int len, int ctx)
 		if (ch->tbl[i].buf != buf)
 			continue;
 		found = 1;
-<<<<<<< HEAD
 		pr_err_ratelimited("diag: trying to write the same buffer buf: %p, ctxt: %d len: %d at i: %d back to the table, proc: %d, mode: %d\n",
-=======
-		pr_err_ratelimited("diag: trying to write the same buffer buf: %pK, ctxt: %d len: %d at i: %d back to the table, proc: %d, mode: %d\n",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				   buf, ctx, ch->tbl[i].len,
 				   i, id, driver->logging_mode);
 	}

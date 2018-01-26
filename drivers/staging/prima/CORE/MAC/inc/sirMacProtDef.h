@@ -1,9 +1,5 @@
 /*
-<<<<<<< HEAD
  * Copyright (c) 2011-2014 The Linux Foundation. All rights reserved.
-=======
- * Copyright (c) 2011-2016 The Linux Foundation. All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -47,11 +43,7 @@
 
 #include "palTypes.h"
 #include "sirTypes.h"
-<<<<<<< HEAD
 #include "wniCfgSta.h"
-=======
-#include "wniCfg.h"
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #include "aniCompiler.h"
 
 
@@ -181,16 +173,9 @@
 #define SIR_MAC_ACTION_UNPROT_WNM     11
 #define SIR_MAC_ACTION_TDLS           12
 #define SIR_MAC_ACITON_MESH           13
-<<<<<<< HEAD
 #define SIR_MAC_ACTION_MULTIHOP       14
 #define SIR_MAC_SELF_PROTECTED        15
 #define SIR_MAC_ACTION_WME            17
-=======
-#define SIR_MAC_ACTION_MHF            14
-#define SIR_MAC_SELF_PROTECTED        15
-#define SIR_MAC_ACTION_WME            17
-#define SIR_MAC_ACTION_FST            18
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #define SIR_MAC_ACTION_VHT            21
 
 
@@ -267,15 +252,6 @@
 #define SIR_MAC_ACTION_VENDOR_SPECIFIC_CATEGORY     0x7F
 #define SIR_MAC_ACTION_P2P_SUBTYPE_PRESENCE_RSP     2
 
-<<<<<<< HEAD
-=======
-// Public Action for 20/40 BSS Coexistence
-#ifdef WLAN_FEATURE_AP_HT40_24G
-#define SIR_MAC_ACTION_2040_BSS_COEXISTENCE     0
-#endif
-
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #ifdef WLAN_FEATURE_11W
 //11w SA query request/response action frame category code
 #define SIR_MAC_SA_QUERY_REQ             0
@@ -435,10 +411,6 @@
 #define SIR_MAC_HT_INFO_EID_MIN    0
 #define SIR_MAC_HT_INFO_EID_MAX    255
 #define SIR_MAC_OBSS_SCAN_PARAMETERS_EID 74
-<<<<<<< HEAD
-=======
-#define SIR_MAC_EXTENDED_CAPABILITIES_EID 127
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 #ifdef WLAN_FEATURE_11AC
 #define SIR_MAC_VHT_CAPABILITIES_EID   191
@@ -1320,10 +1292,7 @@ typedef __ani_attr_pre_packed struct sSirMacEdcaParamSetIE
     tSirMacEdcaParamRecord acvo; // voice
 } __ani_attr_packed tSirMacEdcaParamSetIE;
 
-<<<<<<< HEAD
 #if 1
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 typedef __ani_attr_pre_packed struct sSirMacQoSParams
 {
     tANI_U8        count;
@@ -1331,10 +1300,7 @@ typedef __ani_attr_pre_packed struct sSirMacQoSParams
     tANI_U8        CWmin[8];
     tANI_U8        AIFS[8];
 } __ani_attr_packed tSirMacQoSParams;
-<<<<<<< HEAD
 #endif
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 typedef __ani_attr_pre_packed struct sSirMacQbssLoadIE
 {

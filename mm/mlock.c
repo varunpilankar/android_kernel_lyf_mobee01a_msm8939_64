@@ -23,17 +23,10 @@
 
 int can_do_mlock(void)
 {
-<<<<<<< HEAD
 	if (capable(CAP_IPC_LOCK))
 		return 1;
 	if (rlimit(RLIMIT_MEMLOCK) != 0)
 		return 1;
-=======
-	if (rlimit(RLIMIT_MEMLOCK) != 0)
-		return 1;
-	if (capable(CAP_IPC_LOCK))
-		return 1;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	return 0;
 }
 EXPORT_SYMBOL(can_do_mlock);

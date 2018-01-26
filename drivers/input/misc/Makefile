@@ -35,14 +35,7 @@ obj-$(CONFIG_INPUT_IMS_PCU)		+= ims-pcu.o
 obj-$(CONFIG_INPUT_IXP4XX_BEEPER)	+= ixp4xx-beeper.o
 obj-$(CONFIG_INPUT_KEYCHORD)		+= keychord.o
 obj-$(CONFIG_INPUT_KEYSPAN_REMOTE)	+= keyspan_remote.o
-<<<<<<< HEAD
 obj-$(CONFIG_INPUT_KXTJ9)		+= kxtj9.o
-=======
-obj-$(CONFIG_INPUT_KIONIX_ACCEL)	+= kionix_accel_hy.o
-obj-$(CONFIG_INPUT_KXTJ9)		+= kxtj9.o
-obj-$(CONFIG_INPUT_KXTJ9_HQ)		+= kxtj9_hq.o
-obj-$(CONFIG_INPUT_LSM6DX0)		+= lsm6dx0.o
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 obj-$(CONFIG_INPUT_M68K_BEEP)		+= m68kspkr.o
 obj-$(CONFIG_INPUT_MAX8925_ONKEY)	+= max8925_onkey.o
 obj-$(CONFIG_INPUT_MAX8997_HAPTIC)	+= max8997_haptic.o
@@ -73,44 +66,20 @@ obj-$(CONFIG_INPUT_YEALINK)		+= yealink.o
 obj-$(CONFIG_BMP18X)			+= bmp18x-core.o
 obj-$(CONFIG_BMP18X_I2C)		+= bmp18x-i2c.o
 obj-$(CONFIG_SENSORS_MMC3416X)		+= mmc3416x.o
-<<<<<<< HEAD
 obj-$(CONFIG_SENSORS_ST480_TEST_PLUS)     += st480_test_plus.o
 obj-$(CONFIG_SENSORS_ST480_TEST)     += st480_test.o
-=======
-obj-$(CONFIG_SENSORS_MMC3X30)		+= mmc3x30.o
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 obj-$(CONFIG_SENSORS_MMA8X5X)	  	+= mma8x5x.o
 obj-$(CONFIG_SENSORS_STK3X1X)		+= stk3x1x.o
 obj-$(CONFIG_SENSORS_CAPELLA_CM36283)	+= cm36283.o
 obj-$(CONFIG_SENSORS_MPU6050)		+= mpu6050.o
 obj-$(CONFIG_SENSORS_AKM8963)		+= akm8963.o
 obj-$(CONFIG_SENSORS_AKM09911)		+= akm09911.o
-<<<<<<< HEAD
 obj-$(CONFIG_SENSORS_LIS3DH)		+= lis3dh_acc.o
 obj-$(CONFIG_SENSORS_AP3426)		+= ap3426.o
 obj-$(CONFIG_SENSORS_BMA2X2)	+= bstclass.o
 obj-$(CONFIG_SENSORS_BMA2X2)	+= bma2x2.o
 obj-$(CONFIG_SENSORS_LTR553_TEST_PLUS)	+= ltr553_test_plus.o
 obj-$(CONFIG_SENSORS_LTR553_TEST)	+= ltr553_test.o
-=======
-obj-$(CONFIG_SENSORS_ST480)		+= st480.o
-obj-$(CONFIG_SENSORS_LIS3DH)		+= lis3dh_acc.o
-obj-$(CONFIG_SENSORS_AP3426)		+= ap3426.o
-obj-$(CONFIG_SENSORS_AP3426_CM)		+= ap3426_cm.o
-obj-$(CONFIG_SENSORS_BMA2X2)	+= bstclass.o
-obj-$(CONFIG_SENSORS_MPU6880)		+= mpu6880.o
-obj-$(CONFIG_SENSORS_PA12200001)	+= pa12200001.o
-obj-$(CONFIG_SENSORS_YL_HALL)		+= coolpad_hall.o
-obj-$(CONFIG_SENSORS_YL_PARAMS)		+= yl_sensor_params.o
-
-obj-$(CONFIG_SENSORS_BMA2X2)	+= bma2x2.o
-obj-$(CONFIG_SENSORS_LTR553)	+= ltr553.o
-
-obj-$(CONFIG_SENSORS_BMM050)    += bmm050_driver.o bmm050.o
-obj-$(CONFIG_SENSORS_BMG)       += bmg160_driver.o bmg160.o
-obj-$(CONFIG_SENSORS_LTR559)    += ltr559.o
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 ifeq ($(CONFIG_SENSORS_BMA2X2_ENABLE_INT1),y)
 	EXTRA_CFLAGS += -DBMA2X2_ENABLE_INT1
 endif
@@ -119,36 +88,6 @@ ifeq ($(CONFIG_BOSCH_BMA2X2_ENABLE_INT2),y)
 	EXTRA_CFLAGS += -DBMA2X2_ENABLE_INT2
 endif
 
-<<<<<<< HEAD
 obj-$(CONFIG_INPUT_LSM6DS3) += lsm6ds3.o
 lsm6ds3-y := lsm6ds3_core.o
 obj-$(CONFIG_INPUT_LSM6DS3_I2C) += lsm6ds3_i2c.o
-=======
-ifeq ($(CONFIG_SENSORS_BMA2X2_ENABLE_IDENT),y)
-	EXTRA_CFLAGS += -DBMA2X2_SENSOR_IDENTIFICATION_ENABLE
-endif
-
-ifeq ($(CONFIG_SENSORS_BMG_FIFO),y)
-        EXTRA_CFLAGS += -DBMG_USE_FIFO -DBMG_USE_BASIC_I2C_FUNC
-endif
-ifeq ($(CONFIG_SENSORS_BMM050),y)
-	EXTRA_CFLAGS += -DBMM_USE_BASIC_I2C_FUNC -DCONFIG_BMM_USE_PLATFORM_DATA
-endif
-
-obj-$(CONFIG_SENSORS_BMI160) += bmi160_driver.o bmi160.o
-ifeq ($(CONFIG_BMI160_MAG_INTERFACE_SUPPORT),y)
-	EXTRA_CFLAGS += -DBMI160_MAG_INTERFACE_SUPPORT
-endif
-ifeq ($(CONFIG_SENSORS_BMI160_ENABLE_INT1),y)
-	EXTRA_CFLAGS += -DBMI160_ENABLE_INT1
-endif
-
-ifeq ($(CONFIG_SENSORS_BMI160_ENABLE_INT2),y)
-	EXTRA_CFLAGS += -DBMI160_ENABLE_INT2
-endif
-
-obj-$(CONFIG_SENSORS_BMI160_I2C) += bmi160_i2c.o
-ifeq ($(CONFIG_SENSORS_BMI160_I2C),y)
-	EXTRA_CFLAGS += -DBMI_USE_BASIC_I2C_FUNC
-endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed

@@ -1,10 +1,6 @@
 /* drivers/soc/qcom/smp2p_debug.c
  *
-<<<<<<< HEAD
  * Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
-=======
- * Copyright (c) 2013-2014,2016 The Linux Foundation. All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -45,11 +41,7 @@ static void smp2p_int_stats(struct seq_file *s)
 				pid != SMP2P_REMOTE_MOCK_PROC)
 			continue;
 
-<<<<<<< HEAD
 		seq_printf(s, "| %5s (%d) | %11u | %10u | %10u | %p | %08x |\n",
-=======
-		seq_printf(s, "| %5s (%d) | %11u | %10u | %10u | %pK | %08x |\n",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			int_cfg[pid].name,
 			pid, int_cfg[pid].in_int_id,
 			int_cfg[pid].in_interrupt_count,

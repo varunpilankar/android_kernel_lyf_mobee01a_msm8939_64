@@ -32,10 +32,6 @@ struct aw2013_platform_data {
 	int hold_time_ms;
 	int fall_time_ms;
 	int off_time_ms;
-<<<<<<< HEAD
-=======
-	int awgpio;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	struct aw2013_led *led;
 };
 

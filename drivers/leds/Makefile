@@ -7,10 +7,6 @@ obj-$(CONFIG_LEDS_TRIGGERS)		+= led-triggers.o
 # LED Platform Drivers
 obj-$(CONFIG_LEDS_88PM860X)		+= leds-88pm860x.o
 obj-$(CONFIG_LEDS_ATMEL_PWM)		+= leds-atmel-pwm.o
-<<<<<<< HEAD
-=======
-obj-$(CONFIG_LEDS_AW2013)               += leds-aw2013.o
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 obj-$(CONFIG_LEDS_BD2802)		+= leds-bd2802.o
 obj-$(CONFIG_LEDS_LOCOMO)		+= leds-locomo.o
 obj-$(CONFIG_LEDS_LM3530)		+= leds-lm3530.o
@@ -61,14 +57,8 @@ obj-$(CONFIG_LEDS_MAX8997)		+= leds-max8997.o
 obj-$(CONFIG_LEDS_LM355x)		+= leds-lm355x.o
 obj-$(CONFIG_LEDS_BLINKM)		+= leds-blinkm.o
 obj-$(CONFIG_LEDS_MSM_GPIO_FLASH)	+= leds-msm-gpio-flash.o
-<<<<<<< HEAD
 obj-$(CONFIG_LEDS_AW2013)		+= leds-aw2013.o
 obj-$(CONFIG_LEDS_aw2013rgb)    += aw2013_rgb.o
-=======
-obj-$(CONFIG_LEDS_MSM_GPIO_FLASH_CKT)	+= leds-msm-gpio-flash-ckt.o
-obj-$(CONFIG_LEDS_AW2013)		+= leds-aw2013.o
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 # LED SPI Drivers
 obj-$(CONFIG_LEDS_DAC124S085)		+= leds-dac124s085.o
 

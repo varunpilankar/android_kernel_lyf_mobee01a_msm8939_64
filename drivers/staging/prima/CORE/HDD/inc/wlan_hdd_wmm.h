@@ -1,9 +1,5 @@
 /*
-<<<<<<< HEAD
  * Copyright (c) 2012-2014 The Linux Foundation. All rights reserved.
-=======
- * Copyright (c) 2012-2015 The Linux Foundation. All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -197,10 +193,7 @@ typedef struct
 typedef struct
 {
    struct list_head             wmmContextList;
-<<<<<<< HEAD
    struct mutex                 wmmLock;
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
    hdd_wmm_ac_status_t          wmmAcStatus[WLANTL_MAX_AC];
    v_BOOL_t                     wmmQap;
    v_BOOL_t                     wmmQosConnection;
@@ -272,19 +265,8 @@ v_U16_t hdd_wmm_select_queue(struct net_device * dev, struct sk_buff *skb);
   @return         : Qdisc queue index
   ===========================================================================*/
 
-<<<<<<< HEAD
 v_U16_t hdd_hostapd_select_queue(struct net_device * dev, struct sk_buff *skb);
 
-=======
-v_U16_t hdd_hostapd_select_queue(struct net_device * dev, struct sk_buff *skb
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,13,0))
-                                 , void *accel_priv
-#endif
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,14,0))
-                                 , select_queue_fallback_t fallbac
-#endif
-);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 
 /**============================================================================

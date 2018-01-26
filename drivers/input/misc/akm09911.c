@@ -37,15 +37,7 @@
 #include <linux/sensors.h>
 
 #define AKM_DEBUG_IF			0
-<<<<<<< HEAD
 #define AKM_HAS_RESET			1
-=======
-#ifdef CONFIG_MACH_T86519A1
-#define AKM_HAS_RESET			0
-#else
-#define AKM_HAS_RESET			1
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #define AKM_INPUT_DEVICE_NAME	"compass"
 #define AKM_DRDY_TIMEOUT_MS		100
 #define AKM_BASE_NUM			10
@@ -1511,17 +1503,9 @@ static int akm_compass_suspend(struct device *dev)
 	if (akm->state.power_on)
 		akm_compass_power_set(akm, false);
 
-<<<<<<< HEAD
 	ret = pinctrl_select_state(akm->pinctrl, akm->pin_sleep);
 	if (ret)
 		dev_err(dev, "Can't select pinctrl state\n");
-=======
-#ifndef CONFIG_MACH_T86519A1
-	ret = pinctrl_select_state(akm->pinctrl, akm->pin_sleep);
-	if (ret)
-		dev_err(dev, "Can't select pinctrl state\n");
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	dev_dbg(&akm->i2c->dev, "suspended\n");
 
@@ -1534,17 +1518,9 @@ static int akm_compass_resume(struct device *dev)
 	int ret = 0;
 	uint8_t mode;
 
-<<<<<<< HEAD
 	ret = pinctrl_select_state(akm->pinctrl, akm->pin_default);
 	if (ret)
 		dev_err(dev, "Can't select pinctrl state\n");
-=======
-#ifndef CONFIG_MACH_T86519A1
-	ret = pinctrl_select_state(akm->pinctrl, akm->pin_default);
-	if (ret)
-		dev_err(dev, "Can't select pinctrl state\n");
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	if (akm->state.power_on) {
 		ret = akm_compass_power_set(akm, true);
@@ -1765,19 +1741,11 @@ static int akm_compass_parse_dt(struct device *dev,
 	akm->gpio_rstn = of_get_named_gpio_flags(dev->of_node,
 			"akm,gpio_rstn", 0, NULL);
 
-<<<<<<< HEAD
-=======
-#if AKM_HAS_RESET
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	if (!gpio_is_valid(akm->gpio_rstn)) {
 		dev_err(dev, "gpio reset pin %d is invalid.\n",
 			akm->gpio_rstn);
 		return -EINVAL;
 	}
-<<<<<<< HEAD
-=======
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	return 0;
 }
@@ -1789,10 +1757,6 @@ static int akm_compass_parse_dt(struct device *dev,
 }
 #endif /* !CONFIG_OF */
 
-<<<<<<< HEAD
-=======
-#ifndef CONFIG_MACH_T86519A1
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 static int akm_pinctrl_init(struct akm_compass_data *akm)
 {
 	struct i2c_client *client = akm->i2c;
@@ -1817,10 +1781,6 @@ static int akm_pinctrl_init(struct akm_compass_data *akm)
 
 	return 0;
 }
-<<<<<<< HEAD
-=======
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 static int akm_report_data(struct akm_compass_data *akm)
 {
@@ -2224,10 +2184,6 @@ int akm_compass_probe(struct i2c_client *client, const struct i2c_device_id *id)
 	/* set client data */
 	i2c_set_clientdata(client, s_akm);
 
-<<<<<<< HEAD
-=======
-#ifndef CONFIG_MACH_T86519A1
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	/* initialize pinctrl */
 	if (!akm_pinctrl_init(s_akm)) {
 		err = pinctrl_select_state(s_akm->pinctrl, s_akm->pin_default);
@@ -2236,10 +2192,6 @@ int akm_compass_probe(struct i2c_client *client, const struct i2c_device_id *id)
 			goto exit2;
 		}
 	}
-<<<<<<< HEAD
-=======
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	/* Pull up the reset pin */
 	AKECS_Reset(s_akm, 1);

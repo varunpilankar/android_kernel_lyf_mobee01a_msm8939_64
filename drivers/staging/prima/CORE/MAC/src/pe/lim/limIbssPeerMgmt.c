@@ -1,9 +1,5 @@
 /*
-<<<<<<< HEAD
  * Copyright (c) 2012-2013 The Linux Foundation. All rights reserved.
-=======
- * Copyright (c) 2012-2015 The Linux Foundation. All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -44,11 +40,7 @@
 #include "palTypes.h"
 #include "aniGlobal.h"
 #include "sirCommon.h"
-<<<<<<< HEAD
 #include "wniCfgSta.h"
-=======
-#include "wniCfg.h"
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #include "limUtils.h"
 #include "limAssocUtils.h"
 #include "limStaHashApi.h"
@@ -213,11 +205,7 @@ ibss_peer_collect(
 
     /* Collect peer VHT capabilities based on the received beacon from the peer */
 #ifdef WLAN_FEATURE_11AC
-<<<<<<< HEAD
     if ( pBeacon->VHTCaps.present )
-=======
-    if (IS_BSS_VHT_CAPABLE(pBeacon->VHTCaps))
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     {
         pPeer->vhtSupportedChannelWidthSet = pBeacon->VHTOperation.chanWidth;
         pPeer->vhtCapable = pBeacon->VHTCaps.present;
@@ -271,10 +259,6 @@ ibss_sta_caps_update(
         {
             pStaDs->htGreenfield = pPeerNode->htGreenfield;
             pStaDs->htSupportedChannelWidthSet =  pPeerNode->htSupportedChannelWidthSet;
-<<<<<<< HEAD
-=======
-            pStaDs->htSecondaryChannelOffset =  pPeerNode->htSecondaryChannelOffset;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
             pStaDs->htMIMOPSState =             pPeerNode->htMIMOPSState;
             pStaDs->htMaxAmsduLength =  pPeerNode->htMaxAmsduLength;
             pStaDs->htAMpduDensity =             pPeerNode->htAMpduDensity;
@@ -672,11 +656,7 @@ ibss_bss_add(
                  (tANI_U8 *) &psessionEntry->pLimStartBssReq->ssId,
                   psessionEntry->pLimStartBssReq->ssId.length + 1);
 
-<<<<<<< HEAD
     PELOG1(limLog(pMac, LOG1, FL("invoking ADD_BSS as part of coalescing!"));)
-=======
-    limLog(pMac, LOG1, FL("invoking ADD_BSS as part of coalescing!"));
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     if (limMlmAddBss(pMac, &mlmStartReq,psessionEntry) != eSIR_SME_SUCCESS)
     {
         PELOGE(limLog(pMac, LOGE, FL("AddBss failure"));)
@@ -925,11 +905,7 @@ limIbssSetProtection(tpAniSirGlobal pMac, tANI_U8 enable, tpUpdateBeaconParams p
 
     if(!pMac->lim.cfgProtection.fromllb)
     {
-<<<<<<< HEAD
         PELOG1(limLog(pMac, LOG1, FL("protection from 11b is disabled"));)
-=======
-        limLog(pMac, LOG1, FL("protection from 11b is disabled"));
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
         return;
     }
 
@@ -970,36 +946,21 @@ limIbssUpdateProtectionParams(tpAniSirGlobal pMac,
 {
   tANI_U32 i;
 
-<<<<<<< HEAD
   PELOG1(limLog(pMac,LOG1, FL("A STA is associated:"));
   limLog(pMac,LOG1, FL("Addr : "));
   limPrintMacAddr(pMac, peerMacAddr, LOG1);)
-=======
-  limLog(pMac,LOG1, FL("A STA is associated:"));
-  limLog(pMac,LOG1, FL("Addr : "));
-  limPrintMacAddr(pMac, peerMacAddr, LOG1);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
   for (i=0; i<LIM_PROT_STA_CACHE_SIZE; i++)
   {
       if (pMac->lim.protStaCache[i].active)
       {
-<<<<<<< HEAD
           PELOG1(limLog(pMac, LOG1, FL("Addr: "));)
           PELOG1(limPrintMacAddr(pMac, pMac->lim.protStaCache[i].addr, LOG1);)
-=======
-          limLog(pMac, LOG1, FL("Addr: "));
-          limPrintMacAddr(pMac, pMac->lim.protStaCache[i].addr, LOG1);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
           if (vos_mem_compare(pMac->lim.protStaCache[i].addr,
               peerMacAddr, sizeof(tSirMacAddr)))
           {
-<<<<<<< HEAD
               PELOG1(limLog(pMac, LOG1, FL("matching cache entry at %d already active."), i);)
-=======
-              limLog(pMac, LOG1, FL("matching cache entry at %d already active."), i);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
               return;
           }
       }
@@ -1499,11 +1460,7 @@ limIbssCoalesce(
     tSirMacAddr         currentBssId;
     tLimIbssPeerNode    *pPeerNode;
     tpDphHashNode       pStaDs;
-<<<<<<< HEAD
     tUpdateBeaconParams beaconParams; 
-=======
-    tUpdateBeaconParams beaconParams;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
     vos_mem_set((tANI_U8 *)&beaconParams, sizeof(tUpdateBeaconParams), 0);
 
@@ -1576,17 +1533,8 @@ limIbssCoalesce(
          * pMac->lim.gLimIbssStaLimit
          */
         if ((pMac->lim.gLimNumIbssPeers+1) >= pMac->lim.gLimIbssStaLimit)
-<<<<<<< HEAD
         {
             PELOGE(limLog(pMac, LOGE, FL("**** MAX STA LIMIT HAS REACHED ****"));)
-=======
-        {   /*Print every 100th time */
-            if (pMac->lim.gLimIbssRetryCnt % 100 == 0)
-            {
-               limLog(pMac, LOG1, FL("**** MAX STA LIMIT HAS REACHED ****"));
-            }
-            pMac->lim.gLimIbssRetryCnt++;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
             return eSIR_LIM_MAX_STA_REACHED_ERROR;
         }
         PELOGW(limLog(pMac, LOGW, FL("IBSS Peer node does not exist, adding it***"));)
@@ -1620,13 +1568,8 @@ limIbssCoalesce(
         if (pStaDs != NULL)
         {
             /// DPH node already exists for the peer
-<<<<<<< HEAD
             PELOGW(limLog(pMac, LOGW, FL("DPH Node present for just learned peer"));)
             PELOG1(limPrintMacAddr(pMac, pPeerNode->peerMacAddr, LOG1);)
-=======
-            limLog(pMac, LOG1, FL("DPH Node present for just learned peer"));
-            limPrintMacAddr(pMac, pPeerNode->peerMacAddr, LOG1);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
             ibss_sta_info_update(pMac, pStaDs, pPeerNode,psessionEntry);
             return eSIR_SUCCESS;
         }

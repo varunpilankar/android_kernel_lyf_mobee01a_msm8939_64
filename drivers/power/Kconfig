@@ -383,7 +383,6 @@ config SMB135X_CHARGER
 	  The driver reports the charger status via the power supply framework.
 	  A charger status change triggers an IRQ via the device STAT pin.
 
-<<<<<<< HEAD
 config SMB1360_CHARGER_FG_TEST
 	tristate "TEST SMB1360 Charger and Fuel Guage"
 	depends on I2C
@@ -417,8 +416,6 @@ config SMB1360_CHARGER_FG_MIRAGE
 	  The driver reports the status via the power supply framework
 	  A status change triggers an IRQ via the device STAT pin.
 
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 config SMB1360_CHARGER_FG
 	tristate "SMB1360 Charger and Fuel Guage"
 	depends on I2C
@@ -542,19 +539,6 @@ config QPNP_VM_BMS
 	  readings from the battery to calculate the State of
 	  Charge.
 
-<<<<<<< HEAD
-=======
-config QPNP_VM_BMS_HQ
-	tristate "QPNP Voltage-Mode Battery Monitoring System (Huaqin variant) driver"
-	depends on SPMI
-	depends on MSM_QPNP_INT
-	help
-	  Say Y here to enable support for QPNP chip vm-bms device.
-	  The voltage-mode (vm) BMS driver uses periodic VBATT
-	  readings from the battery to calculate the State of
-	  Charge.
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 config QPNP_BMS
 	tristate "QPNP Battery Monitoring System driver"
 	depends on SPMI
@@ -575,20 +559,6 @@ config QPNP_LINEAR_CHARGER
 	  detection and charging. The driver also offers relevant information
 	  to userspace via the power supply framework.
 
-<<<<<<< HEAD
-=======
-config QPNP_LINEAR_CHARGER_HQ
-	tristate "QPNP Linear Charger (Huaqin variant) driver"
-	depends on SPMI
-	depends on OF_SPMI
-	depends on MSM_QPNP_INT
-	depends on THERMAL_QPNP_ADC_TM
-	help
-	  Say Y here to enable the Linear battery charger which supports USB
-	  detection and charging. The driver also offers relevant information
-	  to userspace via the power supply framework.
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 config MSM_BCL_CTL
 	bool "BCL Framework driver"
 	help
@@ -606,7 +576,6 @@ config MSM_BCL_PERIPHERAL_CTL
 	  provides routines to configure and monitor the BCL
 	  PMIC peripheral.
 
-<<<<<<< HEAD
 
 config TEST_ONLY
         bool "test driver different flag"
@@ -617,52 +586,6 @@ config TESTPLUS_ONLY
         bool "testplus driver different flag "
 		help
 		    make macro CONFIG_TESTPLUS_ONLY WORKED
-=======
-config YL_PM8916_VBUS
-	tristate "Yulong PM8916 VBUS driver"
-	depends on SPMI
-	depends on OF_SPMI
-	depends on MSM_QPNP_INT
-	depends on THERMAL_QPNP_ADC_TM
-	help
-	  Say Y here to enable the Yulong PM8916 VBUS driver
-
-config YL_BQ24157_CHARGER
-	tristate "Yulong BQ24157 charger driver"
-	depends on I2C
-	help
-	  Say Y here to enable the fan5405 sm charge driver
-
-config CHARGE_CONFIG_MICROMAX
-	bool "Use Micromax config for Yulong BQ24157 charger"
-	depends on YL_BQ24157_CHARGER
-	help
-	  Say Y here to use Micromax configs for yl_bq24157_charger
-
-config YL_FAN5405_CHARGER
-	tristate "Yulong FAN5405 charger driver"
-	depends on I2C
-	help
-	  Say Y here to enable the fan5405 sm charge driver
-
-config YL_LC709203_FUELGAUGE
-	tristate "Yulong LC709203 fuelgauge driver"
-	depends on I2C
-	help
-	  Say Y here to enable the lc709203 fuelgauge driver
-
-config PRIORITIZE_LOAD_LC709203
-	bool "Prioritize loading lc709203 driver"
-	depends on YL_LC709203_FUELGAUGE
-	help
-	  Say Y here to prioritize loading the lc709203 driver
-
-config YL_CHARGE_MODE
-	bool "Select for fast or normal charging (Yulong)"
-	default n
-	help
-	  Say Y to enable Yulong charge mode.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 source "drivers/power/reset/Kconfig"
 

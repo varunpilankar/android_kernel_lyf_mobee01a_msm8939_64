@@ -1,9 +1,5 @@
 /*
-<<<<<<< HEAD
  * Copyright (c) 2012-2014 The Linux Foundation. All rights reserved.
-=======
- * Copyright (c) 2012-2015 The Linux Foundation. All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -46,12 +42,9 @@
   Are listed for each API below.
 
 
-<<<<<<< HEAD
   Copyright (c) 2010-2011 QUALCOMM Incorporated.
   All Rights Reserved.
   Qualcomm Confidential and Proprietary
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 ===========================================================================*/
 
 /*===========================================================================
@@ -144,10 +137,6 @@ typedef struct
    WCTS_RxMsgCBType       wctsRxMsgCB;
    void*                  wctsRxMsgCBData;
    WCTS_StateType         wctsState;
-<<<<<<< HEAD
-=======
-   vos_spin_lock_t        wctsStateLock;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
    smd_channel_t*         wctsChannel;
    wpt_list               wctsPendingQueue;
    wpt_uint32             wctsMagic;
@@ -179,7 +168,6 @@ typedef struct
 /*----------------------------------------------------------------------------
  * Static Variable Definitions
  * -------------------------------------------------------------------------*/
-<<<<<<< HEAD
 #ifdef FEATURE_R33D
 /* R33D will not close SMD port
  * If receive close request from WDI, just pretend as port closed,
@@ -189,9 +177,6 @@ static WCTS_ControlBlockType  *ctsCB;
 /* If port open once, not try to actual open next time */
 static int                     port_open;
 #endif /* FEATURE_R33D */
-=======
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 /*----------------------------------------------------------------------------
  * Static Function Declarations and Definitions
  * -------------------------------------------------------------------------*/
@@ -576,19 +561,10 @@ WCTS_NotifyCallback
       /* SMD channel was closed from the remote side,
        * this would happen only when Riva crashed and SMD is
        * closing the channel on behalf of Riva */
-<<<<<<< HEAD
-=======
-      vos_spin_lock_acquire(&pWCTSCb->wctsStateLock);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
       pWCTSCb->wctsState = WCTS_STATE_REM_CLOSED;
       WPAL_TRACE(eWLAN_MODULE_DAL_CTRL, eWLAN_PAL_TRACE_LEVEL_INFO,
                  "%s: received SMD_EVENT_CLOSE WLAN driver going down now",
                  __func__);
-<<<<<<< HEAD
-=======
-      vos_spin_lock_release(&pWCTSCb->wctsStateLock);
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
       /* subsystem restart: shutdown */
       wpalDriverShutdown();
       return;
@@ -599,11 +575,7 @@ WCTS_NotifyCallback
       return;
 
    case SMD_EVENT_REOPEN_READY:
-<<<<<<< HEAD
       WPAL_TRACE(eWLAN_MODULE_DAL_CTRL, eWLAN_PAL_TRACE_LEVEL_ERROR,
-=======
-      WPAL_TRACE(eWLAN_MODULE_DAL_CTRL, eWLAN_PAL_TRACE_LEVEL_INFO,
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
                  "%s: received SMD_EVENT_REOPEN_READY from SMD", __func__);
 
       /* unlike other events which occur when our kernel threads are
@@ -700,7 +672,6 @@ WCTS_OpenTransport
        return (WCTS_HandleType)pWCTSCb;
    }
 
-<<<<<<< HEAD
 #ifdef FEATURE_R33D
    if(port_open)
    {
@@ -714,8 +685,6 @@ WCTS_OpenTransport
    }
 #endif /* FEATURE_R33D */
 
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
    /* allocate a ControlBlock to hold all context */
    pWCTSCb = wpalMemoryAllocate(sizeof(*pWCTSCb));
    if (NULL == pWCTSCb) {
@@ -730,15 +699,12 @@ WCTS_OpenTransport
       values */
    wpalMemoryZero(pWCTSCb, sizeof(*pWCTSCb));
 
-<<<<<<< HEAD
 #ifdef FEATURE_R33D
    smd_init(0);
    port_open = 1;
    ctsCB = pWCTSCb;
 #endif /* FEATURE_R33D */
 
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
    /*Initialise the event*/
    wpalEventInit(&pWCTSCb->wctsEvent);
 
@@ -751,10 +717,6 @@ WCTS_OpenTransport
    /* initialize the remaining fields */
    wpal_list_init(&pWCTSCb->wctsPendingQueue);
    pWCTSCb->wctsMagic   = WCTS_CB_MAGIC;
-<<<<<<< HEAD
-=======
-   vos_spin_lock_init(&pWCTSCb->wctsStateLock);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
    pWCTSCb->wctsState   = WCTS_STATE_OPEN_PENDING;
    pWCTSCb->wctsChannel = NULL;
 
@@ -855,7 +817,6 @@ WCTS_CloseTransport
       return eWLAN_PAL_STATUS_E_INVAL;
    }
 
-<<<<<<< HEAD
 #ifdef FEATURE_R33D
    /* Not actually close port, just pretend */
    /* notified registered client that the channel is closed */
@@ -868,8 +829,6 @@ WCTS_CloseTransport
    return eWLAN_PAL_STATUS_SUCCESS;
 #endif /* FEATURE_R33D */
 
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
    /*Free the buffers in the pending queue.*/
    while (eWLAN_PAL_STATUS_SUCCESS ==
           wpal_list_remove_front(&pWCTSCb->wctsPendingQueue, &pNode)) {
@@ -915,11 +874,7 @@ WCTS_CloseTransport
    pWCTSCb->wctsNotifyCB((WCTS_HandleType)pWCTSCb,
                          WCTS_EVENT_CLOSE,
                          pWCTSCb->wctsNotifyCBData);
-<<<<<<< HEAD
 
-=======
-   vos_spin_lock_destroy(&pWCTSCb->wctsStateLock);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
    /* release the resource */
    pWCTSCb->wctsMagic = 0;
    wpalMemoryFree(pWCTSCb);
@@ -1041,26 +996,14 @@ WCTS_SendMessage
          to that state.  when we do so, we enable the remote read
          interrupt so that we'll be notified when messages are read
          from the remote end */
-<<<<<<< HEAD
       if (WCTS_STATE_DEFERRED != pWCTSCb->wctsState) {
 
          /* Mark the state as deferred.
             Later: We may need to protect wctsState by locks*/
-=======
-      vos_spin_lock_acquire(&pWCTSCb->wctsStateLock);
-      if ((WCTS_STATE_DEFERRED != pWCTSCb->wctsState) &&
-                        (WCTS_STATE_REM_CLOSED != pWCTSCb->wctsState)) {
-
-         /* Mark the state as deferred.*/
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
          pWCTSCb->wctsState = WCTS_STATE_DEFERRED;
 
          smd_enable_read_intr(pWCTSCb->wctsChannel);
       }
-<<<<<<< HEAD
-=======
-      vos_spin_lock_release(&pWCTSCb->wctsStateLock);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
       /*indicate to client that message was placed in deferred queue*/
       return eWLAN_PAL_STATUS_E_RESOURCES;

@@ -433,14 +433,11 @@ struct perf_event {
 #endif /* CONFIG_PERF_EVENTS */
 };
 
-<<<<<<< HEAD
 enum perf_event_context_type {
 	task_context,
 	cpu_context,
 };
 
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 /**
  * struct perf_event_context - event context structure
  *
@@ -448,10 +445,7 @@ enum perf_event_context_type {
  */
 struct perf_event_context {
 	struct pmu			*pmu;
-<<<<<<< HEAD
 	enum perf_event_context_type	type;
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	/*
 	 * Protect the states of the events in the list,
 	 * nr_active, and the list:

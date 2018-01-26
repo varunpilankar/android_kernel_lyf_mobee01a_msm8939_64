@@ -53,13 +53,9 @@
 #include <csrEse.h>
 #endif
 
-<<<<<<< HEAD
 #ifdef DEBUG_ROAM_DELAY
 #include "vos_utils.h"
 #endif
-=======
-#include "vos_utils.h"
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 #ifndef WLAN_MDM_CODE_REDUCTION_OPT
 /* TODO : 6Mbps as Cisco APs seem to like only this value; analysis req.   */
@@ -7194,7 +7190,6 @@ eHalStatus sme_QosAddTsSuccessFnp(tpAniSirGlobal pMac, tListElem *pEntry)
       }
    }
 
-<<<<<<< HEAD
 #ifdef DEBUG_ROAM_DELAY
 
    if (pACInfo->curr_QoSInfo[pACInfo->tspec_pending - 1].ts_info.up ==  SME_QOS_WMM_UP_VO ||
@@ -7210,22 +7205,6 @@ eHalStatus sme_QosAddTsSuccessFnp(tpAniSirGlobal pMac, tListElem *pEntry)
       vos_record_roam_event(e_SME_VI_ADDTS_RSP, NULL, 0);
    }
 #endif
-=======
-   if (pMac->roam.configParam.roamDelayStatsEnabled)
-   {
-       if (pACInfo->curr_QoSInfo[pACInfo->tspec_pending - 1].ts_info.up ==  SME_QOS_WMM_UP_VO ||
-           pACInfo->curr_QoSInfo[pACInfo->tspec_pending - 1].ts_info.up ==  SME_QOS_WMM_UP_NC)
-       {
-           vos_record_roam_event(e_SME_VO_ADDTS_RSP, NULL, 0);
-       }
-
-       if (pACInfo->curr_QoSInfo[pACInfo->tspec_pending - 1].ts_info.up ==  SME_QOS_WMM_UP_VI ||
-           pACInfo->curr_QoSInfo[pACInfo->tspec_pending - 1].ts_info.up ==  SME_QOS_WMM_UP_CL)
-       {
-           vos_record_roam_event(e_SME_VI_ADDTS_RSP, NULL, 0);
-       }
-   }
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
    if(delete_entry)
    {
@@ -7459,11 +7438,7 @@ void sme_QosPmcDeviceStateUpdateInd(void *callbackContext, tPmcState pmcState)
       break;
    default:
       status = eHAL_STATUS_SUCCESS;
-<<<<<<< HEAD
       VOS_TRACE(VOS_MODULE_ID_SME, VOS_TRACE_LEVEL_ERROR, 
-=======
-      VOS_TRACE(VOS_MODULE_ID_SME, VOS_TRACE_LEVEL_INFO,
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
                 "%s: %d: nothing to process in PMC state %s (%d)",
                 __func__, __LINE__,
                 sme_PmcStatetoString(pmcState), pmcState);

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 /* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
-=======
-/* Copyright (c) 2012-2016, The Linux Foundation. All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -1304,11 +1300,7 @@ int create_pkt_cmd_session_set_property(
 			break;
 		default:
 			dprintk(VIDC_ERR,
-<<<<<<< HEAD
 					"Invalid Rate control setting: 0x%p\n",
-=======
-					"Invalid Rate control setting: 0x%pK\n",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 					pdata);
 			break;
 		}
@@ -1964,11 +1956,7 @@ int create_pkt_ssr_cmd(enum hal_ssr_trigger_type type,
 		struct hfi_cmd_sys_test_ssr_packet *pkt)
 {
 	if (!pkt) {
-<<<<<<< HEAD
 		dprintk(VIDC_ERR, "Invalid params, device: %p\n", pkt);
-=======
-		dprintk(VIDC_ERR, "Invalid params, device: %pK\n", pkt);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		return -EINVAL;
 	}
 	pkt->size = sizeof(struct hfi_cmd_sys_test_ssr_packet);
@@ -1981,11 +1969,7 @@ int create_pkt_cmd_sys_image_version(
 		struct hfi_cmd_sys_get_property_packet *pkt)
 {
 	if (!pkt) {
-<<<<<<< HEAD
 		dprintk(VIDC_ERR, "%s invalid param :%p\n", __func__, pkt);
-=======
-		dprintk(VIDC_ERR, "%s invalid param :%pK\n", __func__, pkt);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		return -EINVAL;
 	}
 	pkt->size = sizeof(struct hfi_cmd_sys_get_property_packet);

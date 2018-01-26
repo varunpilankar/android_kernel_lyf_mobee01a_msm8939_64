@@ -232,11 +232,8 @@ static ssize_t stable_pages_required_show(struct device *dev,
 			bdi_cap_stable_pages_required(bdi) ? 1 : 0);
 }
 
-<<<<<<< HEAD
 #define __ATTR_RW(attr) __ATTR(attr, 0644, attr##_show, attr##_store)
 
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 static struct device_attribute bdi_dev_attrs[] = {
 	__ATTR_RW(read_ahead_kb),
 	__ATTR_RW(min_ratio),

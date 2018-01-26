@@ -1116,10 +1116,6 @@ static ssize_t fuse_fill_write_pages(struct fuse_req *req,
 
 		mark_page_accessed(page);
 
-<<<<<<< HEAD
-=======
-		iov_iter_advance(ii, tmp);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		if (!tmp) {
 			unlock_page(page);
 			page_cache_release(page);
@@ -1132,10 +1128,7 @@ static ssize_t fuse_fill_write_pages(struct fuse_req *req,
 		req->page_descs[req->num_pages].length = tmp;
 		req->num_pages++;
 
-<<<<<<< HEAD
 		iov_iter_advance(ii, tmp);
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		count += tmp;
 		pos += tmp;
 		offset += tmp;

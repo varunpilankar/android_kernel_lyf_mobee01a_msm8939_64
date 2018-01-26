@@ -125,16 +125,6 @@
 			reg = <0x0 0x83000000 0x0 0xc00000>;
 			label = "cont_splash_mem";
 		};
-<<<<<<< HEAD
-=======
-
-		wb_mem: wb_region@83c00000 {
-			linux,reserve-contiguous-region;
-			linux,reserve-region;
-			reg = <0x0 0x83c00000 0x0 0xc00000>;
-			label = "wb_mem";
-		};
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	};
 
 	soc: soc { };
@@ -1602,12 +1592,6 @@
 		qcom,use-sw-aes-cbc-ecb-ctr-algo;
 		qcom,use-sw-aes-xts-algo;
 		qcom,use-sw-ahash-algo;
-<<<<<<< HEAD
-=======
-		qcom,use-sw-aes-ccm-algo;
-		qcom,use-sw-hmac-algo;
-		qcom,use-sw-aead-algo;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		status = "disabled";
 		qcom,ce-opp-freq = <100000000>;
 	};

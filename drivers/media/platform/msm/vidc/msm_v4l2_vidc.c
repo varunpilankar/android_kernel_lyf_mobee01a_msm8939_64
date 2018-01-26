@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 /* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
-=======
-/* Copyright (c) 2012-2016, The Linux Foundation. All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -300,11 +296,7 @@ static int read_platform_resources(struct msm_vidc_core *core,
 		struct platform_device *pdev)
 {
 	if (!core || !pdev) {
-<<<<<<< HEAD
 		dprintk(VIDC_ERR, "%s: Invalid params %p %p\n",
-=======
-		dprintk(VIDC_ERR, "%s: Invalid params %pK %pK\n",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			__func__, core, pdev);
 		return -EINVAL;
 	}
@@ -649,11 +641,7 @@ static int msm_vidc_remove(struct platform_device *pdev)
 	struct msm_vidc_core *core;
 
 	if (!pdev) {
-<<<<<<< HEAD
 		dprintk(VIDC_ERR, "%s invalid input %p", __func__, pdev);
-=======
-		dprintk(VIDC_ERR, "%s invalid input %pK", __func__, pdev);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		return -EINVAL;
 	}
 	core = pdev->dev.platform_data;

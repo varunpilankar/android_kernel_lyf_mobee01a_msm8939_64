@@ -565,11 +565,7 @@ static s8 gup_update_config(struct i2c_client *client,
 		!memcmp(&pid[GTP_ADDR_LENGTH], "960", 3)) {
 		chip_cfg_len = 228;
 	}
-<<<<<<< HEAD
 	pr_debug("config file ASCII len:%ld", cfg->size);
-=======
-	pr_debug("config file ASCII len:%d", cfg->size);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	pr_debug("need config binary len:%d", chip_cfg_len);
 	if ((cfg->size + 5) < chip_cfg_len * 5) {
 		pr_err("Config length error");
@@ -653,11 +649,7 @@ static s32 gup_get_firmware_file(struct i2c_client *client,
 		return -EEXIST;
 	}
 
-<<<<<<< HEAD
 	dev_dbg(&client->dev, "Config File: %s size=%ld", path, fw->size);
-=======
-	dev_dbg(&client->dev, "Config File: %s size=%d", path, fw->size);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	msg->fw_data =
 		devm_kzalloc(&client->dev, fw->size, GFP_KERNEL);
 	if (!msg->fw_data) {

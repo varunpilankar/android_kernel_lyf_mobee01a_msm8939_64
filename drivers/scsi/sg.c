@@ -765,17 +765,8 @@ sg_common_write(Sg_fd * sfp, Sg_request * srp,
 		return k;	/* probably out of space --> ENOMEM */
 	}
 	if (sdp->detached) {
-<<<<<<< HEAD
 		if (srp->bio)
 			blk_end_request_all(srp->rq, -EIO);
-=======
-		if (srp->bio) {
-			if (srp->rq->cmd != srp->rq->__cmd)
-				kfree(srp->rq->cmd);
-			blk_end_request_all(srp->rq, -EIO);
-			srp->rq = NULL;
-		}
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		sg_finish_rem_req(srp);
 		return -ENODEV;
 	}

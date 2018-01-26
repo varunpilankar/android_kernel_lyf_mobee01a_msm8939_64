@@ -19,11 +19,7 @@
 / {
 	model = "Qualcomm Technologies, Inc. MSM8939 QRD SKUK";
 	compatible = "qcom,msm8939-qrd-skuk", "qcom,msm8939-qrd", "qcom,msm8939", "qcom,qrd";
-<<<<<<< HEAD
 	qcom,board-id = <0x1000b 20>, <0x2000b 20>;
-=======
-	qcom,board-id = <0x1000b 5>, <0x2000b 5>;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 };
 
 &tlmm_pinmux {
@@ -115,11 +111,7 @@
 	qcom,disable-bms;
 };
 
-<<<<<<< HEAD
 /*&mdss_dsi0 {
-=======
-&mdss_dsi0 {
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	qcom,dsi-pref-prim-pan = <&dsi_nt35596_1080p_skuk_video>;
 
 	vsp-supply = <&tps65132_pos>;
@@ -158,11 +150,7 @@
 	qcom,mdss-dsi-pan-enable-dynamic-fps;
 	qcom,mdss-dsi-pan-fps-update = "dfps_immediate_porch_mode";
 };
-<<<<<<< HEAD
 */
-=======
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 &usb_otg {
        qcom,hsusb-otg-mode = <3>;
        qcom,usbid-gpio = <&msm_gpio 110 0>;

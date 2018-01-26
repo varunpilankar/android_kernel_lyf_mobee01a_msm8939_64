@@ -859,22 +859,14 @@ not_claimed_input:
 	return 1;
 }
 
-<<<<<<< HEAD
 static void ntrig_input_configured(struct hid_device *hid,
-=======
-static int ntrig_input_configured(struct hid_device *hid,
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		struct hid_input *hidinput)
 
 {
 	struct input_dev *input = hidinput->input;
 
 	if (hidinput->report->maxfield < 1)
-<<<<<<< HEAD
 		return;
-=======
-		return 0;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	switch (hidinput->report->field[0]->application) {
 	case HID_DG_PEN:
@@ -898,11 +890,6 @@ static int ntrig_input_configured(struct hid_device *hid,
 							"N-Trig MultiTouch";
 		break;
 	}
-<<<<<<< HEAD
-=======
-
-	return 0;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 }
 
 static int ntrig_probe(struct hid_device *hdev, const struct hid_device_id *id)

@@ -272,44 +272,21 @@ out:
 }
 
 static int
-<<<<<<< HEAD
 validate_event(struct pmu_hw_events *hw_events,
 	       struct perf_event *event)
 {
 	struct arm_pmu *armpmu = to_arm_pmu(event->pmu);
-=======
-validate_event(struct pmu *pmu, struct pmu_hw_events *hw_events,
-			       struct perf_event *event)
-{
-	struct arm_pmu *armpmu;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	struct pmu *leader_pmu = event->group_leader->pmu;
 
 	if (is_software_event(event))
 		return 1;
 
-<<<<<<< HEAD
 	if (event->pmu != leader_pmu || event->state < PERF_EVENT_STATE_OFF)
-=======
-	/*
-	 * Reject groups spanning multiple HW PMUs (e.g. CPU + CCI). The
-	 * core perf code won't check that the pmu->ctx == leader->ctx
-	 * until after pmu->event_init(event).
-	 */
-	if (event->pmu != pmu)
-		return 0;
-
-        if (event->pmu != leader_pmu || event->state < PERF_EVENT_STATE_OFF)
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		return 1;
 
 	if (event->state == PERF_EVENT_STATE_OFF && !event->attr.enable_on_exec)
 		return 1;
 
-<<<<<<< HEAD
-=======
-	armpmu = to_arm_pmu(event->pmu);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	return armpmu->get_event_idx(hw_events, event) >= 0;
 }
 
@@ -327,7 +304,6 @@ validate_group(struct perf_event *event)
 	memset(fake_used_mask, 0, sizeof(fake_used_mask));
 	fake_pmu.used_mask = fake_used_mask;
 
-<<<<<<< HEAD
 	if (!validate_event(&fake_pmu, leader))
 		return -EINVAL;
 
@@ -337,17 +313,6 @@ validate_group(struct perf_event *event)
 	}
 
 	if (!validate_event(&fake_pmu, event))
-=======
-	if (!validate_event(event->pmu, &fake_pmu, leader))
-		return -EINVAL;
-
-	list_for_each_entry(sibling, &leader->sibling_list, group_entry) {
-		if (!validate_event(event->pmu, &fake_pmu, sibling))
-			return -EINVAL;
-	}
-
-	if (!validate_event(event->pmu, &fake_pmu, event))
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		return -EINVAL;
 
 	return 0;

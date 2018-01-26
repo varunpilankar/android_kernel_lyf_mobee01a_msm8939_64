@@ -4716,11 +4716,7 @@ static int taiko_set_channel_map(struct snd_soc_dai *dai,
 	struct taiko_priv *taiko = snd_soc_codec_get_drvdata(dai->codec);
 	struct wcd9xxx *core = dev_get_drvdata(dai->codec->dev->parent);
 	if (!tx_slot || !rx_slot) {
-<<<<<<< HEAD
 		pr_err("%s: Invalid tx_slot=%p, rx_slot=%p\n", __func__,
-=======
-		pr_err("%s: Invalid tx_slot=%pK, rx_slot=%pK\n", __func__,
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			tx_slot, rx_slot);
 		return -EINVAL;
 	}

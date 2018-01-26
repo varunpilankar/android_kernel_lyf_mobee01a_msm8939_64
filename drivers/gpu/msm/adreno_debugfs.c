@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 /* Copyright (c) 2002,2008-2015, The Linux Foundation. All rights reserved.
-=======
-/* Copyright (c) 2002,2008-2016, The Linux Foundation. All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -52,11 +48,7 @@ static void sync_event_print(struct seq_file *s,
 		break;
 	}
 	case KGSL_CMD_SYNCPOINT_TYPE_FENCE:
-<<<<<<< HEAD
 		seq_printf(s, "sync: [%p] %s", sync_event->handle,
-=======
-		seq_printf(s, "sync: [%pK] %s", sync_event->handle,
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		(sync_event->handle && sync_event->handle->fence)
 				? sync_event->handle->fence->name : "NULL");
 		break;

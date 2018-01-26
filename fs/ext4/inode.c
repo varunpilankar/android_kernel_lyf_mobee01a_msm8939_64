@@ -3575,10 +3575,6 @@ int ext4_can_truncate(struct inode *inode)
 
 int ext4_punch_hole(struct file *file, loff_t offset, loff_t length)
 {
-<<<<<<< HEAD
-=======
-#if 0
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	struct inode *inode = file_inode(file);
 	struct super_block *sb = inode->i_sb;
 	ext4_lblk_t first_block, stop_block;
@@ -3764,15 +3760,6 @@ out_dio:
 out_mutex:
 	mutex_unlock(&inode->i_mutex);
 	return ret;
-<<<<<<< HEAD
-=======
-#else
-	/*
-	 * Disabled as per b/28760453
-	 */
-	return -EOPNOTSUPP;
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 }
 
 /*

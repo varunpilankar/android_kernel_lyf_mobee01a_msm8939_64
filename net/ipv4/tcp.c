@@ -3537,11 +3537,7 @@ int tcp_nuke_addr(struct net *net, struct sockaddr *addr)
 		return -EAFNOSUPPORT;
 	}
 
-<<<<<<< HEAD
 	for (bucket = 0; bucket < tcp_hashinfo.ehash_mask; bucket++) {
-=======
-	for (bucket = 0; bucket <= tcp_hashinfo.ehash_mask; bucket++) {
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		struct hlist_nulls_node *node;
 		struct sock *sk;
 		spinlock_t *lock = inet_ehash_lockp(&tcp_hashinfo, bucket);

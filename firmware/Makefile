@@ -96,10 +96,6 @@ fw-shipped-$(CONFIG_SND_WAVEFRONT) += yamaha/yss225_registers.bin
 fw-shipped-$(CONFIG_TEHUTI) += tehuti/bdx.bin
 fw-shipped-$(CONFIG_TIGON3) += tigon/tg3.bin tigon/tg3_tso.bin \
 			       tigon/tg3_tso5.bin
-<<<<<<< HEAD
-=======
-fw-shipped-$(CONFIG_TOUCHSCREEN_CYPRESS_CYTTSP4) += cyttsp4/cyttsp4_fw.bin
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 fw-shipped-$(CONFIG_TYPHOON) += 3com/typhoon.bin
 fw-shipped-$(CONFIG_USB_EMI26) += emi26/loader.fw emi26/firmware.fw \
 				  emi26/bitstream.fw
@@ -140,12 +136,9 @@ fw-shipped-$(CONFIG_USB_VICAM) += vicam/firmware.fw
 fw-shipped-$(CONFIG_VIDEO_CPIA2) += cpia2/stv0672_vp4.bin
 fw-shipped-$(CONFIG_YAM) += yam/1200.bin yam/9600.bin
 
-<<<<<<< HEAD
 fw-shipped-$(CONFIG_TEST_ONLY) += melfas/test_melfas_mip4.bin
 fw-shipped-$(CONFIG_TESTPLUS_ONLY) += melfas/testplus_melfas_mip4.bin
 
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 fw-shipped-all := $(fw-shipped-y) $(fw-shipped-m) $(fw-shipped-)
 
 # Directories which we _might_ need to create, so we have a rule for them.

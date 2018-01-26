@@ -1892,24 +1892,11 @@ long msm_cpp_subdev_ioctl(struct v4l2_subdev *sd,
 	struct msm_camera_v4l2_ioctl_t *ioctl_ptr = arg;
 	int rc = 0;
 
-<<<<<<< HEAD
 	if ((sd == NULL) || (ioctl_ptr == NULL) ||
 		(ioctl_ptr->ioctl_ptr == NULL)) {
 		pr_err("Wrong ioctl_ptr %p, sd %p\n", ioctl_ptr, sd);
 		return -EINVAL;
 	}
-=======
-	if ((sd == NULL) || (ioctl_ptr == NULL)) {
-		pr_err("Wrong ioctl_ptr %p, sd %p\n", ioctl_ptr, sd);
-		return -EINVAL;
-	}
-
-	if (_IOC_DIR(cmd) == _IOC_NONE) {
-		pr_err("Invalid ioctl/subdev cmd %u", cmd);
-		return -EINVAL;
-	}
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	cpp_dev = v4l2_get_subdevdata(sd);
 	if (cpp_dev == NULL) {
 		pr_err("cpp_dev is null\n");
@@ -2083,12 +2070,8 @@ long msm_cpp_subdev_ioctl(struct v4l2_subdev *sd,
 		uint32_t identity;
 		struct msm_cpp_buff_queue_info_t *buff_queue_info;
 		CPP_DBG("VIDIOC_MSM_CPP_DEQUEUE_STREAM_BUFF_INFO\n");
-<<<<<<< HEAD
 		if ((ioctl_ptr->len == 0) ||
 		    (ioctl_ptr->len > sizeof(uint32_t))) {
-=======
-		if (ioctl_ptr->len != sizeof(uint32_t)) {
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			mutex_unlock(&cpp_dev->mutex);
 			return -EINVAL;
 		}

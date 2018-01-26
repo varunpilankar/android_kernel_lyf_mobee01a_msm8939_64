@@ -194,34 +194,10 @@ typedef enum
  */
 typedef enum
 {
-<<<<<<< HEAD
     eCSR_SCAN_ABORT_DEFAULT,
     eCSR_SCAN_ABORT_DUE_TO_BAND_CHANGE, //Scan aborted due to band change
 }eCsrAbortReason;
 
-=======
-    eCSR_SCAN_ABORT_DEFAULT = 1,
-    eCSR_SCAN_ABORT_DUE_TO_BAND_CHANGE, //Scan aborted due to band change
-}eCsrAbortReason;
-
-typedef enum
-{
-   eCSR_INI_SINGLE_CHANNEL_CENTERED = 0,
-   eCSR_INI_DOUBLE_CHANNEL_HIGH_PRIMARY,
-   eCSR_INI_DOUBLE_CHANNEL_LOW_PRIMARY,
-#ifdef WLAN_FEATURE_11AC
-   eCSR_INI_QUADRUPLE_CHANNEL_20MHZ_LOW_40MHZ_CENTERED,
-   eCSR_INI_QUADRUPLE_CHANNEL_20MHZ_CENTERED_40MHZ_CENTERED,
-   eCSR_INI_QUADRUPLE_CHANNEL_20MHZ_HIGH_40MHZ_CENTERED,
-   eCSR_INI_QUADRUPLE_CHANNEL_20MHZ_LOW_40MHZ_LOW,
-   eCSR_INI_QUADRUPLE_CHANNEL_20MHZ_HIGH_40MHZ_LOW,
-   eCSR_INI_QUADRUPLE_CHANNEL_20MHZ_LOW_40MHZ_HIGH,
-   eCSR_INI_QUADRUPLE_CHANNEL_20MHZ_HIGH_40MHZ_HIGH,
-#endif
-   eCSR_INI_CHANNEL_BONDING_STATE_MAX
-}eIniChanBondState;
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #define CSR_SCAN_TIME_DEFAULT       0
 #define CSR_VALUE_IGNORED           0xFFFFFFFF
 #define CSR_RSN_PMKID_SIZE          16
@@ -481,10 +457,7 @@ typedef enum
     eCSR_ROAM_FT_RESPONSE,
 #endif
     eCSR_ROAM_FT_START,
-<<<<<<< HEAD
     eCSR_ROAM_INDICATE_MGMT_FRAME,
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     eCSR_ROAM_REMAIN_CHAN_READY,
     eCSR_ROAM_SEND_ACTION_CNF,
     //this mean error happens before association_start or roaming_start is called.
@@ -510,24 +483,12 @@ typedef enum
     eCSR_ROAM_UNPROT_MGMT_FRAME_IND,
 #endif
 
-<<<<<<< HEAD
-=======
-#ifdef WLAN_FEATURE_AP_HT40_24G
-    eCSR_ROAM_2040_COEX_INFO_IND,
-#endif
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #if defined(FEATURE_WLAN_ESE) && defined(FEATURE_WLAN_ESE_UPLOAD)
     eCSR_ROAM_TSM_IE_IND,
     eCSR_ROAM_CCKM_PREAUTH_NOTIFY,
     eCSR_ROAM_ESE_ADJ_AP_REPORT_IND,
     eCSR_ROAM_ESE_BCN_REPORT_IND,
 #endif /* FEATURE_WLAN_ESE && FEATURE_WLAN_ESE_UPLOAD */
-<<<<<<< HEAD
-=======
-    eCSR_ROAM_UPDATE_MAX_RATE_IND,
-    eCSR_ROAM_LOST_LINK_PARAMS_IND,
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 }eRoamCmdStatus;
 
 
@@ -1000,17 +961,6 @@ typedef struct tagCsrRoamConnectedProfile
     tANI_BOOLEAN    isESEAssoc;
 #endif
     tANI_U32 dot11Mode;
-<<<<<<< HEAD
-=======
-
-#ifdef WLAN_FEATURE_11W
-    /* Management Frame Protection */
-    tANI_BOOLEAN MFPEnabled;
-    tANI_U8 MFPRequired;
-    tANI_U8 MFPCapable;
-#endif
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 }tCsrRoamConnectedProfile;
 
 
@@ -1163,11 +1113,7 @@ typedef struct tagCsrConfigParam
     /*Customer wants to optimize the scan time. Avoiding scans(passive) on DFS
     * channels while swipping through both bands can save some time
     * (apprx 1.3 sec) */
-<<<<<<< HEAD
     tANI_BOOLEAN fEnableDFSChnlScan;
-=======
-    tANI_U8 fEnableDFSChnlScan;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
     //To enable/disable scanning 2.4Ghz channels twice on a single scan request from HDD
     tANI_BOOLEAN fScanTwice;
@@ -1196,11 +1142,7 @@ typedef struct tagCsrConfigParam
 #endif
 #endif
 
-<<<<<<< HEAD
 
-=======
-    tANI_BOOLEAN ignorePeerErpInfo;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     tANI_U8 scanCfgAgingTime;
 
     tANI_U8   enableTxLdpc;
@@ -1214,18 +1156,6 @@ typedef struct tagCsrConfigParam
     tANI_BOOLEAN sendDeauthBeforeCon;
 
     eCsrBand  scanBandPreference;
-<<<<<<< HEAD
-=======
-#ifdef WLAN_FEATURE_AP_HT40_24G
-    tANI_BOOLEAN apHT40_24GEnabled;
-    tANI_U32 channelBondingAPMode24GHz; // Use for SAP/P2P GO 2.4GHz channel Bonding
-#endif
-    tANI_U32 nOBSSScanWidthTriggerInterval;
-    tANI_U8 roamDelayStatsEnabled;
-    tANI_BOOLEAN ignorePeerHTopMode;
-    tANI_BOOLEAN disableP2PMacSpoofing;
-    tANI_U8 max_chan_for_dwell_time_cfg;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 }tCsrConfigParam;
 
 //Tush
@@ -1276,19 +1206,9 @@ typedef struct tagCsrRoamInfo
         tSirMicFailureInfo *pMICFailureInfo;
         tCsrRoamConnectedProfile *pConnectedProfile;
         tSirWPSPBCProbeReq *pWPSPBCProbeReq;
-<<<<<<< HEAD
     } u;
 
     tANI_BOOLEAN wmmEnabledSta;   //set to true if WMM enabled STA
-=======
-        tSirLostLinkParamsInfo *pLostLinkParams;
-    } u;
-
-    tANI_BOOLEAN wmmEnabledSta;   //set to true if WMM enabled STA
-#ifdef WLAN_FEATURE_AP_HT40_24G
-    tANI_BOOLEAN HT40MHzIntoEnabledSta; //set to true if 40 MHz Intolerant enabled STA
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     tANI_U32 dtimPeriod;
 
 #ifdef FEATURE_WLAN_ESE
@@ -1320,12 +1240,6 @@ typedef struct tagCsrRoamInfo
 
     tANI_S8 rxRssi;
     tANI_U32 maxRateFlags;
-<<<<<<< HEAD
-=======
-#ifdef WLAN_FEATURE_AP_HT40_24G
-    tpSirHT2040CoexInfoInd pSmeHT2040CoexInfoInd;
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 }tCsrRoamInfo;
 
 typedef struct tagCsrFreqScanInfo
@@ -1351,12 +1265,6 @@ typedef struct sSirSmeAssocIndToUpperLayerCnf
     tSirRSNie            rsnIE;           // RSN IE received from peer
     tSirAddie            addIE;           // Additional IE received from peer, which can be WSC and/or P2P IE
     tANI_U8              reassocReq;      //set to true if reassoc
-<<<<<<< HEAD
-=======
-#ifdef WLAN_FEATURE_AP_HT40_24G
-    tANI_U8              HT40MHzIntoEnabledSta; //set to true if 40 MHz Intolerant enabled STA
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 } tSirSmeAssocIndToUpperLayerCnf, *tpSirSmeAssocIndToUpperLayerCnf;
 
 typedef struct tagCsrSummaryStatsInfo
@@ -1507,7 +1415,6 @@ typedef struct tagCsrTdlsSendMgmt
 
 }tCsrTdlsSendMgmt;
 
-<<<<<<< HEAD
 #ifdef FEATURE_WLAN_TDLS_INTERNAL
 typedef struct tagCsrTdlsDisRequest
 {
@@ -1527,8 +1434,6 @@ typedef struct tagCsrTdlsTeardownRequest
             tANI_U8 linkIndex;
 }tCsrTdlsTeardownRequest ;
 #endif
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #endif
 
 typedef void * tScanResultHandle;
@@ -1566,21 +1471,6 @@ struct tagCsrDelStaParams
     u8 subtype;
 };
 
-<<<<<<< HEAD
-=======
-
-/**
- * struct csr_set_tx_max_pwr_per_band - Req params to
- * set max tx power per band
- * @band: band for which power to be set
- * @power: power to set in dB
- */
-struct csr_set_tx_max_pwr_per_band {
-    eCsrBand band;
-    tPowerdBm power;
-};
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 ////////////////////////////////////////////Common SCAN starts
 
 //void *p2 -- the second context pass in for the caller

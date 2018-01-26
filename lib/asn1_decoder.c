@@ -70,11 +70,7 @@ next_tag:
 
 	/* Extract a tag from the data */
 	tag = data[dp++];
-<<<<<<< HEAD
 	if (tag == 0) {
-=======
-	if (tag == ASN1_EOC) {
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		/* It appears to be an EOC. */
 		if (data[dp++] != 0)
 			goto invalid_eoc;
@@ -96,15 +92,10 @@ next_tag:
 
 	/* Extract the length */
 	len = data[dp++];
-<<<<<<< HEAD
 	if (len <= 0x7f) {
 		dp += len;
 		goto next_tag;
 	}
-=======
-	if (len <= 0x7f)
-		goto check_length;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	if (unlikely(len == ASN1_INDEFINITE_LENGTH)) {
 		/* Indefinite length */
@@ -115,7 +106,6 @@ next_tag:
 	}
 
 	n = len - 0x80;
-<<<<<<< HEAD
 	if (unlikely(n > sizeof(size_t) - 1))
 		goto length_too_long;
 	if (unlikely(n > datalen - dp))
@@ -124,20 +114,6 @@ next_tag:
 		len <<= 8;
 		len |= data[dp++];
 	}
-=======
-	if (unlikely(n > sizeof(len) - 1))
-		goto length_too_long;
-	if (unlikely(n > datalen - dp))
-		goto data_overrun_error;
-	len = 0;
-	for (; n > 0; n--) {
-		len <<= 8;
-		len |= data[dp++];
-	}
-check_length:
-	if (len > datalen - dp)
-		goto data_overrun_error;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	dp += len;
 	goto next_tag;
 

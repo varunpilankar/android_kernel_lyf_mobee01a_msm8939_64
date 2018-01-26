@@ -24,10 +24,7 @@
 
 #define TLV_LEN_SIZE sizeof(uint16_t)
 #define TLV_TYPE_SIZE sizeof(uint8_t)
-<<<<<<< HEAD
 #define U8_MAX 255
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 #ifdef CONFIG_QMI_ENCDEC_DEBUG
 

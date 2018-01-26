@@ -99,10 +99,6 @@ struct dsi_cmd_desc {
 #define CMD_REQ_COMMIT  0x0002
 #define CMD_CLK_CTRL    0x0004
 #define CMD_REQ_UNICAST 0x0008
-<<<<<<< HEAD
-=======
-#define CMD_REQ_DMA_TPG 0x0040
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #define CMD_REQ_NO_MAX_PKT_SIZE 0x0008
 #define CMD_REQ_LP_MODE 0x0010
 #define CMD_REQ_HS_MODE 0x0020

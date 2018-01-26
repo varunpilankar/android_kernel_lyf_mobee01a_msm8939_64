@@ -39,11 +39,8 @@
  *  This file contains the external API exposed by the 
  *   wlan device abstarction layer module.
  *
-<<<<<<< HEAD
  *   Copyright (c) 2008 QUALCOMM Incorporated. All Rights Reserved.
  *   Qualcomm Confidential and Proprietary
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  */
 
 
@@ -73,10 +70,6 @@ typedef struct
    wpt_uint16 fPktlen;
    wpt_status txCompleteStatus;
    wpt_uint8  staIdx;
-<<<<<<< HEAD
-=======
-   wpt_uint32  txBdToken;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 } WDI_DS_TxMetaInfoType;
 
 
@@ -95,23 +88,6 @@ typedef enum
   WDI_DS_OPCODE_MAX
 }WDI_DS_BAOpCodeEnumType;
 
-<<<<<<< HEAD
-=======
-#define WDI_DS_LOG_PKT_TYPE_LEN 4
-typedef enum
-{
-  WDI_DS_PACKET_LOG = 1<<0,
-
-  // Insert new values before this
-
-  // If the value of WDI_DS_MAX LOG is increased please
-  // make sure to change the data type of
-  // WDI_DS_RxMetaInfoType.loggingData from wpt_uint8
-  // to accommodate more values
-  WDI_DS_MAX_LOG    = 1<<31
-}WDI_DS_LoggingDataEnumType;
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 typedef struct 
 {
    wpt_uint8 staId;
@@ -183,10 +159,6 @@ typedef struct
 #ifdef WLAN_FEATURE_EXTSCAN
    wpt_uint32 extscanBuffer;
 #endif
-<<<<<<< HEAD
-=======
-   wpt_uint32 loggingData;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 } WDI_DS_RxMetaInfoType;
 
 typedef struct sPktMetaInfo
@@ -198,20 +170,6 @@ typedef struct sPktMetaInfo
    } u;
 } WDI_DS_MetaInfoType;
 
-<<<<<<< HEAD
-=======
-typedef struct
-{
-   wpt_boolean active;
-   wpt_uint64 logBuffAddress[MAX_NUM_OF_BUFFER];
-   wpt_uint32 logBuffLength[MAX_NUM_OF_BUFFER];
-   /* Log type i.e. Mgmt frame = 0, QXDM = 1, FW Mem dump = 2 */
-   wpt_uint8   logType;
-   /* Indicate if Last segment of log is received*/
-   wpt_boolean done;
-} WDI_DS_LoggingSessionType;
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 WPT_STATIC WPT_INLINE WDI_DS_RxMetaInfoType* WDI_DS_ExtractRxMetaData (wpt_packet *pFrame)
 {
   WDI_DS_RxMetaInfoType * pRxMetadata =
@@ -231,10 +189,6 @@ WPT_STATIC WPT_INLINE WDI_DS_TxMetaInfoType* WDI_DS_ExtractTxMetaData (wpt_packe
 typedef void (*WDI_DS_TxCompleteCallback)(void *pContext, wpt_packet *pFrame);
 typedef void (*WDI_DS_RxPacketCallback) (void *pContext, wpt_packet *pFrame);
 typedef void (*WDI_DS_TxFlowControlCallback)(void *pContext, wpt_uint8 ac_mask);
-<<<<<<< HEAD
-=======
-typedef void (*WDI_DS_RxLogCallback)(void);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 
 
@@ -257,10 +211,6 @@ WDI_Status WDI_DS_Register( void *pContext,
   WDI_DS_TxCompleteCallback pfnTxCompleteCallback,
   WDI_DS_RxPacketCallback pfnRxPacketCallback, 
   WDI_DS_TxFlowControlCallback pfnTxFlowControlCallback,
-<<<<<<< HEAD
-=======
-  WDI_DS_RxLogCallback pfnRxLogCallback,
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
   void *pCallbackContext);
 
 
@@ -406,10 +356,4 @@ void WDI_DS_ActivateTrafficStats(void);
  */
 void WDI_DS_ClearTrafficStats(void);
 
-<<<<<<< HEAD
-=======
-void *WDI_DS_GetLoggingMbPhyAddr(void *pContext);
-void *WDI_DS_GetLoggingMbAddr(void *pContext);
-void *WDI_DS_GetLoggingSession(void *pContext);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #endif

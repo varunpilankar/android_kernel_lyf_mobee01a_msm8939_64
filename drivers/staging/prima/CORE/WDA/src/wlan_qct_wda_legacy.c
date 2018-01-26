@@ -42,12 +42,9 @@
   Are listed for each API below.
 
 
-<<<<<<< HEAD
   Copyright (c) 2008 QUALCOMM Incorporated.
   All Rights Reserved.
   Qualcomm Confidential and Proprietary
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 ===========================================================================*/
 
 /* Standard include files */
@@ -181,10 +178,6 @@ tSirRetStatus uMacPostCtrlMsg(void* pSirGlobal, tSirMbMsg* pMb)
    switch (msg.type & HAL_MMH_MB_MSG_TYPE_MASK)
    {
    case WDA_MSG_TYPES_BEGIN:    // Posts a message to the HAL MsgQ
-<<<<<<< HEAD
-=======
-   case WDA_EXT_MSG_TYPES_BEGIN:
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
       wdaPostCtrlMsg(pMac, &msg);
       break;
 

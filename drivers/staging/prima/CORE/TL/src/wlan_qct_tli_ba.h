@@ -39,11 +39,8 @@ DESCRIPTION
   layer module for BA session support, AMSDU de-aggregation and 
   MSDU reordering.
         
-<<<<<<< HEAD
   Copyright (c) 2008 QUALCOMM Incorporated. All Rights Reserved.
   Qualcomm Confidential and Proprietary
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 ===========================================================================*/
 
 

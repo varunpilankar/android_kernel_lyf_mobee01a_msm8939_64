@@ -157,15 +157,12 @@ static int32_t msm_sensor_fill_eeprom_subdevid_by_name(
 	struct  msm_sensor_info_t *sensor_info;
 	struct device_node *of_node = s_ctrl->of_node;
 	const void *p;
-<<<<<<< HEAD
     //Jelly add for s5k5e2 compatibale
 	#ifdef CONFIG_TEST_ONLY
 	int32_t eeprom_mid=0;
 	uint32_t cnt = 0;
 	#endif
 	//end
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	if (!s_ctrl->sensordata->eeprom_name || !of_node)
 		return -EINVAL;
@@ -194,15 +191,12 @@ static int32_t msm_sensor_fill_eeprom_subdevid_by_name(
 	count /= sizeof(uint32_t);
 	for (i = 0; i < count; i++) {
 		eeprom_name = NULL;
-<<<<<<< HEAD
         //Jelly add for s5k5e2 compatibale
 	    #ifdef CONFIG_TEST_ONLY
 		eeprom_mid=0;
 		cnt = 0;
 	    #endif
 		//end
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		src_node = of_parse_phandle(of_node, "qcom,eeprom-src", i);
 		if (!src_node) {
 			pr_err("eeprom src node NULL\n");
@@ -227,7 +221,6 @@ static int32_t msm_sensor_fill_eeprom_subdevid_by_name(
 			of_node_put(src_node);
 			continue;
 		}
-<<<<<<< HEAD
          //Jelly add for s5k5e2 compatibale
 	    #ifdef CONFIG_TEST_ONLY
 		if(of_get_property(src_node, "qcom,mid-addr", &cnt)){
@@ -251,8 +244,6 @@ static int32_t msm_sensor_fill_eeprom_subdevid_by_name(
 		}
 		#endif
 		//end
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 		*eeprom_subdev_id = val;
 		CDBG("Done. Eeprom subdevice id is %d\n", val);
@@ -668,7 +659,6 @@ static void msm_sensor_fill_sensor_info(struct msm_sensor_ctrl_t *s_ctrl,
 	strlcpy(entity_name, s_ctrl->msm_sd.sd.entity.name, MAX_SENSOR_NAME);
 }
 
-<<<<<<< HEAD
 //hongjie.zhao add for camera info sysfile
 static struct class *camera_class = NULL;
 char *main_camera_info = NULL;
@@ -693,8 +683,6 @@ static CLASS_ATTR(main_camera_info, 0644, main_camera_info_show, NULL);
 static CLASS_ATTR(sub_camera_info, 0644, sub_camera_info_show, NULL);
 //hongjie.zhao add end
 
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 /* static function definition */
 int32_t msm_sensor_driver_is_special_support(
 	struct msm_sensor_ctrl_t *s_ctrl,
@@ -979,7 +967,6 @@ int32_t msm_sensor_driver_probe(void *setting,
 	 * probed on this slot
 	 */
 	s_ctrl->is_probe_succeed = 1;
-<<<<<<< HEAD
         //hongjie.zhao add for camera info sysfile
         if (slave_info->camera_id == 0)
         {
@@ -990,9 +977,6 @@ int32_t msm_sensor_driver_probe(void *setting,
             sub_camera_info = slave_info->sensor_name;
         }
         //hongjie.zhao add end
-=======
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	/*
 	 * Update the subdevice id of flash-src based on availability in kernel.
 	 */
@@ -1453,7 +1437,6 @@ static int __init msm_sensor_driver_init(void)
 {
 	int32_t rc = 0;
 
-<<<<<<< HEAD
         //hongjie.zhao add for camera info sysfile
         int sys_ret = 0;
 	camera_class = class_create(THIS_MODULE, "camera");
@@ -1461,8 +1444,6 @@ static int __init msm_sensor_driver_init(void)
 		return PTR_ERR(camera_class);
         sys_ret = class_create_file(camera_class, &class_attr_main_camera_info);
         sys_ret = class_create_file(camera_class, &class_attr_sub_camera_info);
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	CDBG("Enter");
 	rc = platform_driver_probe(&msm_sensor_platform_driver,
 		msm_sensor_driver_platform_probe);
@@ -1483,12 +1464,9 @@ static void __exit msm_sensor_driver_exit(void)
 	CDBG("Enter");
 	platform_driver_unregister(&msm_sensor_platform_driver);
 	i2c_del_driver(&msm_sensor_driver_i2c);
-<<<<<<< HEAD
         class_remove_file(camera_class, &class_attr_main_camera_info);
         class_remove_file(camera_class, &class_attr_sub_camera_info);
         class_destroy(camera_class);
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	return;
 }
 

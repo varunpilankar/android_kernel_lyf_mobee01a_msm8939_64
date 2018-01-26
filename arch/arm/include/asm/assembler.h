@@ -23,12 +23,6 @@
 #include <asm/ptrace.h>
 #include <asm/domain.h>
 #include <asm/opcodes-virt.h>
-<<<<<<< HEAD
-=======
-#include <asm/asm-offsets.h>
-#include <asm/page.h>
-#include <asm/thread_info.h>
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 #define IOMEM(x)	(x)
 
@@ -165,19 +159,6 @@
 	restore_irqs_notrace \oldcpsr
 	.endm
 
-<<<<<<< HEAD
-=======
-/*
- * Get current thread_info.
- */
-	.macro	get_thread_info, rd
- ARM(	mov	\rd, sp, lsr #THREAD_SIZE_ORDER + PAGE_SHIFT	)
- THUMB(	mov	\rd, sp			)
- THUMB(	lsr	\rd, \rd, #THREAD_SIZE_ORDER + PAGE_SHIFT	)
-	mov	\rd, \rd, lsl #THREAD_SIZE_ORDER + PAGE_SHIFT
-	.endm
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #define USER(x...)				\
 9999:	x;					\
 	.pushsection __ex_table,"a";		\

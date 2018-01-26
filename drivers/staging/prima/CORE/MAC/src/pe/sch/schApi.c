@@ -1,9 +1,5 @@
 /*
-<<<<<<< HEAD
  * Copyright (c) 2012-2013 The Linux Foundation. All rights reserved.
-=======
- * Copyright (c) 2012-2015 The Linux Foundation. All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -43,11 +39,7 @@
  */
 #include "palTypes.h"
 #include "aniGlobal.h"
-<<<<<<< HEAD
 #include "wniCfgSta.h"
-=======
-#include "wniCfg.h"
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 #include "sirMacProtDef.h"
 #include "sirMacPropExts.h"
@@ -251,11 +243,7 @@ schSendStartScanRsp(tpAniSirGlobal pMac)
     tSirMsgQ        msgQ;
     tANI_U32        retCode;
 
-<<<<<<< HEAD
     PELOG1(schLog(pMac, LOG1, FL("Sending LIM message to go into scan"));)
-=======
-    schLog(pMac, LOG1, FL("Sending SIR_SCH_START_SCAN_RSP to LIM"));
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     msgQ.type = SIR_SCH_START_SCAN_RSP;
     if ((retCode = limPostMsgApi(pMac, &msgQ)) != eSIR_SUCCESS)
         schLog(pMac, LOGE,

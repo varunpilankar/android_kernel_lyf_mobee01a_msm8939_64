@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 /* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
-=======
-/* Copyright (c) 2012-2016, The Linux Foundation. All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -99,11 +95,7 @@ struct mdss_mdp_data *mdss_mdp_wb_debug_buffer(struct msm_fb_data_type *mfd)
 		ihdl = ion_alloc(iclient, img_size, SZ_4K,
 				 ION_HEAP(ION_SF_HEAP_ID), 0);
 		if (IS_ERR_OR_NULL(ihdl)) {
-<<<<<<< HEAD
 			pr_err("unable to alloc fbmem from ion (%p)\n", ihdl);
-=======
-			pr_err("unable to alloc fbmem from ion (%pK)\n", ihdl);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			return NULL;
 		}
 
@@ -130,11 +122,7 @@ struct mdss_mdp_data *mdss_mdp_wb_debug_buffer(struct msm_fb_data_type *mfd)
 			img->len = img_size;
 		}
 
-<<<<<<< HEAD
 		pr_debug("ihdl=%p virt=%p phys=0x%pa iova=0x%pa size=%u\n",
-=======
-		pr_debug("ihdl=%pK virt=%pK phys=0x%pa iova=0x%pa size=%u\n",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			 ihdl, videomemory, &mdss_wb_mem, &img->addr, img_size);
 	}
 	return &mdss_wb_buffer;
@@ -447,11 +435,7 @@ static struct mdss_mdp_wb_data *get_user_node(struct msm_fb_data_type *mfd,
 		list_for_each_entry(node, &wb->register_queue, registered_entry)
 			if ((node->buf_data.p[0].srcp_ihdl == ihdl) &&
 				    (node->buf_info.offset == data->offset)) {
-<<<<<<< HEAD
 				pr_debug("found fd=%d hdl=%p off=%x addr=%pa\n",
-=======
-				pr_debug("found fd=%d hdl=%pK off=%x addr=%pa\n",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 						data->memory_id, ihdl,
 						data->offset,
 						&node->buf_data.p[0].addr);
@@ -517,11 +501,7 @@ static void mdss_mdp_wb_free_node(struct mdss_mdp_wb_data *node)
 	if (node->user_alloc) {
 		buf = &node->buf_data.p[0];
 
-<<<<<<< HEAD
 		pr_debug("free user mem_id=%d ihdl=%p, offset=%u addr=0x%pa\n",
-=======
-		pr_debug("free user mem_id=%d ihdl=%pK, offset=%u addr=0x%pa\n",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				node->buf_info.memory_id,
 				buf->srcp_ihdl,
 				node->buf_info.offset,

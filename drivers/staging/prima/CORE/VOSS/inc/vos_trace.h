@@ -81,25 +81,6 @@ typedef enum
     
 } VOS_TRACE_LEVEL;
 
-<<<<<<< HEAD
-=======
-enum {
-	LOG_PKT_TYPE_DATA_MGMT = 0x1,
-	LOG_PKT_TYPE_FW_LOG    = 0x2
-};
-
-
-
-/* Log types. These types are defined in mailbox*/
-typedef enum
-{
-    WLAN_MGMT_FRAME_LOGS    = 0,
-    WLAN_QXDM_LOGGING       = 1,
-    WLAN_FW_MEMORY_DUMP     = 2
-}FrameLoggingType;
-
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 /*-------------------------------------------------------------------------- 
   Preprocessor definitions and constants
   ------------------------------------------------------------------------*/

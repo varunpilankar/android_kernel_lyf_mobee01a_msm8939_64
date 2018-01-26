@@ -132,22 +132,12 @@ enum rmnet_map_agg_state_e {
 #define RMNET_MAP_COMMAND_UNSUPPORTED 2
 #define RMNET_MAP_COMMAND_INVALID     3
 
-<<<<<<< HEAD
-=======
-#define RMNET_MAP_NO_PAD_BYTES        0
-#define RMNET_MAP_ADD_PAD_BYTES       1
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 uint8_t rmnet_map_demultiplex(struct sk_buff *skb);
 struct sk_buff *rmnet_map_deaggregate(struct sk_buff *skb,
 				      struct rmnet_phys_ep_conf_s *config);
 
 struct rmnet_map_header_s *rmnet_map_add_map_header(struct sk_buff *skb,
-<<<<<<< HEAD
 						    int hdrlen);
-=======
-						    int hdrlen, int pad);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 rx_handler_result_t rmnet_map_command(struct sk_buff *skb,
 				      struct rmnet_phys_ep_conf_s *config);
 void rmnet_map_aggregate(struct sk_buff *skb,

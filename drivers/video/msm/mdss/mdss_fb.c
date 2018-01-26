@@ -54,11 +54,6 @@
 #include "mdss_fb.h"
 #include "mdss_mdp_splash_logo.h"
 
-<<<<<<< HEAD
-=======
-#include "mdss_livedisplay.h"
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #ifdef CONFIG_FB_MSM_TRIPLE_BUFFER
 #define MDSS_FB_NUM 3
 #else
@@ -526,22 +521,13 @@ static ssize_t mdss_fb_get_panel_info(struct device *dev,
 			"pu_en=%d\nxstart=%d\nwalign=%d\nystart=%d\nhalign=%d\n"
 			"min_w=%d\nmin_h=%d\nroi_merge=%d\ndyn_fps_en=%d\n"
 			"min_fps=%d\nmax_fps=%d\npanel_name=%s\n"
-<<<<<<< HEAD
 			"primary_panel=%d\n",
-=======
-			"primary_panel=%d\nidle_fps=%d\n",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			pinfo->partial_update_enabled, pinfo->xstart_pix_align,
 			pinfo->width_pix_align, pinfo->ystart_pix_align,
 			pinfo->height_pix_align, pinfo->min_width,
 			pinfo->min_height, pinfo->partial_update_roi_merge,
 			pinfo->dynamic_fps, pinfo->min_fps, pinfo->max_fps,
-<<<<<<< HEAD
 			pinfo->panel_name, pinfo->is_prim_panel);
-=======
-			pinfo->panel_name, pinfo->is_prim_panel,
-			pinfo->idle_fps);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	return ret;
 }
@@ -736,12 +722,7 @@ static int mdss_fb_create_sysfs(struct msm_fb_data_type *mfd)
 	rc = sysfs_create_group(&mfd->fbi->dev->kobj, &mdss_fb_attr_group);
 	if (rc)
 		pr_err("sysfs group creation failed, rc=%d\n", rc);
-<<<<<<< HEAD
 	return rc;
-=======
-
-	return mdss_livedisplay_create_sysfs(mfd);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 }
 
 static void mdss_fb_remove_sysfs(struct msm_fb_data_type *mfd)
@@ -941,11 +922,6 @@ static int mdss_fb_remove(struct platform_device *pdev)
 	if (mfd->key != MFD_KEY)
 		return -EINVAL;
 
-<<<<<<< HEAD
-=======
-	mdss_panel_debugfs_cleanup(mfd->panel_info);
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	if (mdss_fb_suspend_sub(mfd))
 		pr_err("msm_fb_remove: can't stop the device %d\n",
 			    mfd->index);
@@ -1195,16 +1171,8 @@ void mdss_fb_set_backlight(struct msm_fb_data_type *mfd, u32 bkl_lvl)
 		return;
 	}
 
-<<<<<<< HEAD
 	if ((((mdss_fb_is_power_off(mfd) && mfd->dcm_state != DCM_ENTER)
 		|| !mfd->bl_updated) && !IS_CALIB_MODE_BL(mfd)) ||
-=======
-	if (
-#ifndef CONFIG_LEDS_TRIGGER_BACKLIGHT
-		(((mdss_fb_is_power_off(mfd) && mfd->dcm_state != DCM_ENTER)
-		|| !mfd->bl_updated) && !IS_CALIB_MODE_BL(mfd)) ||
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		mfd->panel_info->cont_splash_enabled) {
 		mfd->unset_bl_level = bkl_lvl;
 		return;
@@ -1672,11 +1640,7 @@ int mdss_fb_alloc_fb_ion_memory(struct msm_fb_data_type *mfd, size_t fb_size)
 		goto fb_mmap_failed;
 	}
 
-<<<<<<< HEAD
 	pr_debug("alloc 0x%zuB vaddr = %p (%pa iova) for fb%d\n", fb_size,
-=======
-	pr_debug("alloc 0x%zuB vaddr = %pK (%pa iova) for fb%d\n", fb_size,
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			vaddr, &mfd->iova, mfd->index);
 
 	mfd->fbi->screen_base = (char *) vaddr;
@@ -1769,11 +1733,7 @@ static int mdss_fb_fbmem_ion_mmap(struct fb_info *info,
 				vma->vm_page_prot =
 					pgprot_writecombine(vma->vm_page_prot);
 
-<<<<<<< HEAD
 			pr_debug("vma=%p, addr=%x len=%ld\n",
-=======
-			pr_debug("vma=%pK, addr=%x len=%ld\n",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 					vma, (unsigned int)addr, len);
 			pr_debug("vm_start=%x vm_end=%x vm_page_prot=%ld\n",
 					(unsigned int)vma->vm_start,
@@ -1943,11 +1903,7 @@ static int mdss_fb_alloc_fbmem_iommu(struct msm_fb_data_type *mfd, int dom)
 	if (rc)
 		pr_warn("Cannot map fb_mem %pa to IOMMU. rc=%d\n", &phys, rc);
 
-<<<<<<< HEAD
 	pr_debug("alloc 0x%zxB @ (%pa phys) (0x%p virt) (%pa iova) for fb%d\n",
-=======
-	pr_debug("alloc 0x%zxB @ (%pa phys) (0x%pK virt) (%pa iova) for fb%d\n",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		 size, &phys, virt, &mfd->iova, mfd->index);
 
 	mfd->fbi->screen_base = virt;

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 /* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
-=======
-/* Copyright (c) 2012-2014, 2016, The Linux Foundation. All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -319,10 +315,6 @@ static void mdss_mdp_rotator_commit_wq_handler(struct work_struct *work)
 	if (rot->rot_sync_pt_data) {
 		atomic_inc(&rot->rot_sync_pt_data->commit_cnt);
 		mdss_fb_signal_timeline(rot->rot_sync_pt_data);
-<<<<<<< HEAD
-=======
-		rot->fence_release = true;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	} else {
 		pr_err("rot_sync_pt_data is NULL\n");
 	}
@@ -369,11 +361,7 @@ static int mdss_mdp_rotator_busy_wait_ex(struct mdss_mdp_rotator_session *rot)
 
 	if (rot->use_sync_pt)
 		mdss_fb_wait_for_fence(rot->rot_sync_pt_data);
-<<<<<<< HEAD
 
-=======
-	rot->fence_release = false;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	return 0;
 }
 
@@ -650,19 +638,6 @@ int mdss_mdp_rotator_setup(struct msm_fb_data_type *mfd,
 	return ret;
 }
 
-<<<<<<< HEAD
-=======
-static void mdss_mdp_rotator_fence_free(
-	struct mdss_mdp_rotator_session *rot)
-{
-	if (rot->rot_sync_pt_data && !rot->fence_release) {
-		atomic_inc(&rot->rot_sync_pt_data->commit_cnt);
-		mdss_fb_signal_timeline(rot->rot_sync_pt_data);
-		rot->fence_release = true;
-	}
-}
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 static int mdss_mdp_rotator_finish(struct mdss_mdp_rotator_session *rot)
 {
 	struct mdss_mdp_pipe *rot_pipe;
@@ -694,11 +669,6 @@ static int mdss_mdp_rotator_finish(struct mdss_mdp_rotator_session *rot)
 	if (!list_empty(&rot->list))
 		list_del(&rot->list);
 
-<<<<<<< HEAD
-=======
-	mdss_mdp_rotator_fence_free(rot);
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	rot_sync_pt_data = rot->rot_sync_pt_data;
 	commit_work = rot->commit_work;
 	memset(rot, 0, sizeof(*rot));

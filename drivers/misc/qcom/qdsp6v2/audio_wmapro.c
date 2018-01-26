@@ -2,11 +2,7 @@
  *
  * Copyright (C) 2008 Google, Inc.
  * Copyright (C) 2008 HTC Corporation
-<<<<<<< HEAD
  * Copyright (c) 2009-2014, The Linux Foundation. All rights reserved.
-=======
- * Copyright (c) 2009-2014,2016, The Linux Foundation. All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This software is licensed under the terms of the GNU General Public
  * License version 2, as published by the Free Software Foundation, and
@@ -180,11 +176,7 @@ static long audio_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 		break;
 	}
 	default: {
-<<<<<<< HEAD
 		pr_debug("%s[%p]: Calling utils ioctl\n", __func__, audio);
-=======
-		pr_debug("%s[%pK]: Calling utils ioctl\n", __func__, audio);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		rc = audio->codec_ioctl(file, cmd, arg);
 		if (rc)
 			pr_err("Failed in utils_ioctl: %d\n", rc);
@@ -228,11 +220,6 @@ static long audio_compat_ioctl(struct file *file, unsigned int cmd,
 		struct msm_audio_wmapro_config *wmapro_config;
 		struct msm_audio_wmapro_config32 wmapro_config_32;
 
-<<<<<<< HEAD
-=======
-		memset(&wmapro_config_32, 0, sizeof(wmapro_config_32));
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		wmapro_config =
 			(struct msm_audio_wmapro_config *)audio->codec_cfg;
 		wmapro_config_32.armdatareqthr = wmapro_config->armdatareqthr;
@@ -297,11 +284,7 @@ static long audio_compat_ioctl(struct file *file, unsigned int cmd,
 		break;
 	}
 	default: {
-<<<<<<< HEAD
 		pr_debug("%s[%p]: Calling utils ioctl\n", __func__, audio);
-=======
-		pr_debug("%s[%pK]: Calling utils ioctl\n", __func__, audio);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		rc = audio->codec_compat_ioctl(file, cmd, arg);
 		if (rc)
 			pr_err("Failed in utils_ioctl: %d\n", rc);

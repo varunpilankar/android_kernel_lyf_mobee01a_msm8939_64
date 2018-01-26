@@ -1,9 +1,5 @@
 /*
-<<<<<<< HEAD
  * Copyright (c) 2011-2014 The Linux Foundation. All rights reserved.
-=======
- * Copyright (c) 2011-2015 The Linux Foundation. All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -43,11 +39,7 @@
  */
 
 #include "wniApi.h"
-<<<<<<< HEAD
 #include "wniCfgSta.h"
-=======
-#include "wniCfg.h"
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #include "cfgApi.h"
 #include "sirApi.h"
 #include "schApi.h"
@@ -863,16 +855,6 @@ limIsSmeScanReqValid(tpAniSirGlobal pMac, tpSirSmeScanReq pScanReq)
     tANI_U8 valid = true;
     tANI_U8 i = 0;
 
-<<<<<<< HEAD
-=======
-    if (pScanReq->numSsid > SIR_SCAN_MAX_NUM_SSID)
-    {
-        valid = false;
-        limLog(pMac, LOGE, FL("Number of SSIDs > SIR_SCAN_MAX_NUM_SSID"));
-        goto end;
-    }
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     for (i = 0; i < pScanReq->numSsid; i++)
     {
         if (pScanReq->ssId[i].length > SIR_MAC_MAX_SSID_LENGTH)
@@ -883,11 +865,7 @@ limIsSmeScanReqValid(tpAniSirGlobal pMac, tpSirSmeScanReq pScanReq)
             goto end;    
         }
     }
-<<<<<<< HEAD
     if (pScanReq->bssType > eSIR_AUTO_MODE)
-=======
-    if ((pScanReq->bssType < 0) || (pScanReq->bssType > eSIR_AUTO_MODE))
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     {
         limLog(pMac, LOGE, FL("Invalid BSS Type"));
         valid = false;

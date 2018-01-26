@@ -429,11 +429,7 @@ static int wcd_cpe_load_fw(struct wcd_cpe_core *core,
 	bool load_segment;
 
 	if (!core || !core->cpe_handle) {
-<<<<<<< HEAD
 		pr_err("%s: Error CPE core %p\n", __func__,
-=======
-		pr_err("%s: Error CPE core %pK\n", __func__,
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		       core);
 		return -EINVAL;
 	}

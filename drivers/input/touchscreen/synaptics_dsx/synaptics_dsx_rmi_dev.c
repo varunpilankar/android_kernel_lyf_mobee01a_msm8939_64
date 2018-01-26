@@ -347,11 +347,7 @@ static ssize_t rmidev_read(struct file *filp, char __user *buf,
 		size_t count, loff_t *f_pos)
 {
 	ssize_t retval;
-<<<<<<< HEAD
 	unsigned char tmpbuf[count + 1];
-=======
-	unsigned char *tmpbuf;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	struct rmidev_data *dev_data = filp->private_data;
 
 	if (IS_ERR(dev_data)) {
@@ -365,13 +361,6 @@ static ssize_t rmidev_read(struct file *filp, char __user *buf,
 	if (count > (REG_ADDR_LIMIT - *f_pos))
 		count = REG_ADDR_LIMIT - *f_pos;
 
-<<<<<<< HEAD
-=======
-	tmpbuf = kzalloc(count + 1, GFP_KERNEL);
-	if (!tmpbuf)
-		return -ENOMEM;
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	mutex_lock(&(dev_data->file_mutex));
 
 	retval = synaptics_rmi4_reg_read(rmidev->rmi4_data,
@@ -388,11 +377,7 @@ static ssize_t rmidev_read(struct file *filp, char __user *buf,
 
 clean_up:
 	mutex_unlock(&(dev_data->file_mutex));
-<<<<<<< HEAD
 
-=======
-	kfree(tmpbuf);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	return retval;
 }
 
@@ -408,11 +393,7 @@ static ssize_t rmidev_write(struct file *filp, const char __user *buf,
 		size_t count, loff_t *f_pos)
 {
 	ssize_t retval;
-<<<<<<< HEAD
 	unsigned char tmpbuf[count + 1];
-=======
-	unsigned char *tmpbuf;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	struct rmidev_data *dev_data = filp->private_data;
 
 	if (IS_ERR(dev_data)) {
@@ -426,20 +407,9 @@ static ssize_t rmidev_write(struct file *filp, const char __user *buf,
 	if (count > (REG_ADDR_LIMIT - *f_pos))
 		count = REG_ADDR_LIMIT - *f_pos;
 
-<<<<<<< HEAD
 	if (copy_from_user(tmpbuf, buf, count))
 		return -EFAULT;
 
-=======
-	tmpbuf = kzalloc(count + 1, GFP_KERNEL);
-	if (!tmpbuf)
-		return -ENOMEM;
-
-	if (copy_from_user(tmpbuf, buf, count)) {
-		kfree(tmpbuf);
-		return -EFAULT;
-	}
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	mutex_lock(&(dev_data->file_mutex));
 
 	retval = synaptics_rmi4_reg_write(rmidev->rmi4_data,
@@ -450,11 +420,7 @@ static ssize_t rmidev_write(struct file *filp, const char __user *buf,
 		*f_pos += retval;
 
 	mutex_unlock(&(dev_data->file_mutex));
-<<<<<<< HEAD
 
-=======
-	kfree(tmpbuf);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	return retval;
 }
 

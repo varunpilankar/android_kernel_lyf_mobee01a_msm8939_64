@@ -828,10 +828,6 @@ static void disk_seqf_stop(struct seq_file *seqf, void *v)
 	if (iter) {
 		class_dev_iter_exit(iter);
 		kfree(iter);
-<<<<<<< HEAD
-=======
-		seqf->private = NULL;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	}
 }
 

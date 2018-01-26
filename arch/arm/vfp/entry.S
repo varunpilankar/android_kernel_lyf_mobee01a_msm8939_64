@@ -8,18 +8,9 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
-<<<<<<< HEAD
 #include <asm/thread_info.h>
 #include <asm/vfpmacros.h>
 #include "../kernel/entry-header.S"
-=======
-#include <linux/init.h>
-#include <linux/linkage.h>
-#include <asm/thread_info.h>
-#include <asm/vfpmacros.h>
-#include <asm/assembler.h>
-#include <asm/asm-offsets.h>
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 @ VFP entry point.
 @

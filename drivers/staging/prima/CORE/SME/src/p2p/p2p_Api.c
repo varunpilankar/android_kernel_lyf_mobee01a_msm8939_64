@@ -188,16 +188,9 @@ eHalStatus p2pProcessRemainOnChannelCmd(tpAniSirGlobal pMac, tSmeCmd *p2pRemaino
 
 eHalStatus sme_remainOnChnRsp( tpAniSirGlobal pMac, tANI_U8 *pMsg)
 {
-<<<<<<< HEAD
     eHalStatus                         status = eHAL_STATUS_SUCCESS;
     tListElem                          *pEntry = NULL;
     tSmeCmd                            *pCommand = NULL;
-=======
-    eHalStatus status = eHAL_STATUS_SUCCESS;
-    tListElem  *pEntry = NULL;
-    tSmeCmd    *pCommand = NULL;
-    tSirSmeRsp *pRsp = (tSirSmeRsp *)pMsg;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
     pEntry = csrLLPeekHead(&pMac->sme.smeCmdActiveList, LL_ACCESS_LOCK);
     if( pEntry )
@@ -208,14 +201,8 @@ eHalStatus sme_remainOnChnRsp( tpAniSirGlobal pMac, tANI_U8 *pMsg)
             remainOnChanCallback callback = pCommand->u.remainChlCmd.callback;
             /* process the msg */
             if( callback )
-<<<<<<< HEAD
                 callback(pMac, pCommand->u.remainChlCmd.callbackCtx, 0);
              
-=======
-                callback(pMac, pCommand->u.remainChlCmd.callbackCtx,
-                                                        pRsp->statusCode);
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
             if( csrLLRemoveEntry( &pMac->sme.smeCmdActiveList, pEntry, LL_ACCESS_LOCK ) )
             {
                 //Now put this command back on the avilable command list
@@ -227,7 +214,6 @@ eHalStatus sme_remainOnChnRsp( tpAniSirGlobal pMac, tANI_U8 *pMsg)
     return status;
 }
 
-<<<<<<< HEAD
 
 /*------------------------------------------------------------------
  *
@@ -282,8 +268,6 @@ eHalStatus sme_mgmtFrmInd( tHalHandle hHal, tpSirSmeMgmtFrameInd pSmeMgmtFrm)
 }
 
 
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 /*------------------------------------------------------------------
  *
  * Handle the remain on channel ready indication from PE

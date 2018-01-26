@@ -1,9 +1,5 @@
 /*
-<<<<<<< HEAD
  * Copyright (c) 2012-2013 The Linux Foundation. All rights reserved.
-=======
- * Copyright (c) 2014-2015 The Linux Foundation. All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -40,12 +36,9 @@
                
    Definitions for vOSS Locks
   
-<<<<<<< HEAD
    Copyright 2008 (c) Qualcomm, Incorporated.  All Rights Reserved.
    
    Qualcomm Confidential and Proprietary.
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
   
   ========================================================================*/
 
@@ -258,66 +251,5 @@ VOS_STATUS vos_spin_lock_release(vos_spin_lock_t *pLock);
   ------------------------------------------------------------------------*/
 VOS_STATUS vos_spin_lock_destroy(vos_spin_lock_t *pLock);
 
-<<<<<<< HEAD
-=======
-/*--------------------------------------------------------------------------
-
-  \brief vos_wake_lock_init() - initializes a vOSS wake lock
-
-  \param pLock - the wake lock to initialize
-              name - wakelock name
-
-  \return VOS_STATUS_SUCCESS - wake lock was successfully initialized and
-          is ready to be used.
-  --------------------------------------------------------------------------*/
-VOS_STATUS vos_wake_lock_init(vos_wake_lock_t *pLock, const char *name);
-
-/*--------------------------------------------------------------------------
-
-  \brief vos_wake_lock_acquire() - acquires a wake lock
-
-  \param pLock - the wake lock to acquire
-         reason - reason for taking wakelock
-
-  \return VOS_STATUS_SUCCESS - the wake lock was successfully acquired
-
-  ------------------------------------------------------------------------*/
-VOS_STATUS vos_wake_lock_acquire(vos_wake_lock_t *pLock, uint32_t reason);
-/*--------------------------------------------------------------------------
-
-  \brief vos_wake_lock_timeout_release() - release a wake lock with a timeout
-
-  \param pLock - the wake lock to release
-         reason - reason for taking wakelock
-
-  \return VOS_STATUS_SUCCESS - the wake lock was successfully released
-
-  ------------------------------------------------------------------------*/
-VOS_STATUS vos_wake_lock_timeout_release(vos_wake_lock_t *pLock,
-                                            v_U32_t msec, uint32_t reason);
-
-/*--------------------------------------------------------------------------
-
-  \brief vos_wake_lock_release() - releases a wake lock
-
-  \param pLock - the wake lock to release
-         reason - reason for taking wakelock
-
-  \return VOS_STATUS_SUCCESS - the lock was successfully released
-
-  ------------------------------------------------------------------------*/
-VOS_STATUS vos_wake_lock_release(vos_wake_lock_t *pLock, uint32_t reason);
-
-/*--------------------------------------------------------------------------
-
-  \brief vos_wake_lock_destroy() - destroys a wake lock
-
-  \param pLock - the wake lock to destroy
-
-  \return VOS_STATUS_SUCCESS - the lock was successfully destroyed
-
-  ------------------------------------------------------------------------*/
-VOS_STATUS vos_wake_lock_destroy(vos_wake_lock_t *pLock);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 #endif // __VOSS_LOCK_H

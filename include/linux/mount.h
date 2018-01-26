@@ -42,13 +42,7 @@ struct mnt_namespace;
  * flag, consider how it interacts with shared mounts.
  */
 #define MNT_SHARED_MASK	(MNT_UNBINDABLE)
-<<<<<<< HEAD
 #define MNT_PROPAGATION_MASK	(MNT_SHARED | MNT_UNBINDABLE)
-=======
-#define MNT_USER_SETTABLE_MASK  (MNT_NOSUID | MNT_NODEV | MNT_NOEXEC \
-				 | MNT_NOATIME | MNT_NODIRATIME | MNT_RELATIME \
-				 | MNT_READONLY)
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 
 #define MNT_INTERNAL	0x4000

@@ -37,10 +37,6 @@
 #define CSR_INSIDE_API_H__
 
 
-<<<<<<< HEAD
-=======
-#include <linux/version.h>
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #include "csrSupport.h"
 #include "smeInside.h"
 #include "vos_nvitem.h"
@@ -88,10 +84,7 @@
 #define CSR_MIC_ERROR_TIMEOUT  (60 * PAL_TIMER_TO_SEC_UNIT)     //60 seconds
 #define CSR_TKIP_COUNTER_MEASURE_TIMEOUT  (60 * PAL_TIMER_TO_SEC_UNIT)     //60 seconds
 #define CSR_SCAN_RESULT_AGING_INTERVAL    (5 * PAL_TIMER_TO_SEC_UNIT)     //5 seconds
-<<<<<<< HEAD
 #define CSR_SCAN_RESULT_CFG_AGING_INTERVAL    (PAL_TIMER_TO_SEC_UNIT)     // 1  second
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 //the following defines are NOT used by palTimer
 #define CSR_SCAN_AGING_TIME_NOT_CONNECT_NO_PS 50     //50 seconds
 #define CSR_SCAN_AGING_TIME_NOT_CONNECT_W_PS 300     //300 seconds
@@ -262,13 +255,10 @@ eHalStatus csrScanForSSID(tpAniSirGlobal pMac, tANI_U32 sessionId, tCsrRoamProfi
 eHalStatus csrScanForCapabilityChange(tpAniSirGlobal pMac, tSirSmeApNewCaps *pNewCaps);
 eHalStatus csrScanStartGetResultTimer(tpAniSirGlobal pMac);
 eHalStatus csrScanStopGetResultTimer(tpAniSirGlobal pMac);
-<<<<<<< HEAD
 eHalStatus csrScanStartResultAgingTimer(tpAniSirGlobal pMac);
 eHalStatus csrScanStopResultAgingTimer(tpAniSirGlobal pMac);
 eHalStatus csrScanStartResultCfgAgingTimer(tpAniSirGlobal pMac);
 eHalStatus csrScanStopResultCfgAgingTimer(tpAniSirGlobal pMac);
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 eHalStatus csrScanBGScanEnable(tpAniSirGlobal pMac);
 eHalStatus csrScanStartIdleScanTimer(tpAniSirGlobal pMac, tANI_U32 interval);
 eHalStatus csrScanStopIdleScanTimer(tpAniSirGlobal pMac);
@@ -305,11 +295,6 @@ void csrRemoveScanForSSIDFromPendingList(tpAniSirGlobal pMac, tDblLinkList *pLis
 //The BSS is remove if the count reaches 0.
 eHalStatus csrScanAgeResults(tpAniSirGlobal pMac, tSmeGetScanChnRsp *pScanChnInfo);
 
-<<<<<<< HEAD
-=======
-eHalStatus csrIbssAgeBss(tpAniSirGlobal pMac);
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 //If fForce is TRUE we will save the new String that is learn't.
 //Typically it will be true in case of Join or user initiated ioctl
 tANI_BOOLEAN csrLearnCountryInformation( tpAniSirGlobal pMac, tSirBssDescription *pSirBssDesc,
@@ -399,10 +384,6 @@ eCsrCfgDot11Mode csrGetCfgDot11ModeFromCsrPhyMode(tCsrRoamProfile *pProfile, eCs
 tANI_U32 csrTranslateToWNICfgDot11Mode(tpAniSirGlobal pMac, eCsrCfgDot11Mode csrDot11Mode);
 void csrSaveChannelPowerForBand( tpAniSirGlobal pMac, tANI_BOOLEAN fPopulate5GBand );
 void csrApplyChannelPowerCountryInfo( tpAniSirGlobal pMac, tCsrChannel *pChannelList, tANI_U8 *countryCode, tANI_BOOLEAN updateRiva);
-<<<<<<< HEAD
-=======
-void csrUpdateFCCChannelList(tpAniSirGlobal pMac);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 void csrApplyPower2Current( tpAniSirGlobal pMac );
 void csrAssignRssiForCategory(tpAniSirGlobal pMac, tANI_S8 bestApRssi, tANI_U8 catOffset);
 tANI_BOOLEAN csrIsMacAddressZero( tpAniSirGlobal pMac, tCsrBssid *pMacAddr );
@@ -437,16 +418,9 @@ eHalStatus csrRoamOpenSession(tpAniSirGlobal pMac,
                               tANI_U8 *pbSessionId);
 //fSync: TRUE means cleanupneeds to handle synchronously.
 eHalStatus csrRoamCloseSession( tpAniSirGlobal pMac, tANI_U32 sessionId,
-<<<<<<< HEAD
                                 tANI_BOOLEAN fSync, 
                                 csrRoamSessionCloseCallback callback,
                                 void *pContext );
-=======
-                                tANI_BOOLEAN fSync, tANI_U8 bPurgeList,
-                                csrRoamSessionCloseCallback callback,
-                                void *pContext );
-void csrPurgeSmeCmdList(tpAniSirGlobal pMac, tANI_U32 sessionId);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 void csrCleanupSession(tpAniSirGlobal pMac, tANI_U32 sessionId);
 eHalStatus csrRoamGetSessionIdFromBSSID( tpAniSirGlobal pMac, tCsrBssid *bssid, tANI_U32 *pSessionId );
 eCsrCfgDot11Mode csrFindBestPhyMode( tpAniSirGlobal pMac, tANI_U32 phyMode );
@@ -499,18 +473,6 @@ eHalStatus csrScanBGScanAbort(tpAniSirGlobal);
   -------------------------------------------------------------------------------*/
 eHalStatus csrScanGetResult(tpAniSirGlobal, tCsrScanResultFilter *pFilter, tScanResultHandle *phResult);
 
-<<<<<<< HEAD
-=======
-#ifdef FEATURE_WLAN_LFR
-/* ---------------------------------------------------------------------------
-    \fn csrAddChannelToOccupiedChannelList
-    \brief Add channel no given by fast reassoc cmd into occ chn list
-    \param channel - channel no passed by fast reassoc cmd
-    \return void
-  -------------------------------------------------------------------------------*/
-void csrAddChannelToOccupiedChannelList(tpAniSirGlobal pMac, tANI_U8 channel);
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 /* ---------------------------------------------------------------------------
     \fn csrScanFlushResult
     \brief Clear scan results.
@@ -525,17 +487,6 @@ eHalStatus csrScanFlushResult(tpAniSirGlobal);
  */
 eHalStatus csrScanFilterResults(tpAniSirGlobal pMac);
 
-<<<<<<< HEAD
-=======
-/* ---------------------------------------------------------------------------
- *  \fn csrScanFilterDFSResults
- *  \brief Filter BSSIDs on DFS channels from the scan results.
- *  \return eHalStatus
- *-------------------------------------------------------------------------------
- */
-eHalStatus csrScanFilterDFSResults(tpAniSirGlobal pMac);
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 eHalStatus csrScanFlushSelectiveResult(tpAniSirGlobal, v_BOOL_t flushP2P);
 
 eHalStatus csrScanFlushSelectiveResultForBand(tpAniSirGlobal, v_BOOL_t flushP2P, tSirRFBand band);
@@ -913,17 +864,6 @@ eHalStatus csrRoamConnectToLastProfile(tpAniSirGlobal pMac, tANI_U32 sessionId);
 eHalStatus csrRoamDisconnect(tpAniSirGlobal pMac, tANI_U32 sessionId, eCsrRoamDisconnectReason reason);
 
 /* ---------------------------------------------------------------------------
-<<<<<<< HEAD
-=======
-    \fn csr_abortConnection
-    \brief To disconnect from a connecting network
-    \retutn void.
-----------------------------------------------------------------------------*/
-
-void csr_abortConnection(tpAniSirGlobal pMac, tANI_U32 sessionId);
-
-/* ---------------------------------------------------------------------------
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     \fn csrScanGetPMKIDCandidateList
     \brief return the PMKID candidate list
     \param pPmkidList - caller allocated buffer point to an array of tPmkidCandidateInfo
@@ -952,17 +892,8 @@ void csrCallRoamingCompletionCallback(tpAniSirGlobal pMac, tCsrRoamSession *pSes
     \return eHalStatus
   ---------------------------------------------------------------------------*/
 eHalStatus csrRoamIssueDisassociateStaCmd( tpAniSirGlobal pMac, 
-<<<<<<< HEAD
                                            tANI_U32 sessionId, 
                                            tANI_U8 *pPeerMacAddr,
-=======
-                                           tANI_U32 sessionId,
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,18,0))
-                                           const tANI_U8 *pPeerMacAddr,
-#else
-                                           tANI_U8 *pPeerMacAddr,
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
                                            tANI_U32 reason);
 
 /* ---------------------------------------------------------------------------
@@ -1068,24 +999,9 @@ eHalStatus csrScanCreateEntryInScanCache(tpAniSirGlobal pMac, tANI_U32 sessionId
 
 eHalStatus csrUpdateChannelList(tpAniSirGlobal pMac);
 eHalStatus csrRoamDelPMKIDfromCache( tpAniSirGlobal pMac, tANI_U32 sessionId,
-<<<<<<< HEAD
                                      tANI_U8 *pBSSId, tANI_BOOLEAN flush_cache );
 tANI_BOOLEAN csrElectedCountryInfo(tpAniSirGlobal pMac);
 void csrAddVoteForCountryInfo(tpAniSirGlobal pMac, tANI_U8 *pCountryCode);
 void csrClearVotesForCountryInfo(tpAniSirGlobal pMac);
-=======
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,18,0))
-                                     const tANI_U8 *pBSSId,
-#else
-                                     tANI_U8 *pBSSId,
-#endif
-                                     tANI_BOOLEAN flush_cache );
-tANI_BOOLEAN csrElectedCountryInfo(tpAniSirGlobal pMac);
-void csrAddVoteForCountryInfo(tpAniSirGlobal pMac, tANI_U8 *pCountryCode);
-void csrClearVotesForCountryInfo(tpAniSirGlobal pMac);
-#ifdef WLAN_FEATURE_AP_HT40_24G
-eHalStatus csrSetHT2040Mode(tpAniSirGlobal pMac, tANI_U32 sessionId, tANI_U8 cbMode);
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #endif
 

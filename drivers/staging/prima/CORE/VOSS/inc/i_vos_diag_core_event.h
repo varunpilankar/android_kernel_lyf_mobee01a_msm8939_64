@@ -1,9 +1,5 @@
 /*
-<<<<<<< HEAD
  * Copyright (c) 2012-2013 The Linux Foundation. All rights reserved.
-=======
- * Copyright (c) 2014-2015 The Linux Foundation. All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -38,12 +34,9 @@
   
   \brief Android specific definitions for vOSS DIAG events
   
-<<<<<<< HEAD
    Copyright 2008 (c) Qualcomm, Incorporated.  All Rights Reserved.
    
    Qualcomm Confidential and Proprietary.
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
   
   ========================================================================*/
 
@@ -97,20 +90,6 @@ void vos_event_report_payload(v_U16_t event_Id, v_U16_t length, v_VOID_t *pPaylo
 /*------------------------------------------------------------------------- 
   Function declarations and documenation
   ------------------------------------------------------------------------*/
-<<<<<<< HEAD
-=======
-#ifdef FEATURE_WLAN_DIAG_SUPPORT
-void vos_log_wlock_diag(uint32_t reason, const char *wake_lock_name,
-                              uint32_t timeout, uint32_t status);
-#else
-static inline void vos_log_wlock_diag(uint32_t reason,
-                                 const char *wake_lock_name,
-                           uint32_t timeout, uint32_t status)
-{
-
-}
-#endif /* FEATURE_WLAN_DIAG_SUPPORT */
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 #ifdef __cplusplus
 }

@@ -1,9 +1,5 @@
 /*
-<<<<<<< HEAD
  * Copyright (c) 2012-2014 The Linux Foundation. All rights reserved.
-=======
- * Copyright (c) 2012-2014, 2016 The Linux Foundation. All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -37,12 +33,9 @@
   This software unit holds the implementation of the WLAN Protocol Engine for
   P2P.
 
-<<<<<<< HEAD
   Copyright (c) 2011 QUALCOMM Incorporated.
   All Rights Reserved.
   Qualcomm Confidential and Proprietary
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 ===========================================================================*/
 
 /*===========================================================================
@@ -96,11 +89,7 @@ extern tSirRetStatus limSetLinkState(
                          tpSetLinkStateCallback callback, void *callbackArg);
 
 static tSirRetStatus limCreateSessionForRemainOnChn(tpAniSirGlobal pMac, tPESession **ppP2pSession);
-<<<<<<< HEAD
 eHalStatus limP2PActionCnf(tpAniSirGlobal pMac, tANI_U32 txCompleteSuccess);
-=======
-eHalStatus limP2PActionCnf(tpAniSirGlobal pMac, void *pData);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 /*----------------------------------------------------------------------------
  *
@@ -684,11 +673,6 @@ void limRemainOnChnRsp(tpAniSirGlobal pMac, eHalStatus status, tANI_U32 *data)
     tANI_U8             sessionId;
     tSirRemainOnChnReq *MsgRemainonChannel = pMac->lim.gpLimRemainOnChanReq;
     tSirMacAddr             nullBssid = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-<<<<<<< HEAD
-=======
-    tANI_U32 txStatus = 0;
-    tSirTxBdStatus txBdStatus = {0};
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
     if ( NULL == MsgRemainonChannel )
     {
@@ -703,12 +687,9 @@ void limRemainOnChnRsp(tpAniSirGlobal pMac, eHalStatus status, tANI_U32 *data)
     //Cleanup Everything
     if(eHAL_STATUS_FAILURE == status)
     {
-<<<<<<< HEAD
        //Deactivate Remain on Channel Timer
        limDeactivateAndChangeTimer(pMac, eLIM_REMAIN_CHN_TIMER);
 
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
        //Set the Link State to Idle
        /* get the previous valid LINK state */
        if (limSetLinkState(pMac, eSIR_LINK_IDLE_STATE, nullBssid,
@@ -719,10 +700,6 @@ void limRemainOnChnRsp(tpAniSirGlobal pMac, eHalStatus status, tANI_U32 *data)
 
        pMac->lim.gLimSystemInScanLearnMode = 0;
        pMac->lim.gLimHalScanState = eLIM_HAL_IDLE_SCAN_STATE;
-<<<<<<< HEAD
-=======
-       SET_LIM_PROCESS_DEFD_MESGS(pMac, true);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     }
 
     /* delete the session */
@@ -748,19 +725,9 @@ void limRemainOnChnRsp(tpAniSirGlobal pMac, eHalStatus status, tANI_U32 *data)
      * indicaiton confirmation with status failure */
     if (pMac->lim.mgmtFrameSessionId != 0xff)
     {
-<<<<<<< HEAD
        limLog(pMac, LOGE,
               FL("Remain on channel expired, Action frame status failure"));
        limP2PActionCnf(pMac, 0);
-=======
-        limLog(pMac, LOGE,
-                FL("Remain on channel expired, Action frame status failure"));
-
-        if (IS_FEATURE_SUPPORTED_BY_FW(ENHANCED_TXBD_COMPLETION))
-            limP2PActionCnf(pMac, &txBdStatus);
-        else
-            limP2PActionCnf(pMac, &txStatus);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     }
 
     return;
@@ -777,10 +744,7 @@ void limSendSmeMgmtFrameInd(
                     tANI_U8 *pRxPacketInfo, tpPESession psessionEntry,
                     tANI_S8 rxRssi)
 {
-<<<<<<< HEAD
     tSirMsgQ              mmhMsg;
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     tpSirSmeMgmtFrameInd  pSirSmeMgmtFrame = NULL;
     tANI_U16              length;
     tANI_U8               frameType;
@@ -805,12 +769,8 @@ void limSendSmeMgmtFrameInd(
     }
     vos_mem_set((void*)pSirSmeMgmtFrame, length, 0);
 
-<<<<<<< HEAD
     pSirSmeMgmtFrame->mesgType = eWNI_SME_MGMT_FRM_IND;
     pSirSmeMgmtFrame->mesgLen = length;
-=======
-    pSirSmeMgmtFrame->frameLen = frameLen;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     pSirSmeMgmtFrame->sessionId = sessionId;
     pSirSmeMgmtFrame->frameType = frameType;
     pSirSmeMgmtFrame->rxRssi = rxRssi;
@@ -870,65 +830,20 @@ void limSendSmeMgmtFrameInd(
     vos_mem_zero(pSirSmeMgmtFrame->frameBuf, frameLen);
     vos_mem_copy(pSirSmeMgmtFrame->frameBuf, frame, frameLen);
 
-<<<<<<< HEAD
     mmhMsg.type = eWNI_SME_MGMT_FRM_IND;
     mmhMsg.bodyptr = pSirSmeMgmtFrame;
     mmhMsg.bodyval = 0;
 
     limSysProcessMmhMsgApi(pMac, &mmhMsg, ePROT);
-=======
-    if (pMac->mgmt_frame_ind_cb)
-       pMac->mgmt_frame_ind_cb(pSirSmeMgmtFrame);
-    else
-    {
-       limLog(pMac, LOGW,
-               FL("Management indication callback not registered!!"));
-    }
-    vos_mem_free(pSirSmeMgmtFrame);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     return;
 } /*** end limSendSmeListenRsp() ***/
 
 
-<<<<<<< HEAD
 eHalStatus limP2PActionCnf(tpAniSirGlobal pMac, tANI_U32 txCompleteSuccess)
 {
     limLog(pMac, LOG1,
               FL(" %s txCompleteSuccess %d, Session Id %d"),
               __func__, txCompleteSuccess, pMac->lim.mgmtFrameSessionId);
-=======
-eHalStatus limP2PActionCnf(tpAniSirGlobal pMac, void *pData)
-{
-    tANI_U32 txCompleteSuccess;
-    tpSirTxBdStatus pTxBdStatus;
-
-    if (!pData)
-    {
-        limLog(pMac, LOG1,
-                FL(" pData is NULL"));
-        return eHAL_STATUS_FAILURE;
-    }
-
-    if (IS_FEATURE_SUPPORTED_BY_FW(ENHANCED_TXBD_COMPLETION))
-    {
-        pTxBdStatus = (tpSirTxBdStatus) pData;
-        txCompleteSuccess = pTxBdStatus->txCompleteStatus;
-
-        limLog(pMac, LOG1,
-                FL("txCompleteSuccess %d, Token %u, Session Id %d"),
-                txCompleteSuccess, pTxBdStatus->txBdToken,
-                pMac->lim.mgmtFrameSessionId);
-    }
-    else
-    {
-        txCompleteSuccess = *((tANI_U32*) pData);
-
-        limLog(pMac, LOG1,
-                FL(" %s txCompleteSuccess %d, Session Id %d"),
-                __func__, txCompleteSuccess, pMac->lim.mgmtFrameSessionId);
-    }
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     if (pMac->lim.mgmtFrameSessionId != 0xff)
     {
         /* The session entry might be invalid(0xff) action confirmation received after
@@ -949,10 +864,6 @@ void limSetHtCaps(tpAniSirGlobal pMac, tpPESession psessionEntry, tANI_U8 *pIeSt
     tDot11fIEHTCaps     dot11HtCap;
 
     PopulateDot11fHTCaps(pMac, psessionEntry, &dot11HtCap);
-<<<<<<< HEAD
-=======
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     pIe = limGetIEPtr(pMac,pIeStartPtr, nBytes,
                                        DOT11F_EID_HTCAPS,ONE_BYTE);
     limLog( pMac, LOG2, FL("pIe %p dot11HtCap.supportedMCSSet[0]=0x%x"),
@@ -1187,11 +1098,7 @@ void limSendP2PActionFrame(tpAniSirGlobal pMac, tpSirMsgQ pMsg)
             if (pMac->lim.gpLimRemainOnChanReq == NULL)
             {
                 limLog( pMac, LOGE,
-<<<<<<< HEAD
                         FL("Failed to Send Action frame \n"));
-=======
-                        FL("Failed to Send Action frame"));
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
                 limSendSmeRsp(pMac, eWNI_SME_ACTION_FRAME_SEND_CNF,
                               eHAL_STATUS_FAILURE, pMbMsg->sessionId, 0);
                 return;
@@ -1231,7 +1138,6 @@ void limSendP2PActionFrame(tpAniSirGlobal pMac, tpSirMsgQ pMsg)
 
 #ifdef WLAN_FEATURE_11W
     pActionHdr = (tpSirMacActionFrameHdr) (pFrame + sizeof(tSirMacMgmtHdr));
-<<<<<<< HEAD
 
     /*
      * Setting Protected bit for SA_QUERY Action Frame
@@ -1284,21 +1190,6 @@ void limSendP2PActionFrame(tpAniSirGlobal pMac, tpSirMsgQ pMsg)
                     ( void* ) pFrame, ( void* ) pPacket );
             return;
         }
-=======
-    pMacHdr = (tpSirMacMgmtHdr)pFrame;
-
-    /*
-     * Setting Protected bit only for Robust Action Frames
-     * This has to be based on the current Connection with the station
-     * limSetProtectedBit API will set the protected bit if connection is PMF
-     */
-    if ((SIR_MAC_MGMT_ACTION == pFc->subType) &&
-        psessionEntry->limRmfEnabled && (!limIsGroupAddr(pMacHdr->da)) &&
-        lim_is_robust_mgmt_action_frame(pActionHdr->category)) {
-        /* All psession checks are already done at start */
-        limSetProtectedBit(pMac, psessionEntry, pMacHdr->da, pMacHdr);
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     }
 #endif
 
@@ -1335,11 +1226,7 @@ void limSendP2PActionFrame(tpAniSirGlobal pMac, tpSirMsgQ pMsg)
         halstatus = halTxFrameWithTxComplete( pMac, pPacket, (tANI_U16)nBytes,
                         HAL_TXRX_FRM_802_11_MGMT, ANI_TXDIR_TODS,
                         7,/*SMAC_SWBD_TX_TID_MGMT_HIGH */ limTxComplete, pFrame,
-<<<<<<< HEAD
                         limP2PActionCnf, txFlag );
-=======
-                        limP2PActionCnf, txFlag, pMac->lim.txBdToken++ );
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
         if ( ! HAL_STATUS_SUCCESS ( halstatus ) )
         {

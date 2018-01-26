@@ -87,11 +87,3 @@ config MMC_BLOCK_TEST
 	  Currently used to test eMMC 4.5 features (packed commands, sanitize,
 	  BKOPs).
 
-<<<<<<< HEAD
-=======
-config MMC_YL_PARAMS
-	bool "Yulong extended MMC support"
-	default n
-	help
-	  Say Y here to enable support for Yulong extended MMC support
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed

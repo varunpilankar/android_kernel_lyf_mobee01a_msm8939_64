@@ -1,9 +1,5 @@
 /*
-<<<<<<< HEAD
  * Copyright (c) 2012-2014 The Linux Foundation. All rights reserved.
-=======
- * Copyright (c) 2012-2014, 2016 The Linux Foundation. All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -278,16 +274,6 @@ typedef enum
     WEXT_SCAN_PENDING_MAX
 } hdd_scan_pending_option_e;
 
-<<<<<<< HEAD
-=======
-enum
-{
-   WLAN_HDD_GET_FRAME_LOG_CMD_CLEAR          = 1<<0,
-   WLAN_HDD_GET_FRAME_LOG_CMD_SEND_AND_CLEAR = 1<<1,
-   WLAN_HDD_GET_FRAME_LOG_CMD_BMU_TRACING    = 1<<2,
-};
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 /* 
  * This structure contains the interface level (granularity) 
  * configuration information in support of wireless extensions. 
@@ -469,10 +455,6 @@ void* wlan_hdd_change_country_code_callback(void *pAdapter);
 
 int hdd_setBand(struct net_device *dev, u8 ui_band);
 int hdd_setBand_helper(struct net_device *dev, const char *command);
-<<<<<<< HEAD
 
-=======
-VOS_STATUS wlan_hdd_get_frame_logs(hdd_adapter_t *pAdapter, v_U8_t flag);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #endif // __WEXT_IW_H__
 

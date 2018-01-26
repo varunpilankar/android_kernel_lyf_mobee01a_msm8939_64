@@ -1,9 +1,5 @@
 /*
-<<<<<<< HEAD
  * Copyright (c) 2012-2014 The Linux Foundation. All rights reserved.
-=======
- * Copyright (c) 2012-2014, 2016 The Linux Foundation. All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -34,12 +30,9 @@
 
   \brief Definitions for SME FT APIs
 
-<<<<<<< HEAD
    Copyright 2008 (c) Qualcomm, Incorporated.  All Rights Reserved.
 
    Qualcomm Confidential and Proprietary.
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
   ========================================================================*/
 
@@ -49,14 +42,10 @@
 #include <smsDebug.h>
 #include <csrInsideApi.h>
 #include <csrNeighborRoam.h>
-<<<<<<< HEAD
 
 #ifdef DEBUG_ROAM_DELAY
 #include "vos_utils.h"
 #endif
-=======
-#include "vos_utils.h"
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 /*--------------------------------------------------------------------------
   Initialize the FT context. 
@@ -76,13 +65,9 @@ void sme_FTOpen(tHalHandle hHal)
         smsLog(pMac, LOGE, FL("Preauth Reassoc interval Timer allocation failed"));
         return;
     }                 
-<<<<<<< HEAD
 #ifdef DEBUG_ROAM_DELAY
     vos_reset_roam_timer_log();
 #endif
-=======
-    vos_reset_roam_timer_log();
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 }
 
 /*--------------------------------------------------------------------------
@@ -247,15 +232,10 @@ eHalStatus sme_FTSendUpdateKeyInd(tHalHandle hHal, tCsrRoamSetKey * pFTKeyInfo)
       smsLog(pMac, LOG1, FL("%02x"), pFTKeyInfo->Key[i]);
 #endif
 
-<<<<<<< HEAD
     msgLen  = sizeof( tANI_U16) + sizeof( tANI_U16 ) + 
        sizeof( pMsg->keyMaterial.length ) + sizeof( pMsg->keyMaterial.edType ) + 
        sizeof( pMsg->keyMaterial.numKeys ) + sizeof( pMsg->keyMaterial.key );
                      
-=======
-    msgLen = sizeof(tSirFTUpdateKeyInfo);
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     pMsg = vos_mem_malloc(msgLen);
     if ( NULL == pMsg )
     {
@@ -361,20 +341,11 @@ eHalStatus sme_FTUpdateKey( tHalHandle hHal, tCsrRoamSetKey * pFTKeyInfo )
     switch(pMac->ft.ftSmeContext.FTState)
     {
     case eFT_SET_KEY_WAIT:
-<<<<<<< HEAD
 #ifdef DEBUG_ROAM_DELAY
     //store the PTK send event
     vos_record_roam_event(e_HDD_SET_PTK_REQ, NULL, 0);
 #endif
     if (sme_GetFTPreAuthState (hHal) == TRUE)
-=======
-      if (pMac->roam.configParam.roamDelayStatsEnabled)
-      {
-          //store the PTK send event
-          vos_record_roam_event(e_HDD_SET_PTK_REQ, NULL, 0);
-      }
-      if (sme_GetFTPreAuthState (hHal) == TRUE)
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
       {
           status = sme_FTSendUpdateKeyInd(pMac, pFTKeyInfo);
           if (status != 0 )
@@ -398,17 +369,10 @@ eHalStatus sme_FTUpdateKey( tHalHandle hHal, tCsrRoamSetKey * pFTKeyInfo )
               pMac->ft.ftSmeContext.FTState, status);
 #endif
        break;
-<<<<<<< HEAD
           
     default:
        smsLog( pMac, LOGE, "%s: Unhandled state=%d", __func__,
                pMac->ft.ftSmeContext.FTState);
-=======
-
-    default:
-       smsLog(pMac, LOG1, FL("Unhandled state=%d"),
-                              pMac->ft.ftSmeContext.FTState);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
        status = eHAL_STATUS_FAILURE;
        break;
     }
@@ -518,16 +482,9 @@ void sme_PreauthReassocIntvlTimerCallback(void *context)
     tpAniSirGlobal pMac = (tpAniSirGlobal )context;
     csrNeighborRoamRequestHandoff(pMac);
 #endif
-<<<<<<< HEAD
 #ifdef DEBUG_ROAM_DELAY
     vos_record_roam_event(e_SME_PREAUTH_CALLBACK_HIT, NULL, 0);
 #endif
-=======
-    if (pMac->roam.configParam.roamDelayStatsEnabled)
-    {
-        vos_record_roam_event(e_SME_PREAUTH_CALLBACK_HIT, NULL, 0);
-    }
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     return;
 }
 

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 /* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
-=======
-/* Copyright (c) 2012-2016, The Linux Foundation. All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -58,30 +54,18 @@ void audio_aio_cb(uint32_t opcode, uint32_t token,
 
 	switch (opcode) {
 	case ASM_DATA_EVENT_WRITE_DONE_V2:
-<<<<<<< HEAD
 		pr_debug("%s[%p]:ASM_DATA_EVENT_WRITE_DONE token = 0x%x\n",
-=======
-		pr_debug("%s[%pK]:ASM_DATA_EVENT_WRITE_DONE token = 0x%x\n",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			__func__, audio, token);
 		audio_aio_async_write_ack(audio, token, payload);
 		break;
 	case ASM_DATA_EVENT_READ_DONE_V2:
-<<<<<<< HEAD
 		pr_debug("%s[%p]:ASM_DATA_EVENT_READ_DONE token = 0x%x\n",
-=======
-		pr_debug("%s[%pK]:ASM_DATA_EVENT_READ_DONE token = 0x%x\n",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			__func__, audio, token);
 		audio_aio_async_read_ack(audio, token, payload);
 		break;
 	case ASM_DATA_EVENT_RENDERED_EOS:
 		/* EOS Handle */
-<<<<<<< HEAD
 		pr_debug("%s[%p]:ASM_DATA_CMDRSP_EOS\n", __func__, audio);
-=======
-		pr_debug("%s[%pK]:ASM_DATA_CMDRSP_EOS\n", __func__, audio);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		if (audio->feedback) { /* Non-Tunnel mode */
 			audio->eos_rsp = 1;
 			/* propagate input EOS i/p buffer,
@@ -103,28 +87,16 @@ void audio_aio_cb(uint32_t opcode, uint32_t token,
 		break;
 	case ASM_DATA_CMD_MEDIA_FMT_UPDATE_V2:
 	case ASM_STREAM_CMD_SET_ENCDEC_PARAM:
-<<<<<<< HEAD
 		pr_debug("%s[%p]:payload0[%x] payloa1d[%x]opcode= 0x%x\n",
-=======
-		pr_debug("%s[%pK]:payload0[%x] payloa1d[%x]opcode= 0x%x\n",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			__func__, audio, payload[0], payload[1], opcode);
 		break;
 	case ASM_DATA_EVENT_SR_CM_CHANGE_NOTIFY:
 	case ASM_DATA_EVENT_ENC_SR_CM_CHANGE_NOTIFY:
-<<<<<<< HEAD
 		pr_debug("%s[%p]: ASM_DATA_EVENT_SR_CM_CHANGE_NOTIFY, payload[0]-sr = %d, payload[1]-chl = %d, payload[2] = %d, payload[3] = %d\n",
 					 __func__, audio, payload[0],
 					 payload[1], payload[2], payload[3]);
 
 		pr_debug("%s[%p]: ASM_DATA_EVENT_SR_CM_CHANGE_NOTIFY, sr(prev) = %d, chl(prev) = %d,",
-=======
-		pr_debug("%s[%pK]: ASM_DATA_EVENT_SR_CM_CHANGE_NOTIFY, payload[0]-sr = %d, payload[1]-chl = %d, payload[2] = %d, payload[3] = %d\n",
-					 __func__, audio, payload[0],
-					 payload[1], payload[2], payload[3]);
-
-		pr_debug("%s[%pK]: ASM_DATA_EVENT_SR_CM_CHANGE_NOTIFY, sr(prev) = %d, chl(prev) = %d,",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		__func__, audio, audio->pcm_cfg.sample_rate,
 		audio->pcm_cfg.channel_count);
 
@@ -157,11 +129,7 @@ void extract_meta_out_info(struct q6audio_aio *audio,
 		else
 			memset(&buf_node->meta_info.meta_in,
 			0, sizeof(struct dec_meta_in));
-<<<<<<< HEAD
 		pr_debug("%s[%p]:i/p: msw_ts 0x%d lsw_ts 0x%d nflags 0x%8x\n",
-=======
-		pr_debug("%s[%pK]:i/p: msw_ts 0x%d lsw_ts 0x%d nflags 0x%8x\n",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			__func__, audio,
 			buf_node->meta_info.meta_in.ntimestamp.highpart,
 			buf_node->meta_info.meta_in.ntimestamp.lowpart,
@@ -176,11 +144,7 @@ void extract_meta_out_info(struct q6audio_aio *audio,
 				meta_data->meta_out_dsp[0].lsw_ts;
 		meta_data->meta_out_dsp[0].lsw_ts = temp;
 
-<<<<<<< HEAD
 		pr_debug("%s[%p]:o/p: msw_ts 0x%d lsw_ts 0x%d nflags 0x%8x, num_frames = %d\n",
-=======
-		pr_debug("%s[%pK]:o/p: msw_ts 0x%d lsw_ts 0x%d nflags 0x%8x, num_frames = %d\n",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		__func__, audio,
 		((struct dec_meta_out *)buf_node->kvaddr)->\
 			meta_out_dsp[0].msw_ts,
@@ -236,11 +200,7 @@ void audio_aio_async_read_ack(struct q6audio_aio *audio, uint32_t token,
 							 = payload[9];
 			event_payload.aio_buf.data_len = payload[4]\
 				 + payload[5] + sizeof(struct dec_meta_out);
-<<<<<<< HEAD
 			pr_debug("%s[%p]:nr of frames 0x%8x len=%d\n",
-=======
-			pr_debug("%s[%pK]:nr of frames 0x%8x len=%d\n",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				__func__, audio,
 				filled_buf->meta_info.meta_out.num_of_frames,
 				event_payload.aio_buf.data_len);
@@ -252,11 +212,7 @@ void audio_aio_async_read_ack(struct q6audio_aio *audio, uint32_t token,
 					event_payload);
 		kfree(filled_buf);
 	} else {
-<<<<<<< HEAD
 		pr_err("%s[%p]:expected=%lx ret=%x\n",
-=======
-		pr_err("%s[%pK]:expected=%lx ret=%x\n",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			__func__, audio, filled_buf->token, token);
 		spin_unlock_irqrestore(&audio->dsp_lock, flags);
 	}

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 /* Copyright (c) 2008-2015, The Linux Foundation. All rights reserved.
-=======
-/* Copyright (c) 2008-2016, The Linux Foundation. All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -814,11 +810,7 @@ void diag_update_pkt_buffer(unsigned char *buf, int type)
 	}
 
 	if (!ptr || length == 0) {
-<<<<<<< HEAD
 		pr_err("diag: Invalid ptr %p and length %d in %s",
-=======
-		pr_err("diag: Invalid ptr %pK and length %d in %s",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 						ptr, length, __func__);
 		return;
 	}
@@ -931,11 +923,7 @@ int diag_process_stm_cmd(unsigned char *buf, unsigned char *dest_buf)
 	int i;
 
 	if (!buf || !dest_buf) {
-<<<<<<< HEAD
 		pr_err("diag: Invalid pointers buf: %p, dest_buf %p in %s\n",
-=======
-		pr_err("diag: Invalid pointers buf: %pK, dest_buf %pK in %s\n",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		       buf, dest_buf, __func__);
 		return -EIO;
 	}
@@ -1023,11 +1011,7 @@ int diag_cmd_log_on_demand(unsigned char *src_buf, int src_len,
 		return 0;
 
 	if (!src_buf || !dest_buf || src_len <= 0 || dest_len <= 0) {
-<<<<<<< HEAD
 		pr_err("diag: Invalid input in %s, src_buf: %p, src_len: %d, dest_buf: %p, dest_len: %d",
-=======
-		pr_err("diag: Invalid input in %s, src_buf: %pK, src_len: %d, dest_buf: %pK, dest_len: %d",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		       __func__, src_buf, src_len, dest_buf, dest_len);
 		return -EINVAL;
 	}
@@ -1112,11 +1096,7 @@ int diag_process_apps_pkt(unsigned char *buf, int len)
 	data_type = APPS_DATA;
 	/* Dont send any command other than mode reset */
 	if (chk_apps_master() && cmd_code == MODE_CMD) {
-<<<<<<< HEAD
 		if (!(subsys_id == RESET_ID || subsys_id == POWER_OFF_ID))
-=======
-		if (subsys_id != RESET_ID)
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			data_type = MODEM_DATA;
 	}
 
@@ -2058,11 +2038,7 @@ int diag_smd_write(struct diag_smd_info *smd_info, void *buf, int len)
 	int max_retries = 3;
 
 	if (!smd_info || !buf || len <= 0) {
-<<<<<<< HEAD
 		pr_err_ratelimited("diag: In %s, invalid params, smd_info: %p, buf: %p, len: %d\n",
-=======
-		pr_err_ratelimited("diag: In %s, invalid params, smd_info: %pK, buf: %pK, len: %d\n",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				   __func__, smd_info, buf, len);
 		return -EINVAL;
 	}

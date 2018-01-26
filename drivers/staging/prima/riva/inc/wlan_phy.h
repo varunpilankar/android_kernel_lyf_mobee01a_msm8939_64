@@ -744,12 +744,6 @@ typedef enum
 
     MAX_PHY_CHAIN_SEL,
     INVALID_PHY_CHAIN_SEL,
-<<<<<<< HEAD
-=======
-    PHY_CHAIN_SEL_ANT_0, //append for antenna 0 selection
-    PHY_CHAIN_SEL_ANT_1, //append for antenna 1 selection
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     PHY_MAX_CHAIN_SELECT = 0x7FFFFFFF  /* define as 4 bytes data */
 }ePhyChainSelect;
 

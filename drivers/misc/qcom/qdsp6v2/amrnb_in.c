@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 /* Copyright (c) 2010-2012, 2014 The Linux Foundation. All rights reserved.
-=======
-/* Copyright (c) 2010-2012, 2014, 2016 The Linux Foundation.
- * All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -226,11 +221,6 @@ static long amrnb_in_compat_ioctl(struct file *file,
 		struct msm_audio_amrnb_enc_config_v2 *amrnb_config;
 		struct msm_audio_amrnb_enc_config_v2_32 amrnb_config_32;
 
-<<<<<<< HEAD
-=======
-		memset(&amrnb_config_32, 0, sizeof(amrnb_config_32));
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		amrnb_config =
 		(struct msm_audio_amrnb_enc_config_v2 *)audio->enc_cfg;
 		amrnb_config_32.band_mode = amrnb_config->band_mode;

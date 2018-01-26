@@ -682,10 +682,6 @@ EXPORT_SYMBOL(__skb_checksum_complete);
  *	@skb: skbuff
  *	@hlen: hardware length
  *	@iov: io vector
-<<<<<<< HEAD
-=======
- *	@len: amount of data to copy from skb to iov
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  *	Caller _must_ check that skb will fit to this iovec.
  *
@@ -695,21 +691,11 @@ EXPORT_SYMBOL(__skb_checksum_complete);
  *			   can be modified!
  */
 int skb_copy_and_csum_datagram_iovec(struct sk_buff *skb,
-<<<<<<< HEAD
 				     int hlen, struct iovec *iov)
-=======
-				     int hlen, struct iovec *iov, int len)
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 {
 	__wsum csum;
 	int chunk = skb->len - hlen;
 
-<<<<<<< HEAD
-=======
-	if (chunk > len)
-		chunk = len;
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	if (!chunk)
 		return 0;
 

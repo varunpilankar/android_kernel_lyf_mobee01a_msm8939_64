@@ -14,10 +14,6 @@
 #include "msm_camera_io_util.h"
 #include "msm_camera_i2c_mux.h"
 #include "msm_cci.h"
-<<<<<<< HEAD
-=======
-#include "msm_sensor.h"
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 #define CAM_SENSOR_PINCTRL_STATE_SLEEP "cam_suspend"
 #define CAM_SENSOR_PINCTRL_STATE_DEFAULT "cam_default"
@@ -490,11 +486,6 @@ int msm_camera_get_dt_power_setting_data(struct device_node *of_node,
 				ps[i].seq_val = SENSOR_GPIO_VDIG;
 			else if (!strcmp(seq_name, "sensor_gpio_vana"))
 				ps[i].seq_val = SENSOR_GPIO_VANA;
-<<<<<<< HEAD
-=======
-			else if (!strcmp(seq_name, "sensor_gpio_af_pwdm"))
-				ps[i].seq_val = SENSOR_GPIO_AF_PWDM;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			else if (!strcmp(seq_name, "sensor_gpio_vaf"))
 				ps[i].seq_val = SENSOR_GPIO_VAF;
 			else if (!strcmp(seq_name, "sensor_gpio_vio"))
@@ -1230,14 +1221,7 @@ int msm_camera_power_up(struct msm_camera_power_ctrl_t *ctrl,
 {
 	int rc = 0, index = 0, no_gpio = 0, ret = 0;
 	struct msm_sensor_power_setting *power_setting = NULL;
-<<<<<<< HEAD
 
-=======
-#ifdef CONFIG_MACH_YULONG
-	struct msm_camera_sensor_board_info * sensor_board_info = NULL;
-	sensor_board_info = container_of(ctrl, struct msm_camera_sensor_board_info ,power_info);
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	CDBG("%s:%d\n", __func__, __LINE__);
 	if (!ctrl || !sensor_i2c_client) {
 		pr_err("failed ctrl %p sensor_i2c_client %p\n", ctrl,
@@ -1255,38 +1239,11 @@ int msm_camera_power_up(struct msm_camera_power_ctrl_t *ctrl,
 	} else {
 		ctrl->cam_pinctrl_status = 1;
 	}
-<<<<<<< HEAD
-=======
-
-#ifdef CONFIG_MACH_YULONG
-	if (msm_sensor_is_probed(sensor_board_info->sensor_info->position)) {
-		CDBG("current sensor is already probed\n");
-		for (index = 0; index < ctrl->gpio_conf->cam_gpio_req_tbl_size; index++) {
-			CDBG("current gpio label is :%s\n",
-				ctrl->gpio_conf->cam_gpio_req_tbl[index].label);
-			if (!strcmp(ctrl->gpio_conf->cam_gpio_req_tbl[index].label,"CAMIF_MCLK")) {
-				CDBG("request mclk gpio\n");
-				gpio_request(
-					ctrl->gpio_conf->cam_gpio_req_tbl[index].gpio,
-					ctrl->gpio_conf->cam_gpio_req_tbl[index].label);
-			}
-		}
-	} else {
-#endif
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	rc = msm_camera_request_gpio_table(
 		ctrl->gpio_conf->cam_gpio_req_tbl,
 		ctrl->gpio_conf->cam_gpio_req_tbl_size, 1);
 	if (rc < 0)
 		no_gpio = rc;
-<<<<<<< HEAD
-=======
-#ifdef CONFIG_MACH_YULONG
-	}
-#endif
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	if (ctrl->cam_pinctrl_status) {
 		ret = pinctrl_select_state(ctrl->pinctrl_info.pinctrl,
 			ctrl->pinctrl_info.gpio_state_active);
@@ -1351,14 +1308,6 @@ int msm_camera_power_up(struct msm_camera_power_ctrl_t *ctrl,
 					SENSOR_GPIO_MAX);
 				goto power_up_failed;
 			}
-<<<<<<< HEAD
-=======
-#ifdef CONFIG_MACH_YULONG
-			if (msm_sensor_is_probed(sensor_board_info->sensor_info->position)) {
-				CDBG("current sensor use system power,and has probed ok,do not request vreg\n");
-			} else {
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			if (power_setting->seq_val < ctrl->num_vreg)
 				msm_camera_config_single_vreg(ctrl->dev,
 				&ctrl->cam_vreg[power_setting->seq_val],
@@ -1368,12 +1317,6 @@ int msm_camera_power_up(struct msm_camera_power_ctrl_t *ctrl,
 				pr_err("ERR:%s: %d usr_idx:%d dts_idx:%d\n",
 					__func__, __LINE__,
 					power_setting->seq_val, ctrl->num_vreg);
-<<<<<<< HEAD
-=======
-#ifdef CONFIG_MACH_YULONG
-			}
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			break;
 		case SENSOR_I2C_MUX:
 			if (ctrl->i2c_conf && ctrl->i2c_conf->use_i2c_mux)
@@ -1456,17 +1399,8 @@ power_up_failed:
 		}
 	}
 	if (ctrl->cam_pinctrl_status) {
-<<<<<<< HEAD
 		ret = pinctrl_select_state(ctrl->pinctrl_info.pinctrl,
 				ctrl->pinctrl_info.gpio_state_suspend);
-=======
-#ifndef CONFIG_MACH_YULONG
-		ret = pinctrl_select_state(ctrl->pinctrl_info.pinctrl,
-				ctrl->pinctrl_info.gpio_state_suspend);
-#else
-		ret = 0;
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		if (ret)
 			pr_err("%s:%d cannot set pin to suspend state\n",
 				__func__, __LINE__);
@@ -1506,13 +1440,6 @@ int msm_camera_power_down(struct msm_camera_power_ctrl_t *ctrl,
 	int index = 0, ret = 0;
 	struct msm_sensor_power_setting *pd = NULL;
 	struct msm_sensor_power_setting *ps;
-<<<<<<< HEAD
-=======
-#ifdef CONFIG_MACH_YULONG
-	struct msm_camera_sensor_board_info * sensor_board_info = NULL;
-	sensor_board_info = container_of(ctrl, struct msm_camera_sensor_board_info ,power_info);
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	CDBG("%s:%d\n", __func__, __LINE__);
 	if (!ctrl || !sensor_i2c_client) {
@@ -1556,31 +1483,10 @@ int msm_camera_power_down(struct msm_camera_power_ctrl_t *ctrl,
 			if (!ctrl->gpio_conf->gpio_num_info->valid
 				[pd->seq_val])
 				continue;
-<<<<<<< HEAD
-=======
-
-#ifdef CONFIG_MACH_YULONG
-			CDBG("%s:%d gpio set val %d\n", __func__, __LINE__,
-				ctrl->gpio_conf->gpio_num_info->gpio_num[pd->seq_val]);
-			if (((SENSOR_GPIO_VIO == pd->seq_val) ||
-				(SENSOR_GPIO_VANA == pd->seq_val) ||
-				(SENSOR_GPIO_VDIG == pd->seq_val) ||
-				(SENSOR_GPIO_VAF == pd->seq_val)) &&
-				msm_sensor_is_probed(sensor_board_info->sensor_info->position)) {
-				CDBG("camera use Sx voltage,so not disable other voltages-GPIO\n");
-			} else {
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			gpio_set_value_cansleep(
 				ctrl->gpio_conf->gpio_num_info->gpio_num
 				[pd->seq_val],
 				(int) pd->config_val);
-<<<<<<< HEAD
-=======
-#ifdef CONFIG_MACH_YULONG
-			}
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			break;
 		case SENSOR_VREG:
 			if (pd->seq_val >= CAM_VREG_MAX) {
@@ -1594,14 +1500,6 @@ int msm_camera_power_down(struct msm_camera_power_ctrl_t *ctrl,
 						pd->seq_type,
 						pd->seq_val);
 			if (ps) {
-<<<<<<< HEAD
-=======
-#ifdef CONFIG_MACH_YULONG
-				if (msm_sensor_is_probed(sensor_board_info->sensor_info->position)) {
-					CDBG("camera use Sx voltage,and sensor probe ok,so not disable voltages-VREG\n");
-				} else {
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				if (pd->seq_val < ctrl->num_vreg)
 					msm_camera_config_single_vreg(ctrl->dev,
 					&ctrl->cam_vreg[pd->seq_val],
@@ -1611,12 +1509,6 @@ int msm_camera_power_down(struct msm_camera_power_ctrl_t *ctrl,
 					pr_err("%s:%d:seq_val:%d > num_vreg: %d\n"
 						, __func__, __LINE__,
 						pd->seq_val, ctrl->num_vreg);
-<<<<<<< HEAD
-=======
-#ifdef CONFIG_MACH_YULONG
-				}
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			} else
 				pr_err("%s error in power up/down seq data\n",
 								__func__);
@@ -1638,47 +1530,17 @@ int msm_camera_power_down(struct msm_camera_power_ctrl_t *ctrl,
 		}
 	}
 	if (ctrl->cam_pinctrl_status) {
-<<<<<<< HEAD
 		ret = pinctrl_select_state(ctrl->pinctrl_info.pinctrl,
 				ctrl->pinctrl_info.gpio_state_suspend);
-=======
-#ifndef CONFIG_MACH_YULONG
-		ret = pinctrl_select_state(ctrl->pinctrl_info.pinctrl,
-				ctrl->pinctrl_info.gpio_state_suspend);
-#else
-		ret = 0;
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		if (ret)
 			pr_err("%s:%d cannot set pin to suspend state",
 				__func__, __LINE__);
 		devm_pinctrl_put(ctrl->pinctrl_info.pinctrl);
 	}
 	ctrl->cam_pinctrl_status = 0;
-<<<<<<< HEAD
 	msm_camera_request_gpio_table(
 		ctrl->gpio_conf->cam_gpio_req_tbl,
 		ctrl->gpio_conf->cam_gpio_req_tbl_size, 0);
-=======
-#ifdef CONFIG_MACH_YULONG
-	if (msm_sensor_is_probed(sensor_board_info->sensor_info->position)) {
-		CDBG("current sensor use system power,so do not release gpios,just release mclk gpio\n");
-		for (index = 0; index < ctrl->gpio_conf->cam_gpio_req_tbl_size; index++) {
-			CDBG("current gpio label is :%s\n",ctrl->gpio_conf->cam_gpio_req_tbl[index].label);
-			if (!strcmp(ctrl->gpio_conf->cam_gpio_req_tbl[index].label,"CAMIF_MCLK")) {
-				CDBG("release mclk gpio\n");
-				gpio_free(ctrl->gpio_conf->cam_gpio_req_tbl[index].gpio);
-			}
-		}
-	} else {
-#endif
-	msm_camera_request_gpio_table(
-		ctrl->gpio_conf->cam_gpio_req_tbl,
-		ctrl->gpio_conf->cam_gpio_req_tbl_size, 0);
-#ifdef CONFIG_MACH_YULONG
-	}
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	CDBG("%s exit\n", __func__);
 	return 0;
 }

@@ -47,11 +47,6 @@
 #include "vos_nvitem.h"
 #include "wlan_qct_tl.h"
 
-<<<<<<< HEAD
-=======
-#include "csrApi.h"
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #ifdef WLAN_FEATURE_NEIGHBOR_ROAMING
 #include "csrNeighborRoam.h"
 #endif
@@ -409,11 +404,7 @@ typedef struct tagScanCmd
         tCsrBGScanRequest bgScanRequest;
     }u;
     //This flag will be set while aborting the scan due to band change
-<<<<<<< HEAD
     tANI_BOOLEAN            abortScanDueToBandChange;
-=======
-     eCsrAbortReason        abortScanIndication;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 }tScanCmd;
 
 typedef struct tagRoamCmd
@@ -679,21 +670,7 @@ typedef struct tagCsrConfig
     tANI_U8 isCoalesingInIBSSAllowed;
     tANI_U8 allowDFSChannelRoam;
     tANI_BOOLEAN initialScanSkipDFSCh;
-<<<<<<< HEAD
     tANI_BOOLEAN sendDeauthBeforeCon;
-=======
-    tANI_BOOLEAN ignorePeerErpInfo;
-    tANI_BOOLEAN sendDeauthBeforeCon;
-#ifdef WLAN_FEATURE_AP_HT40_24G
-    tANI_BOOLEAN apHT40_24GEnabled;
-    tANI_U32 channelBondingAPMode24GHz; // Use for SAP/P2P GO 2.4GHz channel Bonding
-#endif
-    tANI_U32 nOBSSScanWidthTriggerInterval;
-    tANI_U8 roamDelayStatsEnabled;
-    tANI_BOOLEAN ignorePeerHTopMode;
-    tANI_BOOLEAN disableP2PMacSpoofing;
-    tANI_U8 max_chan_for_dwell_time_cfg;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 }tCsrConfig;
 
 typedef struct tagCsrChannelPowerInfo
@@ -739,11 +716,8 @@ typedef struct tagCsrScanStruct
     vos_timer_t hTimerStaApConcTimer;
 #endif
     vos_timer_t hTimerIdleScan;
-<<<<<<< HEAD
     vos_timer_t hTimerResultAging;
     vos_timer_t hTimerResultCfgAging;
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     tPalTimerHandle hTimerBgScan;
     //changes on every scan, it is used as a flag for whether 11d info is found on every scan
     tANI_U8 channelOf11dInfo;
@@ -807,11 +781,7 @@ typedef struct tagCsrScanStruct
     /*Customer wants to optimize the scan time. Avoiding scans(passive) on DFS
     * channels while swipping through both bands can save some time
     * (apprx 1.3 sec) */
-<<<<<<< HEAD
     tANI_BOOLEAN fEnableDFSChnlScan;
-=======
-    tANI_U8 fEnableDFSChnlScan;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
     /*
     * To enable/disable scanning only 2.4Ghz channels on first scan
@@ -828,7 +798,6 @@ typedef struct tagCsrScanStruct
 
     csrScanCompleteCallback callback11dScanDone;
     eCsrBand  scanBandPreference;  //This defines the band perference for scan
-<<<<<<< HEAD
 }tCsrScanStruct;
 
 #ifdef FEATURE_WLAN_TDLS_INTERNAL
@@ -852,11 +821,6 @@ typedef struct sCsrTdlsPeerLinkInfo
 
 
 
-=======
-    bool fcc_constraint;
-}tCsrScanStruct;
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 //Save the connected information. This structure + connectedProfile
 //should contain all information about the connection
@@ -935,12 +899,7 @@ typedef struct tagCsrRoamSession
     tCsrRoamConnectedInfo connectedInfo;
     tCsrRoamProfile *pCurRoamProfile;
     tSirBssDescription *pConnectBssDesc;
-<<<<<<< HEAD
     tANI_U16 NumPmkidCache;
-=======
-    tANI_U16 NumPmkidCache; /* valid no. of pmkid in the cache */
-    tANI_U16 CurCacheIndex; /* the index in pmkidcache to write next to */
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     tPmkidCacheInfo PmkidCacheInfo[CSR_MAX_PMKID_ALLOWED];
     tANI_U8 cJoinAttemps;
     //This may or may not have the up-to-date valid channel list
@@ -1014,10 +973,6 @@ typedef struct tagCsrRoamSession
     * the PMKID cache. To clear the cache in this particular case this is added
     * it is needed by the HS 2.0 passpoint certification 5.2.a and b testcases */
     tANI_BOOLEAN fIgnorePMKIDCache;
-<<<<<<< HEAD
-=======
-    tANI_BOOLEAN abortConnection;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 } tCsrRoamSession;
 
 typedef struct tagCsrRoamStruct
@@ -1202,10 +1157,6 @@ void csrScanResumeIMPS( tpAniSirGlobal pMac );
 
 eHalStatus csrInitGetChannels(tpAniSirGlobal pMac);
 eHalStatus csrScanFilterResults(tpAniSirGlobal pMac);
-<<<<<<< HEAD
-=======
-eHalStatus csrScanFilterDFSResults(tpAniSirGlobal pMac);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 eHalStatus csrSetModifyProfileFields(tpAniSirGlobal pMac, tANI_U32 sessionId,
                                      tCsrRoamModifyProfileFields *pModifyProfileFields);

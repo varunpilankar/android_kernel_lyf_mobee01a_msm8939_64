@@ -44,12 +44,9 @@
   Are listed for each API below. 
   
   
-<<<<<<< HEAD
   Copyright (c) 2010 QUALCOMM Incorporated.
   All Rights Reserved.
   Qualcomm Confidential and Proprietary
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 ===========================================================================*/
 
 /*===========================================================================
@@ -135,10 +132,6 @@ typedef struct {
     v_U16_t bssCount;   // bss found in scanresult for this channel
     v_S31_t rssiAgr;    // Max value of rssi among all BSS(es) from scanresult for this channel
     v_U32_t weight;     // Weightage of this channel
-<<<<<<< HEAD
-=======
-    v_U32_t weight_copy; //copy of the orignal weight
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     v_BOOL_t valid;     // Is this a valid center frequency for regulatory domain
 } tSapSpectChInfo;//tDfsSpectChInfo;
 

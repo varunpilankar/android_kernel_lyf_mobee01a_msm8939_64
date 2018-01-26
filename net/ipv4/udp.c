@@ -1244,11 +1244,7 @@ try_again:
 	else {
 		err = skb_copy_and_csum_datagram_iovec(skb,
 						       sizeof(struct udphdr),
-<<<<<<< HEAD
 						       msg->msg_iov);
-=======
-						       msg->msg_iov, copied);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 		if (err == -EINVAL)
 			goto csum_copy_err;
@@ -1298,15 +1294,10 @@ csum_copy_err:
 	}
 	unlock_sock_fast(sk, slow);
 
-<<<<<<< HEAD
 	if (noblock)
 		return -EAGAIN;
 
 	/* starting over for a new packet */
-=======
-	/* starting over for a new packet, but check if we need to yield */
-	cond_resched();
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	msg->msg_flags &= ~MSG_TRUNC;
 	goto try_again;
 }

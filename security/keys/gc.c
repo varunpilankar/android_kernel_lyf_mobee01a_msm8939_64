@@ -187,13 +187,6 @@ static noinline void key_gc_unused_keys(struct list_head *keys)
 		kdebug("- %u", key->serial);
 		key_check(key);
 
-<<<<<<< HEAD
-=======
-		/* Throw away the key data */
-		if (key->type->destroy)
-			key->type->destroy(key);
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		security_key_free(key);
 
 		/* deal with the user's key tracking and quota */
@@ -208,21 +201,11 @@ static noinline void key_gc_unused_keys(struct list_head *keys)
 		if (test_bit(KEY_FLAG_INSTANTIATED, &key->flags))
 			atomic_dec(&key->user->nikeys);
 
-<<<<<<< HEAD
 		/* now throw away the key memory */
 		if (key->type->destroy)
 			key->type->destroy(key);
 
 		key_user_put(key->user);
-=======
-		/* Throw away the key data if the key is instantiated */
-		if (test_bit(KEY_FLAG_INSTANTIATED, &key->flags) &&
-		    !test_bit(KEY_FLAG_NEGATIVE, &key->flags) &&
-		    key->type->destroy)
-			key->type->destroy(key);
-
-                key_user_put(key->user);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 		kfree(key->description);
 

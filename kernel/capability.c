@@ -268,13 +268,10 @@ SYSCALL_DEFINE2(capset, cap_user_header_t, header, const cap_user_data_t, data)
 		i++;
 	}
 
-<<<<<<< HEAD
 	effective.cap[CAP_LAST_U32] &= CAP_LAST_U32_VALID_MASK;
 	permitted.cap[CAP_LAST_U32] &= CAP_LAST_U32_VALID_MASK;
 	inheritable.cap[CAP_LAST_U32] &= CAP_LAST_U32_VALID_MASK;
 
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	new = prepare_creds();
 	if (!new)
 		return -ENOMEM;

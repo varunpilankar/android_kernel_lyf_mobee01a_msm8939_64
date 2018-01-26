@@ -352,10 +352,6 @@ struct sock {
 				sk_no_check  : 2,
 				sk_userlocks : 4,
 				sk_protocol  : 8,
-<<<<<<< HEAD
-=======
-#define SK_PROTOCOL_MAX U8_MAX
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				sk_type      : 16;
 	kmemcheck_bitfield_end(flags);
 	int			sk_wmem_queued;

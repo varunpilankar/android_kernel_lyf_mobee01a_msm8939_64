@@ -37,12 +37,9 @@
                
    Various utility functions
   
-<<<<<<< HEAD
    Copyright 2008 (c) Qualcomm, Incorporated.  All Rights Reserved.
    
    Qualcomm Confidential and Proprietary.
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
   
   ========================================================================*/
 
@@ -53,10 +50,6 @@
   ------------------------------------------------------------------------*/
 #include <vos_types.h>
 #include <vos_status.h>
-<<<<<<< HEAD
-=======
-#include <vos_event.h>
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 //#include <Wincrypt.h>
 
 /*-------------------------------------------------------------------------- 
@@ -171,16 +164,9 @@ VOS_STATUS vos_decrypt_AES(v_U32_t cryptHandle, /* Handle */
                            v_U8_t *pKey); /* pointer to authentication key */
 
 v_U8_t vos_chan_to_band(v_U32_t chan);
-<<<<<<< HEAD
 
 #ifdef DEBUG_ROAM_DELAY
 #define ROAM_DELAY_TABLE_SIZE   30
-=======
-void vos_get_wlan_unsafe_channel(v_U16_t *unsafeChannelList,
-                    v_U16_t buffer_size, v_U16_t *unsafeChannelCount);
-
-#define ROAM_DELAY_TABLE_SIZE   10
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 enum e_roaming_event
 {
@@ -237,17 +223,10 @@ typedef enum
     eVOS_AUTH_TYPE_WAPI_WAI_CERTIFICATE,
     eVOS_AUTH_TYPE_WAPI_WAI_PSK,
 #endif /* FEATURE_WLAN_WAPI */
-<<<<<<< HEAD
 #ifdef FEATURE_WLAN_CCX
     eVOS_AUTH_TYPE_CCKM_WPA,
     eVOS_AUTH_TYPE_CCKM_RSN,
 #endif /* FEATURE_WLAN_CCX */
-=======
-#ifdef FEATURE_WLAN_ESE
-    eVOS_AUTH_TYPE_CCKM_WPA,
-    eVOS_AUTH_TYPE_CCKM_RSN,
-#endif /* FEATURE_WLAN_ESE */
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #ifdef WLAN_FEATURE_11W
     eVOS_AUTH_TYPE_RSN_PSK_SHA256,
 #endif
@@ -307,7 +286,6 @@ typedef struct sRoamDelayMetaInfo
 } tRoamDelayMetaInfo, *tpRoamDelayMetaInfo;
 
 extern  tRoamDelayMetaInfo gRoamDelayMetaInfo;
-<<<<<<< HEAD
 extern  tRoamDelayMetaInfo gRoamDelayTable[ROAM_DELAY_TABLE_SIZE];
 extern  v_BOOL_t           gRoamDelayCurrentIndex;
 
@@ -315,14 +293,4 @@ void    vos_reset_roam_timer_log(void);
 void    vos_dump_roam_time_log_service(void);
 void    vos_record_roam_event(enum e_roaming_event, void *pBuff, v_ULONG_t buff_len);
 #endif //#ifdef DEBUG_ROAM_DELAY
-=======
-extern  tRoamDelayMetaInfo *gpRoamDelayTable;
-extern  v_BOOL_t           gRoamDelayCurrentIndex;
-
-v_BOOL_t vos_roam_delay_stats_init(void);
-v_BOOL_t vos_roam_delay_stats_deinit(void);
-void    vos_reset_roam_timer_log(void);
-void    vos_dump_roam_time_log_service(void);
-void    vos_record_roam_event(enum e_roaming_event, void *pBuff, v_ULONG_t buff_len);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #endif // #if !defined __VOSS_UTILS_H

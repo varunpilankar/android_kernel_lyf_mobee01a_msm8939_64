@@ -1,9 +1,5 @@
 /*
-<<<<<<< HEAD
  * Copyright (c) 2012-2013 The Linux Foundation. All rights reserved.
-=======
- * Copyright (c) 2012-2015 The Linux Foundation. All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -77,17 +73,6 @@ when           who        what, where, why
  * -------------------------------------------------------------------------*/
 #define WLANDXE_CTXT_COOKIE              0xC00CC111
 
-<<<<<<< HEAD
-=======
-#define foreach_valid_channel(idx)                \
-    for (idx = 0; idx < WDTS_CHANNEL_MAX; idx++)  \
-        if (!(dxeGetEnabledChannels() & 1<<idx))  \
-            continue;                             \
-        else
-
-#define WLANDXE_IS_VALID_CHANNEL(idx) \
-    (dxeGetEnabledChannels() & 1<<idx)
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 /* From here WCNSS DXE register information
  * This is temporary definition location to make compile and unit test
@@ -107,19 +92,9 @@ when           who        what, where, why
 #endif
 
 #define WLANDXE_BMU_AVAILABLE_BD_PDU      0x80084
-<<<<<<< HEAD
 
 #define WLANDXE_REGISTER_BASE_ADDRESS     0x202000
 
-=======
-#define WLANDXE_BMU_ERROR_INTR_STATUS     0x80004
-
-#define WLANDXE_REGISTER_BASE_ADDRESS     0x202000
-
-#define WLAN_PMU_SPARE_OUT_ADDRESS        0x21c088
-#define WLAN_PMU_POWER_DOWN_MASK          0x04000000
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 /* Common over the channels register addresses */
 #define WALNDEX_DMA_CSR_ADDRESS          (WLANDXE_REGISTER_BASE_ADDRESS + 0x00)
 #define WALNDEX_DMA_ENCH_ADDRESS         (WLANDXE_REGISTER_BASE_ADDRESS + 0x04)
@@ -163,10 +138,6 @@ when           who        what, where, why
 #define WLANDXE_DMA_CHAN4_BASE_ADDRESS   (WLANDXE_REGISTER_BASE_ADDRESS + 0x500)
 #define WLANDXE_DMA_CHAN5_BASE_ADDRESS   (WLANDXE_REGISTER_BASE_ADDRESS + 0x540)
 #define WLANDXE_DMA_CHAN6_BASE_ADDRESS   (WLANDXE_REGISTER_BASE_ADDRESS + 0x580)
-<<<<<<< HEAD
-=======
-#define WLANDXE_DMA_CHAN7_BASE_ADDRESS   (WLANDXE_REGISTER_BASE_ADDRESS + 0x5c0)
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 /* Channel specific register offset */
 #define WLANDXE_DMA_CH_CTRL_REG          0x0000
@@ -192,13 +163,6 @@ when           who        what, where, why
 #define WLANDXE_DMA_CSR_RESERVED_OFFSET       0x10
 #define WLANDXE_DMA_CSR_RESERVED_DEFAULT      0x0
 
-<<<<<<< HEAD
-=======
-#define WLANDXE_DMA_CSR_FW_BMU_RECOVERY       0x400000
-#define WLANDXE_DMA_CSR_RECOVERY_DONE         0x200000
-#define WLANDXE_DMA_CSR_HOST_RECOVERY_DONE    0x800000
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #define WLANDXE_DMA_CSR_H2H_SYNC_EN_MASK      0x8000
 #define WLANDXE_DMA_CSR_H2H_SYNC_EN_OFFSET    0x0F
 #define WLANDXE_DMA_CSR_H2H_SYNC_EN_DEFAULT   0x0
@@ -440,10 +404,6 @@ when           who        what, where, why
 #define WLANDXE_INT_MASK_CHAN_4          0x00000010
 #define WLANDXE_INT_MASK_CHAN_5          0x00000020
 #define WLANDXE_INT_MASK_CHAN_6          0x00000040
-<<<<<<< HEAD
-=======
-#define WLANDXE_INT_MASK_CHAN_7          0x00000080
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 #define WLANDXE_TX_LOW_RES_THRESHOLD     (5)
 
@@ -493,10 +453,6 @@ typedef enum {
 #define HDXE_MSG                     WPAL_TRACE
 #define HDXE_ASSERT(a)               VOS_ASSERT(a)
 
-<<<<<<< HEAD
-=======
-#define WLANDXE_PRONTO_TX_WQ       0x6
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 /*----------------------------------------------------------------------------
  *  Type Declarations
  * -------------------------------------------------------------------------*/
@@ -530,10 +486,6 @@ typedef enum
    WLANDXE_DMA_CHANNEL_4,
    WLANDXE_DMA_CHANNEL_5,
    WLANDXE_DMA_CHANNEL_6,
-<<<<<<< HEAD
-=======
-   WLANDXE_DMA_CHANNEL_7,
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
    WLANDXE_DMA_CHANNEL_MAX
 } WLANDXE_DMAChannelType;
 
@@ -594,12 +546,9 @@ typedef struct
    WLANDXE_DescType                *linkedDesc;
    wpt_uint32                       linkedDescPhyAddr;
    wpt_uint32                       ctrlBlkOrder;
-<<<<<<< HEAD
 #ifdef FEATURE_R33D
    wpt_uint32                       shadowBufferVa;
 #endif /* FEATURE_R33D */
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 } WLANDXE_DescCtrlBlkType;
 
 typedef struct
@@ -678,22 +627,14 @@ typedef struct
    WDTS_ChannelType                channelType;
    WLANDXE_DescCtrlBlkType        *headCtrlBlk;
    WLANDXE_DescCtrlBlkType        *tailCtrlBlk;
-<<<<<<< HEAD
 #if !(defined(FEATURE_R33D) || defined(WLANDXE_TEST_CHANNEL_ENABLE))
    WLANDXE_DescType               *descriptorAllocation;
 #endif
-=======
-   WLANDXE_DescType               *descriptorAllocation;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
    WLANDXE_DescType               *DescBottomLoc;
    wpt_uint32                      descBottomLocPhyAddr;
    wpt_uint32                      numDesc;
    wpt_uint32                      numFreeDesc;
    wpt_uint32                      numRsvdDesc;
-<<<<<<< HEAD
-=======
-   wpt_uint32                      desc_write_fail_count;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
    wpt_uint32                      maxFrameSize;
    wpt_uint32                      numFragmentCurrentChain;
    wpt_uint32                      numFrameBeforeInt;
@@ -706,11 +647,8 @@ typedef struct
    WLANDXE_ChannelExConfigType     extraConfig;
    WLANDXE_DMAChannelType          assignedDMAChannel;
    wpt_uint64                      rxDoneHistogram;
-<<<<<<< HEAD
    wpt_timer                       healthMonitorTimer;
    wpt_msg                        *healthMonitorMsg;
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 } WLANDXE_ChannelCBType;
 
 typedef struct
@@ -729,66 +667,34 @@ typedef struct
    WLANDXE_RxFrameReadyCbType      rxReadyCB;
    WLANDXE_TxCompleteCbType        txCompCB;
    WLANDXE_LowResourceCbType       lowResourceCB;
-<<<<<<< HEAD
-=======
-   WLANDXE_MbReceiveMsgCbType      receiveMbMsgCB;
-   WLANDXE_RxLogDoneType           receiveLogCompleteCB;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
    WLANDXE_TxCompIntConfigType     txCompInt;
    void                           *clientCtxt;
    wpt_uint32                      interruptPath;
    wpt_msg                        *rxIsrMsg;
    wpt_msg                        *txIsrMsg;
-<<<<<<< HEAD
    wpt_msg                        *rxPktAvailMsg;   
-=======
-   wpt_msg                        *rxPktAvailMsg;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
    volatile WLANDXE_PowerStateType hostPowerState;
    wpt_boolean                     rxIntDisabledByIMPS;
    wpt_boolean                     txIntDisabledByIMPS;
    WLANDXE_SetPowerStateCbType     setPowerStateCb;
    volatile WLANDXE_RivaPowerStateType rivaPowerState;
-<<<<<<< HEAD
    wpt_boolean                     ringNotEmpty; 
    wpt_boolean                     txIntEnable;
    wpt_uint32                      txCompletedFrames; 
    wpt_uint8                       ucTxMsgCnt; 
    wpt_uint16                      lastKickOffDxe; 
-=======
-   wpt_boolean                     ringNotEmpty;
-   wpt_boolean                     txIntEnable;
-   wpt_uint32                      txCompletedFrames;
-   wpt_uint8                       ucTxMsgCnt;
-   wpt_uint16                      lastKickOffDxe;
-   wpt_uint32                      smsmRingsEmptyHistogram;
-   wpt_uint32                      smsmDxeHistogram;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
    wpt_uint32                      dxeCookie;
    wpt_packet                     *freeRXPacket;
    wpt_boolean                     rxPalPacketUnavailable;
    wpt_boolean                     driverReloadInProcessing;
    wpt_boolean                     smsmToggled;
    wpt_boolean                     txRingsEmpty;
-<<<<<<< HEAD
-=======
-   wpt_boolean                     hostInitiatedH2H;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #ifdef WLAN_DXE_LOW_RESOURCE_TIMER
    wpt_timer                       rxResourceAvailableTimer;
 #endif
    wpt_timer                       dxeSSRTimer;
 } WLANDXE_CtrlBlkType;
 
-<<<<<<< HEAD
-=======
-typedef struct
-{
-   u64                             *rxIntDisableReturn;
-   wpt_uint8                       rxIntChanlSrc;
-   wpt_uint8                       txCmpIntChanlSrc;
-} WLANDXE_EnvInformation;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 /*==========================================================================
   @  Function Name 
       dxeCommonDefaultConfig
@@ -800,17 +706,10 @@ typedef struct
                                DXE host driver main control block
 
   @  Return
-<<<<<<< HEAD
       wpt_status
 
 ===========================================================================*/
 extern wpt_status dxeCommonDefaultConfig
-=======
-      void
-
-===========================================================================*/
-extern void dxeCommonDefaultConfig
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 (
    WLANDXE_CtrlBlkType     *dxeCtrlBlk
 );
@@ -839,16 +738,4 @@ extern wpt_status dxeChannelDefaultConfig
    WLANDXE_ChannelCBType   *channelEntry
 );
 
-<<<<<<< HEAD
-=======
-void dxeSetEnabledChannels
-(
-   wpt_uint8 enabledChannels
-);
-
-wpt_uint8 dxeGetEnabledChannels
-(
-   void
-);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #endif /* WLAN_QCT_DXE_I_H */

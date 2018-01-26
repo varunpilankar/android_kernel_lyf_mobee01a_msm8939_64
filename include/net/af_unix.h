@@ -62,10 +62,6 @@ struct unix_sock {
 #define UNIX_GC_CANDIDATE	0
 #define UNIX_GC_MAYBE_CYCLE	1
 	struct socket_wq	peer_wq;
-<<<<<<< HEAD
-=======
-	wait_queue_t		peer_wake;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 };
 #define unix_sk(__sk) ((struct unix_sock *)__sk)
 

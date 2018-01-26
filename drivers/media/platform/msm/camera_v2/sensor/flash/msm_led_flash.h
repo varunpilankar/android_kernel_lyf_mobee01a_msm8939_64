@@ -61,10 +61,7 @@ struct msm_led_flash_ctrl_t {
 	struct led_trigger *torch_trigger[MAX_LED_TRIGGERS];
 	uint32_t torch_num_sources;
 	uint32_t torch_op_current[MAX_LED_TRIGGERS];
-<<<<<<< HEAD
 	uint32_t pre_op_current[MAX_LED_TRIGGERS];
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	uint32_t torch_max_current[MAX_LED_TRIGGERS];
 
 	void *data;
@@ -95,21 +92,4 @@ int msm_flash_led_release(struct msm_led_flash_ctrl_t *fctrl);
 int msm_flash_led_off(struct msm_led_flash_ctrl_t *fctrl);
 int msm_flash_led_low(struct msm_led_flash_ctrl_t *fctrl);
 int msm_flash_led_high(struct msm_led_flash_ctrl_t *fctrl);
-<<<<<<< HEAD
-=======
-
-#ifdef CONFIG_MACH_YULONG
-int msm_flash_gpio_probe(struct platform_device *pdev, const void *data);
-int32_t msm_led_gpio_trigger_get_subdev_id(struct msm_led_flash_ctrl_t *fctrl,
-	void *arg);
-int32_t msm_led_gpio_trigger_config(struct msm_led_flash_ctrl_t *fctrl,
-	void *data);
-int msm_flash_led_gpio_init(struct msm_led_flash_ctrl_t *fctrl);
-int msm_flash_led_gpio_release(struct msm_led_flash_ctrl_t *fctrl);
-int msm_flash_led_gpio_off(struct msm_led_flash_ctrl_t *fctrl);
-int msm_flash_led_gpio_low(struct msm_led_flash_ctrl_t *fctrl);
-int msm_flash_led_gpio_high(struct msm_led_flash_ctrl_t *fctrl);
-#endif
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #endif

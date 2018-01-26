@@ -45,11 +45,7 @@
 
 #include <linux/regulator/consumer.h>
 #include "gt9xx.h"
-<<<<<<< HEAD
 #include <linux/interrupt.h>
-=======
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #include <linux/of_gpio.h>
 #include <linux/irq.h>
 #include <linux/module.h>
@@ -115,11 +111,8 @@ bool init_done;
 static u8 chip_gt9xxs;  /* true if ic is gt9xxs, like gt915s */
 u8 grp_cfg_version;
 struct i2c_client  *i2c_connect_client;
-<<<<<<< HEAD
 static struct class *touchscreen_class;
 static char *ts_info;
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 #define GTP_DEBUGFS_DIR			"ts_debug"
 #define GTP_DEBUGFS_FILE_SUSPEND	"suspend"
@@ -151,11 +144,7 @@ int gtp_i2c_read(struct i2c_client *client, u8 *buf, int len)
 			.buf	= &buf[0],
 		},
 		{
-<<<<<<< HEAD
 			.flags	= client->flags | I2C_M_RD,
-=======
-			.flags	= I2C_M_RD,
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			.addr	= client->addr,
 			.len	= len - GTP_ADDR_LENGTH,
 			.buf	= &buf[GTP_ADDR_LENGTH],
@@ -658,18 +647,13 @@ void gtp_reset_guitar(struct goodix_ts_data *ts, int ms)
 {
 	/* This reset sequence will selcet I2C slave address */
 	gpio_direction_output(ts->pdata->reset_gpio, 0);
-<<<<<<< HEAD
 //	msleep(ms);
-=======
-	msleep(ms);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	if (ts->client->addr == GTP_I2C_ADDRESS_HIGH)
 		gpio_direction_output(ts->pdata->irq_gpio, 1);
 	else
 		gpio_direction_output(ts->pdata->irq_gpio, 0);
 
-<<<<<<< HEAD
 	udelay(RESET_DELAY_T3_US);
 	gpio_direction_output(ts->pdata->reset_gpio, 1);
 	msleep(20);
@@ -677,15 +661,6 @@ void gtp_reset_guitar(struct goodix_ts_data *ts, int ms)
 	gpio_direction_input(ts->pdata->reset_gpio);
 
 	gtp_int_sync(ts, 20);
-=======
-	usleep(RESET_DELAY_T3_US);
-	gpio_direction_output(ts->pdata->reset_gpio, 1);
-	msleep(RESET_DELAY_T4);
-
-	gpio_direction_input(ts->pdata->reset_gpio);
-
-	gtp_int_sync(ts, 50);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 #if GTP_ESD_PROTECT
 	gtp_init_ext_watchdog(ts->client);
@@ -760,20 +735,12 @@ static u8 gtp_enter_sleep(struct goodix_ts_data *ts)
 			"GTP sleep: Cannot reconfig gpio %d.\n",
 			ts->pdata->irq_gpio);
 	if (ts->pdata->enable_power_off) {
-<<<<<<< HEAD
 		usleep(5000);
 		ret = gtp_i2c_write(ts->client, i2c_control_buf, 3);
 		if (ret == 1) {
 			dev_dbg(&ts->client->dev, "GTP enter sleep!");
 			return 0;
 		}
-=======
-		ret = gpio_direction_output(ts->pdata->reset_gpio, 0);
-		if (ret)
-			dev_err(&ts->client->dev,
-				"GTP sleep: Cannot reconfig gpio %d.\n",
-				ts->pdata->reset_gpio);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		ret = goodix_power_off(ts);
 		if (ret) {
 			dev_err(&ts->client->dev, "GTP power off failed.\n");
@@ -1217,11 +1184,7 @@ static int gtp_request_irq(struct goodix_ts_data *ts)
 
 	ret = request_threaded_irq(ts->client->irq, NULL,
 			goodix_ts_irq_handler,
-<<<<<<< HEAD
 			irq_table[ts->int_trigger_type] | IRQF_ONESHOT,
-=======
-			irq_table[ts->int_trigger_type],
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			ts->client->name, ts);
 	if (ret) {
 		ts->use_irq = false;
@@ -1513,7 +1476,6 @@ static int goodix_power_init(struct goodix_ts_data *ts)
 	return 0;
 }
 
-<<<<<<< HEAD
 static int goodix_pinctrl_init(struct goodix_ts_data *ts)
 {
 	ts->ts_pinctrl = devm_pinctrl_get(&ts->client->dev);
@@ -1530,8 +1492,6 @@ static int goodix_pinctrl_init(struct goodix_ts_data *ts)
 	return 0;
 }
 
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 /**
  * goodix_power_deinit - Deinitialize device power
  * @ts: driver private data
@@ -1832,7 +1792,6 @@ static int gtp_debugfs_init(struct goodix_ts_data *data)
 	return 0;
 }
 
-<<<<<<< HEAD
 static ssize_t class_gtp_ts_info_show(struct class *class,
 		struct class_attribute *attr, char *buf)
 {
@@ -1888,8 +1847,6 @@ static int gtp_device_info_init(struct goodix_ts_data *data)
 	return 0;
 }
 
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 static int goodix_ts_get_dt_coords(struct device *dev, char *name,
 				struct goodix_ts_platform_data *pdata)
 {
@@ -2113,7 +2070,6 @@ static int goodix_ts_probe(struct i2c_client *client,
 	ts->gtp_rawdiff_mode = 0;
 	ts->power_on = false;
 
-<<<<<<< HEAD
 	ret = goodix_pinctrl_init(ts);
 	if (ret)
 		dev_err(&client->dev, "GTP pinctrl init failed!\n");
@@ -2121,8 +2077,6 @@ static int goodix_ts_probe(struct i2c_client *client,
 	if (ts->ts_pinctrl)
 		pinctrl_select_state(ts->ts_pinctrl, ts->pinctrl_state_active);
 
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	ret = gtp_request_io_port(ts);
 	if (ret) {
 		dev_err(&client->dev, "GTP request IO port failed.\n");
@@ -2235,15 +2189,12 @@ static int goodix_ts_probe(struct i2c_client *client,
 		goto exit_remove_sysfs;
 	}
 
-<<<<<<< HEAD
 	ret = gtp_device_info_init(ts);
 	if (ret) {
 		dev_err(&client->dev, "failed to add device info!\n");
 		goto exit_remove_sysfs;
 	}
 
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	init_done = true;
 	return 0;
 exit_free_irq:
@@ -2312,10 +2263,6 @@ static int goodix_ts_remove(struct i2c_client *client)
 #endif
 
 #if GTP_ESD_PROTECT
-<<<<<<< HEAD
-=======
-	cancel_work_sync(gtp_esd_check_workqueue);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	flush_workqueue(gtp_esd_check_workqueue);
 	destroy_workqueue(gtp_esd_check_workqueue);
 #endif
@@ -2395,13 +2342,10 @@ static int goodix_ts_suspend(struct device *dev)
 		if (ret < 0)
 			dev_err(&ts->client->dev, "GTP early suspend failed.\n");
 	}
-<<<<<<< HEAD
 /*
 	if (ts->ts_pinctrl)
 		pinctrl_select_state(ts->ts_pinctrl, ts->pinctrl_state_suspend);
 */
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	/* to avoid waking up while not sleeping,
 	 * delay 48 + 10ms to ensure reliability
 	 */
@@ -2431,13 +2375,10 @@ static int goodix_ts_resume(struct device *dev)
 	}
 
 	mutex_lock(&ts->lock);
-<<<<<<< HEAD
 /*
 	if (ts->ts_pinctrl)
 		pinctrl_select_state(ts->ts_pinctrl, ts->pinctrl_state_active);
 */
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	ret = gtp_wakeup_sleep(ts);
 
 	if (ts->pdata->slide_wakeup)
@@ -2467,11 +2408,7 @@ static int fb_notifier_callback(struct notifier_block *self,
 	struct goodix_ts_data *ts =
 		container_of(self, struct goodix_ts_data, fb_notif);
 
-<<<<<<< HEAD
 	if (evdata && evdata->data && event == FB_EARLY_EVENT_BLANK &&
-=======
-	if (evdata && evdata->data && event == FB_EVENT_BLANK &&
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			ts && ts->client) {
 		blank = evdata->data;
 		if (*blank == FB_BLANK_UNBLANK)

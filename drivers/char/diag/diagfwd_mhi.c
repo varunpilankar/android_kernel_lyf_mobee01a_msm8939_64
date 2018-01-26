@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 /* Copyright (c) 2014, The Linux Foundation. All rights reserved.
-=======
-/* Copyright (c) 2014, 2016, The Linux Foundation. All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -136,17 +132,11 @@ static int mhi_buf_tbl_add(struct diag_mhi_info *mhi_info, int type,
 	}
 
 	item = kzalloc(sizeof(struct diag_mhi_buf_tbl_t), GFP_KERNEL);
-<<<<<<< HEAD
 	if (!item) {
 		pr_err_ratelimited("diag: In %s, unable to allocate new item for buf tbl, ch: %p, type: %d, buf: %p, len: %d\n",
 				   __func__, ch, ch->type, buf, len);
 		return -ENOMEM;
 	}
-=======
-	if (!item)
-		return -ENOMEM;
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	kmemleak_not_leak(item);
 
 	spin_lock_irqsave(&ch->lock, flags);
@@ -197,11 +187,7 @@ static void mhi_buf_tbl_remove(struct diag_mhi_info *mhi_info, int type,
 	spin_unlock_irqrestore(&ch->lock, flags);
 
 	if (!found) {
-<<<<<<< HEAD
 		pr_err_ratelimited("diag: In %s, unable to find buffer, ch: %p, type: %d, buf: %p\n",
-=======
-		pr_err_ratelimited("diag: In %s, unable to find buffer, ch: %pK, type: %d, buf: %pK\n",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				   __func__, ch, ch->type, buf);
 	}
 }
@@ -457,11 +443,7 @@ static int mhi_write(int id, unsigned char *buf, int len, int ctxt)
 	}
 
 	if (!buf || len <= 0) {
-<<<<<<< HEAD
 		pr_err("diag: In %s, ch %d, invalid buf %p len %d\n",
-=======
-		pr_err("diag: In %s, ch %d, invalid buf %pK len %d\n",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			__func__, id, buf, len);
 		return -EINVAL;
 	}
@@ -491,11 +473,7 @@ static int mhi_write(int id, unsigned char *buf, int len, int ctxt)
 
 	err = mhi_queue_xfer(ch->hdl, dma_addr, len, flags);
 	if (err) {
-<<<<<<< HEAD
 		pr_err_ratelimited("diag: In %s, cannot write to MHI channel %p, len %d, err: %d\n",
-=======
-		pr_err_ratelimited("diag: In %s, cannot write to MHI channel %pK, len %d, err: %d\n",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				   __func__, diag_mhi[id].name, len, err);
 		dma_unmap_single(NULL, (dma_addr_t)dma_addr, len,
 				 DMA_TO_DEVICE);

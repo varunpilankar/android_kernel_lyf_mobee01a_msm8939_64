@@ -432,16 +432,11 @@ static int sb_finish_set_opts(struct super_block *sb)
 	    sbsec->behavior > ARRAY_SIZE(labeling_behaviors))
 		sbsec->flags &= ~SE_SBLABELSUPP;
 
-<<<<<<< HEAD
 	/* Special handling. Is genfs but also has in-core setxattr handler*/
 	if (!strcmp(sb->s_type->name, "sysfs") ||
 	    !strcmp(sb->s_type->name, "pstore") ||
 	    !strcmp(sb->s_type->name, "debugfs") ||
 	    !strcmp(sb->s_type->name, "rootfs"))
-=======
-	/* Special handling for sysfs. Is genfs but also has setxattr handler*/
-	if (strncmp(sb->s_type->name, "sysfs", sizeof("sysfs")) == 0)
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		sbsec->flags |= SE_SBLABELSUPP;
 
 	/*
@@ -465,10 +460,7 @@ next_inode:
 				list_entry(sbsec->isec_head.next,
 					   struct inode_security_struct, list);
 		struct inode *inode = isec->inode;
-<<<<<<< HEAD
 		list_del_init(&isec->list);
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		spin_unlock(&sbsec->isec_lock);
 		inode = igrab(inode);
 		if (inode) {
@@ -477,10 +469,6 @@ next_inode:
 			iput(inode);
 		}
 		spin_lock(&sbsec->isec_lock);
-<<<<<<< HEAD
-=======
-		list_del_init(&isec->list);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		goto next_inode;
 	}
 	spin_unlock(&sbsec->isec_lock);
@@ -2878,12 +2866,8 @@ static int selinux_inode_setattr(struct dentry *dentry, struct iattr *iattr)
 			ATTR_ATIME_SET | ATTR_MTIME_SET | ATTR_TIMES_SET))
 		return dentry_has_perm(cred, dentry, FILE__SETATTR);
 
-<<<<<<< HEAD
 	if (selinux_policycap_openperm && (ia_valid & ATTR_SIZE)
 			&& !(ia_valid & ATTR_FILE))
-=======
-	if (selinux_policycap_openperm && (ia_valid & ATTR_SIZE))
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		av |= FILE__OPEN;
 
 	return dentry_has_perm(cred, dentry, av);
@@ -3192,11 +3176,8 @@ int ioctl_has_perm(const struct cred *cred, struct file *file,
 	struct lsm_ioctlop_audit ioctl;
 	u32 ssid = cred_sid(cred);
 	int rc;
-<<<<<<< HEAD
 	u8 driver = cmd >> 8;
 	u8 xperm = cmd & 0xff;
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	ad.type = LSM_AUDIT_DATA_IOCTL_OP;
 	ad.u.op = &ioctl;
@@ -3215,13 +3196,8 @@ int ioctl_has_perm(const struct cred *cred, struct file *file,
 	if (unlikely(IS_PRIVATE(inode)))
 		return 0;
 
-<<<<<<< HEAD
 	rc = avc_has_extended_perms(ssid, isec->sid, isec->sclass,
 			requested, driver, xperm, &ad);
-=======
-	rc = avc_has_operation(ssid, isec->sid, isec->sclass,
-			requested, cmd, &ad);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 out:
 	return rc;
 }

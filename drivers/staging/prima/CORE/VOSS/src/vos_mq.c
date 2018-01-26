@@ -33,12 +33,9 @@
                
    Message Queue Definitions and API
   
-<<<<<<< HEAD
    Copyright 2008 (c) Qualcomm, Incorporated.  All Rights Reserved.
    
    Qualcomm Confidential and Proprietary.
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
   
   ========================================================================*/
 
@@ -169,45 +166,6 @@ __inline void vos_mq_put(pVosMqType pMq, pVosMsgWrapper pMsgWrapper)
 
 } /* vos_mq_put() */
 
-<<<<<<< HEAD
-=======
-/*---------------------------------------------------------------------------
-
-  \brief vos_mq_put_front() - Add a message to the head of message queue
-
-  The \a vos_mq_put_front() function add a message to the head of Message queue.
-
-  \param  pMq - pointer to the message queue
-
-  \param  pMsgWrapper - Msg Wrapper containing the message
-
-  \return None
-
-  \sa vos_mq_put()
-
----------------------------------------------------------------------------*/
-void vos_mq_put_front(pVosMqType pMq, pVosMsgWrapper pMsgWrapper)
-{
-  unsigned long flags;
-
-  /*
-  ** Some quick sanity check
-  */
-  if ((pMq == NULL) || (pMsgWrapper == NULL)) {
-     VOS_TRACE(VOS_MODULE_ID_VOSS, VOS_TRACE_LEVEL_ERROR,
-         "%s: NULL pointer passed",__func__);
-     return ;
-  }
-
-  spin_lock_irqsave(&pMq->mqLock, flags);
-
-  list_add(&pMsgWrapper->msgNode, &pMq->mqList);
-
-  spin_unlock_irqrestore(&pMq->mqLock, flags);
-
-} /* vos_mq_put_front() */
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 /*---------------------------------------------------------------------------
   

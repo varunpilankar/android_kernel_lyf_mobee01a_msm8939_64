@@ -1394,15 +1394,7 @@ out:
  * This device is installed and registered as cdev, then interrupt and
  * queue handling is set up
  */
-<<<<<<< HEAD
 static int __init mobicore_init(void)
-=======
-#if defined(MC_CRYPTO_CLOCK_MANAGEMENT) && defined(MC_USE_DEVICE_TREE)
-static int mobicore_init(void)
-#else
-static int __init mobicore_init(void)
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 {
 	int ret = 0;
 	dev_set_name(mcd, "mcd");
@@ -1497,15 +1489,7 @@ error:
 /*
  * This function removes this device driver from the Linux device manager .
  */
-<<<<<<< HEAD
 static void __exit mobicore_exit(void)
-=======
-#if defined(MC_CRYPTO_CLOCK_MANAGEMENT) && defined(MC_USE_DEVICE_TREE)
-static void mobicore_exit(void)
-#else
-static void __exit mobicore_exit(void)
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 {
 	MCDRV_DBG_VERBOSE(mcd, "enter");
 #ifdef MC_MEM_TRACES
@@ -1585,20 +1569,12 @@ static struct platform_driver mc_plat_driver = {
 	},
 };
 
-<<<<<<< HEAD
 static int mobicore_register(void)
-=======
-static int __init mobicore_register(void)
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 {
 	return platform_driver_register(&mc_plat_driver);
 }
 
-<<<<<<< HEAD
 static void mobicore_unregister(void)
-=======
-static void __exit mobicore_unregister(void)
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 {
 	platform_driver_unregister(&mc_plat_driver);
 	mobicore_exit();

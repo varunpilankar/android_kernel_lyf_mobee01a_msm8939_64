@@ -888,11 +888,7 @@ int wsa881x_set_channel_map(struct snd_soc_codec *codec, u8 *port, u8 num_port,
 	if (!port || !ch_mask || !ch_rate ||
 		(num_port > WSA881X_MAX_SWR_PORTS)) {
 		dev_err(codec->dev,
-<<<<<<< HEAD
 			"%s: Invalid port=%p, ch_mask=%p, ch_rate=%p\n",
-=======
-			"%s: Invalid port=%pK, ch_mask=%pK, ch_rate=%pK\n",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			__func__, port, ch_mask, ch_rate);
 		return -EINVAL;
 	}

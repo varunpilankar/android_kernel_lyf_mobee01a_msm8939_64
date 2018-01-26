@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 /* Copyright (c) 2010-2014, The Linux Foundation. All rights reserved.
-=======
-/* Copyright (c) 2010-2014, 2016, The Linux Foundation. All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -28,18 +24,6 @@
 #include <asm/ioctls.h>
 #include "audio_utils.h"
 
-<<<<<<< HEAD
-=======
-/*
- * Define maximum buffer size. Below values are chosen considering the higher
- * values used among all native drivers.
- */
-#define MAX_FRAME_SIZE	1536
-#define MAX_FRAMES	5
-#define META_SIZE	(sizeof(struct meta_out_dsp))
-#define MAX_BUFFER_SIZE	(1 + ((MAX_FRAME_SIZE + META_SIZE) * MAX_FRAMES))
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 static int audio_in_pause(struct q6audio_in  *audio)
 {
 	int rc;
@@ -345,13 +329,6 @@ long audio_in_ioctl(struct file *file,
 			rc = -EINVAL;
 			break;
 		}
-<<<<<<< HEAD
-=======
-		if (cfg.buffer_size > MAX_BUFFER_SIZE) {
-			rc = -EINVAL;
-			break;
-		}
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		audio->str_cfg.buffer_size = cfg.buffer_size;
 		audio->str_cfg.buffer_count = cfg.buffer_count;
 		if (audio->opened) {
@@ -611,10 +588,6 @@ long audio_in_compat_ioctl(struct file *file,
 	}
 	case AUDIO_GET_CONFIG_32: {
 		struct msm_audio_config32 cfg_32;
-<<<<<<< HEAD
-=======
-		memset(&cfg_32, 0, sizeof(cfg_32));
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		cfg_32.buffer_size = audio->pcm_cfg.buffer_size;
 		cfg_32.buffer_count = audio->pcm_cfg.buffer_count;
 		cfg_32.channel_count = audio->pcm_cfg.channel_count;
@@ -767,11 +740,7 @@ ssize_t audio_in_read(struct file *file,
 			count -= bytes_to_copy;
 			buf += bytes_to_copy;
 		} else {
-<<<<<<< HEAD
 			pr_err("%s:session id %d: short read data[%p] bytesavail[%d]bytesrequest[%zd]\n",
-=======
-			pr_err("%s:session id %d: short read data[%pK] bytesavail[%d]bytesrequest[%zd]\n",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				__func__,
 				audio->ac->session,
 				data, size, count);
@@ -907,11 +876,7 @@ ssize_t audio_in_write(struct file *file,
 		buf += xfer;
 	}
 	mutex_unlock(&audio->write_lock);
-<<<<<<< HEAD
 	pr_debug("%s:session id %d: eos_condition 0x%x buf[0x%p] start[0x%p]\n",
-=======
-	pr_debug("%s:session id %d: eos_condition 0x%x buf[0x%pK] start[0x%pK]\n",
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				__func__, audio->ac->session,
 				nflags, buf, start);
 	if (nflags & AUD_EOS_SET) {

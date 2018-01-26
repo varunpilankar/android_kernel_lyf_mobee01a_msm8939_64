@@ -1,9 +1,5 @@
 /*
-<<<<<<< HEAD
  * Copyright (c) 2012-2014 The Linux Foundation. All rights reserved.
-=======
- * Copyright (c) 2012-2015 The Linux Foundation. All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -43,11 +39,7 @@
 #include "wniApi.h"
 #include "sirApi.h"
 #include "aniGlobal.h"
-<<<<<<< HEAD
 #include "wniCfgSta.h"
-=======
-#include "wniCfg.h"
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 #include "utilsApi.h"
 #include "limTypes.h"
@@ -132,20 +124,11 @@ limProcessDisassocFrame(tpAniSirGlobal pMac, tANI_U8 *pRxPacketInfo, tpPESession
     // Get reasonCode from Disassociation frame body
     reasonCode = sirReadU16(pBody);
 
-<<<<<<< HEAD
     PELOG2(limLog(pMac, LOGE,
         FL("Received Disassoc frame for Addr: "MAC_ADDRESS_STR"(mlm state=%s, sme state=%d),"
         "with reason code %d from "MAC_ADDRESS_STR), MAC_ADDR_ARRAY(pHdr->da),
         limMlmStateStr(psessionEntry->limMlmState), psessionEntry->limSmeState, reasonCode,
         MAC_ADDR_ARRAY(pHdr->sa));)
-=======
-    limLog(pMac, LOGE,
-        FL("Received Disassoc frame for Addr: "MAC_ADDRESS_STR
-        "(mlm state=%s, sme state=%d),"
-        "with reason code %d from "MAC_ADDRESS_STR), MAC_ADDR_ARRAY(pHdr->da),
-        limMlmStateStr(psessionEntry->limMlmState), psessionEntry->limSmeState,
-        reasonCode, MAC_ADDR_ARRAY(pHdr->sa));
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
     /**
    * Extract 'associated' context for STA, if any.
@@ -292,15 +275,8 @@ limProcessDisassocFrame(tpAniSirGlobal pMac, tANI_U8 *pRxPacketInfo, tpPESession
          * and received Disassociation frame. Log and Ignore.
          */
         PELOGE(limLog(pMac, LOGE,
-<<<<<<< HEAD
                FL("received Disassoc frame in state %d from "MAC_ADDRESS_STR),
                pStaDs->mlmStaContext.mlmState, MAC_ADDR_ARRAY(pHdr->sa));)
-=======
-               FL("received Disassoc frame in state %d from "MAC_ADDRESS_STR
-               ",isDisassocDeauthInProgress : %d\n"),
-               pStaDs->mlmStaContext.mlmState, MAC_ADDR_ARRAY(pHdr->sa),
-               pStaDs->isDisassocDeauthInProgress);)
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
         return;
     } 
@@ -353,11 +329,7 @@ limProcessDisassocFrame(tpAniSirGlobal pMac, tANI_U8 *pRxPacketInfo, tpPESession
         limRestorePreReassocState(pMac,eSIR_SME_REASSOC_REFUSED, reasonCode,psessionEntry);
         return;
     }
-<<<<<<< HEAD
 
-=======
-    limUpdateLostLinkParams(pMac, psessionEntry, pRxPacketInfo);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     limPostSmeMessage(pMac, LIM_MLM_DISASSOC_IND,
                       (tANI_U32 *) &mlmDisassocInd);
 

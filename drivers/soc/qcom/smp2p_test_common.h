@@ -1,10 +1,6 @@
 /* drivers/soc/qcom/smp2p_test_common.h
  *
-<<<<<<< HEAD
  * Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
-=======
- * Copyright (c) 2013-2014,2016 The Linux Foundation. All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -53,12 +49,7 @@
 	void *a_tmp = (a); \
 	void *b_tmp = (b); \
 	if (!((a_tmp)cmp(b_tmp))) { \
-<<<<<<< HEAD
 		seq_printf(s, "%s:%d Fail: " #a "(%p) " #cmp " " #b "(%p)\n", \
-=======
-		seq_printf(s, "%s:%d Fail: " #a "(%pK) " #cmp \
-				" " #b "(%pK)\n", \
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				__func__, __LINE__, \
 				a_tmp, b_tmp); \
 		failed = 1; \

@@ -482,11 +482,7 @@ static int rawv6_recvmsg(struct kiocb *iocb, struct sock *sk,
 			goto csum_copy_err;
 		err = skb_copy_datagram_iovec(skb, 0, msg->msg_iov, copied);
 	} else {
-<<<<<<< HEAD
 		err = skb_copy_and_csum_datagram_iovec(skb, 0, msg->msg_iov);
-=======
-		err = skb_copy_and_csum_datagram_iovec(skb, 0, msg->msg_iov, copied);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		if (err == -EINVAL)
 			goto csum_copy_err;
 	}

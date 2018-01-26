@@ -1,9 +1,5 @@
 /*
-<<<<<<< HEAD
  * Copyright (c) 2012-2013 The Linux Foundation. All rights reserved.
-=======
- * Copyright (c) 2012-2015 The Linux Foundation. All rights reserved.
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -162,11 +158,8 @@ WLANSAP_Open
         return VOS_STATUS_E_FAULT;
     }
 
-<<<<<<< HEAD
     vos_mem_zero(pSapCtx, sizeof(tSapContext));
 
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     /*------------------------------------------------------------------------
         Clean up SAP control block, initialize all values
     ------------------------------------------------------------------------*/
@@ -174,17 +167,6 @@ WLANSAP_Open
 
     WLANSAP_CleanCB(pSapCtx, 0 /*do not empty*/);
 
-<<<<<<< HEAD
-=======
-    if (!VOS_IS_STATUS_SUCCESS(vos_spin_lock_init(&pSapCtx->staInfo_lock)))
-    {
-        VOS_TRACE( VOS_MODULE_ID_SAP, VOS_TRACE_LEVEL_ERROR,
-                 "WLANSAP_Start failed init staInfo_lock");
-        vos_free_context(pvosGCtx, VOS_MODULE_ID_SAP, pSapCtx);
-        return VOS_STATUS_E_FAULT;
-    }
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     // Setup the "link back" to the VOSS context
     pSapCtx->pvosGCtx = pvosGCtx;
 
@@ -277,11 +259,8 @@ WLANSAP_Start
         return VOS_STATUS_E_FAULT;
     }
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     return VOS_STATUS_SUCCESS;
 }/* WLANSAP_Start */
 
@@ -619,12 +598,9 @@ WLANSAP_StartBss
 
         //Set the BSSID to your "self MAC Addr" read the mac address from Configuation ITEM received from HDD
         pSapCtx->csrRoamProfile.BSSIDs.numOfBSSIDs = 1;
-<<<<<<< HEAD
         vos_mem_copy(pSapCtx->csrRoamProfile.BSSIDs.bssid,
                      pSapCtx->self_mac_addr,
                      sizeof( tCsrBssid ) );
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
         //Save a copy to SAP context
         vos_mem_copy(pSapCtx->csrRoamProfile.BSSIDs.bssid,
@@ -1249,15 +1225,7 @@ VOS_STATUS
 WLANSAP_DisassocSta
 (
     v_PVOID_t  pvosGCtx,
-<<<<<<< HEAD
     v_U8_t *pPeerStaMac
-=======
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,18,0))
-    const v_U8_t *pPeerStaMac
-#else
-    v_U8_t *pPeerStaMac
-#endif
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 )
 {
     ptSapContext  pSapCtx = VOS_GET_SAP_CB(pvosGCtx);

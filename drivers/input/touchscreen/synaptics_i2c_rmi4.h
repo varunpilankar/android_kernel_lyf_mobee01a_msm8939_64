@@ -21,10 +21,6 @@
 #ifndef _SYNAPTICS_DSX_RMI4_H_
 #define _SYNAPTICS_DSX_RMI4_H_
 
-<<<<<<< HEAD
-=======
-#define SUPPORT_READ_TP_VERSION // *#87# can read tp version
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #define SYNAPTICS_DS4 (1 << 0)
 #define SYNAPTICS_DS5 (1 << 1)
 #define SYNAPTICS_DSX_DRIVER_PRODUCT SYNAPTICS_DS4
@@ -64,10 +60,6 @@
 #define SYNAPTICS_RMI4_DATE_CODE_SIZE 3
 #define SYNAPTICS_RMI4_PRODUCT_ID_SIZE 10
 #define SYNAPTICS_RMI4_BUILD_ID_SIZE 3
-<<<<<<< HEAD
-=======
-#define SYNAPTICS_RMI4_CONFIG_ID_SIZE 4
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 #define MAX_NUMBER_OF_FINGERS 10
 #define MAX_NUMBER_OF_BUTTONS 4
@@ -177,13 +169,7 @@ struct synaptics_rmi4_device_info {
 	unsigned short serial_number;
 	unsigned char product_id_string[SYNAPTICS_RMI4_PRODUCT_ID_SIZE + 1];
 	unsigned char build_id[SYNAPTICS_RMI4_BUILD_ID_SIZE];
-<<<<<<< HEAD
 	unsigned char config_id[3];
-=======
-	unsigned char custom_specific[5];
-	unsigned char config_id[3];
-	unsigned char fw_config_id[SYNAPTICS_RMI4_CONFIG_ID_SIZE];
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	struct mutex support_fn_list_mutex;
 	struct list_head support_fn_list;
 	unsigned int package_id;
@@ -238,11 +224,6 @@ struct synaptics_rmi4_data {
 	struct mutex rmi4_io_ctrl_mutex;
 	struct delayed_work det_work;
 	struct workqueue_struct *det_workqueue;
-<<<<<<< HEAD
-=======
-	unsigned int firmware_config_id;
-	unsigned int fw_cfg_id;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #ifdef CONFIG_HAS_EARLYSUSPEND
 	struct early_suspend early_suspend;
 #endif
@@ -262,10 +243,6 @@ struct synaptics_rmi4_data {
 	unsigned short f01_cmd_base_addr;
 	unsigned short f01_ctrl_base_addr;
 	unsigned short f01_data_base_addr;
-<<<<<<< HEAD
-=======
-	unsigned short f34_ctrl_base_addr;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	int irq;
 	int sensor_max_x;
 	int sensor_max_y;

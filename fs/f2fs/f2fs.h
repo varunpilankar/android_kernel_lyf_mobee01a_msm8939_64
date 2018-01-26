@@ -928,10 +928,6 @@ static inline int f2fs_add_link(struct dentry *dentry, struct inode *inode)
 /*
  * super.c
  */
-<<<<<<< HEAD
-=======
-loff_t max_file_size(unsigned bits);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 int f2fs_sync_fs(struct super_block *, int);
 extern __printf(3, 4)
 void f2fs_msg(struct super_block *, const char *, const char *, ...);

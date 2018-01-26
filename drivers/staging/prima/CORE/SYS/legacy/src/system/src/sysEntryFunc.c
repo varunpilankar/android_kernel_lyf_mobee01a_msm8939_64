@@ -134,13 +134,6 @@ sysBbtProcessMessageCore(tpAniSirGlobal pMac, tpSirMsgQ pMsg, tANI_U32 type,
 
     if(type == SIR_MAC_MGMT_FRAME)
     {
-<<<<<<< HEAD
-=======
-            if ((subType == SIR_MAC_MGMT_DEAUTH ||
-                 subType == SIR_MAC_MGMT_DISASSOC)&&
-                limIsDeauthDiassocForDrop(pMac, pBd))
-                goto fail;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
             if( (dropReason = limIsPktCandidateForDrop(pMac, pBd, subType)) != eMGMT_DROP_NO_DROP)
             {
@@ -159,7 +152,6 @@ sysBbtProcessMessageCore(tpAniSirGlobal pMac, tpSirMsgQ pMsg, tANI_U32 type,
     }
     else if (type == SIR_MAC_DATA_FRAME)
     {
-<<<<<<< HEAD
 #ifdef FEATURE_WLAN_TDLS_INTERNAL
        /*
         * if we reached here, probably this frame can be TDLS frame.
@@ -207,8 +199,6 @@ sysBbtProcessMessageCore(tpAniSirGlobal pMac, tpSirMsgQ pMsg, tANI_U32 type,
        }
        /* fall through if ethType != TDLS, which is error case */
 #endif
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #ifdef FEATURE_WLAN_ESE
         PELOGW(sysLog(pMac, LOGW, FL("IAPP Frame...\n")););
         //Post the message to PE Queue

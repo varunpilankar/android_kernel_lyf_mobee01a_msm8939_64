@@ -677,12 +677,6 @@ static int dn_create(struct net *net, struct socket *sock, int protocol,
 {
 	struct sock *sk;
 
-<<<<<<< HEAD
-=======
-	if (protocol < 0 || protocol > SK_PROTOCOL_MAX)
-		return -EINVAL;
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	if (!net_eq(net, &init_net))
 		return -EAFNOSUPPORT;
 

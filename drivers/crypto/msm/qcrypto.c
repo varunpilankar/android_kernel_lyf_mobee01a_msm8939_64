@@ -1248,10 +1248,6 @@ static void _qcrypto_tfm_complete(struct crypto_priv *cp, u32 type,
 	struct qcrypto_resp_ctx *arsp;
 	struct list_head *plist;
 	struct crypto_async_request *areq;
-<<<<<<< HEAD
-=======
-	bool pending_list;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	switch (type) {
 	case CRYPTO_ALG_TYPE_AHASH:
@@ -1267,10 +1263,6 @@ again:
 	spin_lock_irqsave(&cp->lock, flags);
 	if (list_empty(plist)) {
 		arsp = NULL; /* nothing to do */
-<<<<<<< HEAD
-=======
-		pending_list = false;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	} else {
 		arsp = list_first_entry(plist,
 				struct  qcrypto_resp_ctx, list);
@@ -1278,24 +1270,12 @@ again:
 			arsp = NULL;  /* still in progress */
 		else
 			list_del(&arsp->list); /* request is complete */
-<<<<<<< HEAD
-=======
-		if (list_empty(plist))
-			pending_list = false;
-		else
-			pending_list = true;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	}
 	spin_unlock_irqrestore(&cp->lock, flags);
 	if (arsp) {
 		areq = arsp->async_req;
 		areq->complete(areq, arsp->res);
-<<<<<<< HEAD
 		goto again;
-=======
-		if (pending_list)
-			goto again;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	}
 }
 
@@ -1890,21 +1870,12 @@ static int _qcrypto_process_aead(struct  crypto_engine *pengine,
 			 * include  assoicated data, ciphering data stream,
 			 * generated MAC, and CCM padding.
 			 */
-<<<<<<< HEAD
 			if ((MAX_ALIGN_SIZE * 2 > ULONG_MAX - req->assoclen) ||
 				((MAX_ALIGN_SIZE * 2 + req->assoclen) >
 						ULONG_MAX - qreq.ivsize) ||
 				((MAX_ALIGN_SIZE * 2 + req->assoclen
 					+ qreq.ivsize)
 						> ULONG_MAX - req->cryptlen)) {
-=======
-			if ((MAX_ALIGN_SIZE * 2 > UINT_MAX - req->assoclen) ||
-				((MAX_ALIGN_SIZE * 2 + req->assoclen) >
-						UINT_MAX - qreq.ivsize) ||
-				((MAX_ALIGN_SIZE * 2 + req->assoclen
-					+ qreq.ivsize)
-						> UINT_MAX - req->cryptlen)) {
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				pr_err("Integer overflow on aead req length.\n");
 				return -EINVAL;
 			}

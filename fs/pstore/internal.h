@@ -45,15 +45,6 @@ extern void pstore_register_ftrace(void);
 static inline void pstore_register_ftrace(void) {}
 #endif
 
-<<<<<<< HEAD
-=======
-#ifdef CONFIG_PSTORE_PMSG
-extern void pstore_register_pmsg(void);
-#else
-static inline void pstore_register_pmsg(void) {}
-#endif
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 extern struct pstore_info *psinfo;
 
 extern void	pstore_set_kmsg_bytes(int);

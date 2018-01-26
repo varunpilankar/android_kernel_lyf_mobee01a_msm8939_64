@@ -996,12 +996,6 @@ static int acm_probe(struct usb_interface *intf,
 	if (quirks == NO_UNION_NORMAL) {
 		data_interface = usb_ifnum_to_if(usb_dev, 1);
 		control_interface = usb_ifnum_to_if(usb_dev, 0);
-<<<<<<< HEAD
-=======
-		/* we would crash */
-		if (!data_interface || !control_interface)
-			return -ENODEV;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		goto skip_normal_probe;
 	}
 

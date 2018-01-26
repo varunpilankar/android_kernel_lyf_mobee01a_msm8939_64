@@ -205,11 +205,7 @@ struct audio_client *q6asm_get_audio_client(int session_id);
 int q6asm_audio_client_buf_alloc(unsigned int dir/* 1:Out,0:In */,
 				struct audio_client *ac,
 				unsigned int bufsz,
-<<<<<<< HEAD
 				unsigned int bufcnt);
-=======
-				uint32_t bufcnt);
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 int q6asm_audio_client_buf_alloc_contiguous(unsigned int dir
 				/* 1:Out,0:In */,
 				struct audio_client *ac,

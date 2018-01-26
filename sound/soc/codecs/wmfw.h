@@ -15,20 +15,6 @@
 
 #include <linux/types.h>
 
-<<<<<<< HEAD
-=======
-#define WMFW_MAX_ALG_NAME         256
-#define WMFW_MAX_ALG_DESCR_NAME   256
-
-#define WMFW_MAX_COEFF_NAME       256
-#define WMFW_MAX_COEFF_DESCR_NAME 256
-
-#define WMFW_CTL_FLAG_SYS         0x8000
-#define WMFW_CTL_FLAG_VOLATILE    0x0004
-#define WMFW_CTL_FLAG_WRITEABLE   0x0002
-#define WMFW_CTL_FLAG_READABLE    0x0001
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 struct wmfw_header {
 	char magic[4];
 	__le32 len;
@@ -75,11 +61,7 @@ struct wmfw_adsp1_id_hdr {
 	struct wmfw_id_hdr fw;
 	__be32 zm;
 	__be32 dm;
-<<<<<<< HEAD
 	__be32 algs;
-=======
-	__be32 n_algs;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 } __packed;
 
 struct wmfw_adsp2_id_hdr {
@@ -87,11 +69,7 @@ struct wmfw_adsp2_id_hdr {
 	__be32 zm;
 	__be32 xm;
 	__be32 ym;
-<<<<<<< HEAD
 	__be32 algs;
-=======
-	__be32 n_algs;
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 } __packed;
 
 struct wmfw_alg_hdr {
@@ -112,31 +90,6 @@ struct wmfw_adsp2_alg_hdr {
 	__be32 ym;
 } __packed;
 
-<<<<<<< HEAD
-=======
-struct wmfw_adsp_alg_data {
-	__le32 id;
-	u8 name[WMFW_MAX_ALG_NAME];
-	u8 descr[WMFW_MAX_ALG_DESCR_NAME];
-	__le32 ncoeff;
-	u8 data[];
-} __packed;
-
-struct wmfw_adsp_coeff_data {
-	struct {
-		__le16 offset;
-		__le16 type;
-		__le32 size;
-	} hdr;
-	u8 name[WMFW_MAX_COEFF_NAME];
-	u8 descr[WMFW_MAX_COEFF_DESCR_NAME];
-	__le16 ctl_type;
-	__le16 flags;
-	__le32 len;
-	u8 data[];
-} __packed;
-
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 struct wmfw_coeff_hdr {
 	u8 magic[4];
 	__le32 len;
@@ -164,16 +117,9 @@ struct wmfw_coeff_item {
 #define WMFW_ADSP1 1
 #define WMFW_ADSP2 2
 
-<<<<<<< HEAD
 #define WMFW_ABSOLUTE  0xf0
 #define WMFW_NAME_TEXT 0xfe
 #define WMFW_INFO_TEXT 0xff
-=======
-#define WMFW_ABSOLUTE         0xf0
-#define WMFW_ALGORITHM_DATA   0xf2
-#define WMFW_NAME_TEXT        0xfe
-#define WMFW_INFO_TEXT        0xff
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 #define WMFW_ADSP1_PM 2
 #define WMFW_ADSP1_DM 3

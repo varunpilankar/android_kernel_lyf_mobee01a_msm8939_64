@@ -20,15 +20,12 @@
  */
 
 /**
-<<<<<<< HEAD
   * Copyright (c) 2012 - 2014 Qualcomm Atheros, Inc.
   * All Rights Reserved.
   * Qualcomm Atheros Confidential and Proprietary.
   */
 
 /**
-=======
->>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
   * \file dot11f.c
   *
   * \brief Structures, functions & definitions for
