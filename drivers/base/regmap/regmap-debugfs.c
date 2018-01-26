@@ -145,7 +145,11 @@ static unsigned int regmap_debugfs_get_dump_start(struct regmap *map,
 			reg_offset = fpos_offset / map->debugfs_tot_len;
 			*pos = c->min + (reg_offset * map->debugfs_tot_len);
 			mutex_unlock(&map->cache_lock);
+<<<<<<< HEAD
 			return c->base_reg + reg_offset;
+=======
+			return c->base_reg + (reg_offset * map->reg_stride);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		}
 
 		*pos = c->max;

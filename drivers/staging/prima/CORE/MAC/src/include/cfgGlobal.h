@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2011-2014 The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2011-2015 The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -40,8 +44,13 @@
 
 #include "sirCommon.h"
 #include "sirTypes.h"
+<<<<<<< HEAD
 #include "wniCfgSta.h"
 #include "wniCfgAp.h"
+=======
+#include "wniCfg.h"
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #define CFG_MAX_NUM_STA      SIR_MAX_NUM_STA_IN_IBSS
 
 #define CFG_MAX_STATIC_STRING   70
@@ -89,9 +98,12 @@ typedef struct sAniSirCfg
 
     // Static buffer for string parameter (must be word-aligned)
     tANI_U8    *gSBuffer;
+<<<<<<< HEAD
 
     // Message parameter list buffer (enough for largest possible response)
     tANI_U32   *gParamList;
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 } tAniSirCfg,  *tpAniSirCfg;
 
 #endif

@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2011-2014 The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2011-2015 The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -34,9 +38,12 @@
 
   \brief virtual Operating System Services (vOSS): Non-Volatile storage API
 
+<<<<<<< HEAD
    Copyright 2008 (c) Qualcomm, Incorporated.  All Rights Reserved.
 
    Qualcomm Confidential and Proprietary.
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
   ========================================================================*/
 
@@ -54,6 +61,11 @@
 #define MAX_CHANNELS_IGNORE 10
 #define MAX_COUNTRY_IGNORE 5
 
+<<<<<<< HEAD
+=======
+#define TX_POWER_DEFAULT  30//in dbm
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 typedef struct sCsrIgnoreChannels
 {
    tANI_U8 countryCode[NV_FIELD_COUNTRY_CODE_SIZE];
@@ -132,6 +144,13 @@ ADD_VNV_ITEM( VNV_TABLE_VIRTUAL_RATE, 1, 4, VNV_TABLE_VIRTUAL_RATE_I ) \
  * to esp_dpp.h where the WLAN_PROVISION_DATA is present.
  */
 #define CLPC_PROVISION_DATA L"WLAN_CLPC.PROVISION"
+<<<<<<< HEAD
+=======
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,14,0))
+#define IEEE80211_CHAN_PASSIVE_SCAN IEEE80211_CHAN_NO_IR
+#define IEEE80211_CHAN_NO_IBSS IEEE80211_CHAN_NO_IR
+#endif
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 /*--------------------------------------------------------------------------
   Type declarations
   ------------------------------------------------------------------------*/
@@ -759,6 +778,17 @@ eNvVersionType vos_nv_getNvVersion
 v_U16_t vos_chan_to_freq(v_U8_t chanNum);
 
 /**------------------------------------------------------------------------
+<<<<<<< HEAD
+=======
+  \brief vos_freq_to_chan -
+  \param   - input channel frequency to know channel number
+  \return Channel frequency
+  \sa
+  -------------------------------------------------------------------------*/
+v_U8_t vos_freq_to_chan(v_U32_t freq);
+
+/**------------------------------------------------------------------------
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
   \brief vos_is_nv_country_non_zero -
   \param   NONE
   \return Success if default Country is Non-Zero
@@ -770,6 +800,18 @@ v_BOOL_t vos_is_nv_country_non_zero
    void
 );
 
+<<<<<<< HEAD
+=======
+/**------------------------------------------------------------------------
+  \brief vos_is_channel_valid_for_vht80 -
+  \param   chan
+  \return TRUE if channel is 80 mhz
+  \sa
+  -------------------------------------------------------------------------*/
+
+v_BOOL_t vos_is_channel_valid_for_vht80(v_U32_t chan);
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #ifdef CONFIG_ENABLE_LINUX_REG
 /**------------------------------------------------------------------------
   \brief vos_getCurrentCountryCode -

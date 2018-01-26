@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2012-2016, The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -61,7 +65,11 @@ void vidc_hfi_deinitialize(enum msm_vidc_hfi_type hfi_type,
 			struct hfi_device *hdev)
 {
 	if (!hdev) {
+<<<<<<< HEAD
 		dprintk(VIDC_ERR, "%s invalid device %p", __func__, hdev);
+=======
+		dprintk(VIDC_ERR, "%s invalid device %pK", __func__, hdev);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		return;
 	}
 

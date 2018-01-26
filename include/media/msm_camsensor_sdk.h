@@ -153,6 +153,10 @@ enum msm_actuator_addr_type {
 enum msm_actuator_write_type {
 	MSM_ACTUATOR_WRITE_HW_DAMP,
 	MSM_ACTUATOR_WRITE_DAC,
+<<<<<<< HEAD
+=======
+	MSM_ACTUATOR_WRITE_DAC_DW9718S,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 };
 
 enum msm_actuator_i2c_operation {
@@ -164,7 +168,10 @@ enum actuator_type {
 	ACTUATOR_VCM,
 	ACTUATOR_PIEZO,
 	ACTUATOR_HVCM,
+<<<<<<< HEAD
        ACTUATOR_CLOSE_LOOP,
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 };
 
 enum msm_flash_driver_type {

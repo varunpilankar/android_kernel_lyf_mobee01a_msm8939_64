@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2011, 2013-2014, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2011, 2013-2016, The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -184,7 +188,11 @@ static void ghsic_ctrl_connect_w(struct work_struct *w)
 	if (!port || !test_bit(CH_READY, &port->bridge_sts))
 		return;
 
+<<<<<<< HEAD
 	pr_debug("%s: port:%p port type =%u\n", __func__, port, port->gtype);
+=======
+	pr_debug("%s: port:%pK port type =%u\n", __func__, port, port->gtype);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	retval = ctrl_bridge_open(&port->brdg);
 	if (retval) {
@@ -481,7 +489,11 @@ static int gctrl_port_alloc(int portno, enum gadget_type gtype)
 
 	platform_driver_register(pdrv);
 
+<<<<<<< HEAD
 	pr_debug("%s: port:%p portno:%d\n", __func__, port, portno);
+=======
+	pr_debug("%s: port:%pK portno:%d\n", __func__, port, portno);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	return 0;
 }
@@ -573,7 +585,11 @@ static ssize_t gctrl_read_stats(struct file *file, char __user *ubuf,
 
 		temp += scnprintf(buf + temp, DEBUG_BUF_SIZE - temp,
 				"\nName:        %s\n"
+<<<<<<< HEAD
 				"#PORT:%d port: %p\n"
+=======
+				"#PORT:%d port: %pK\n"
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				"to_usbhost:    %lu\n"
 				"to_modem:      %lu\n"
 				"cpkt_drp_cnt:  %lu\n"

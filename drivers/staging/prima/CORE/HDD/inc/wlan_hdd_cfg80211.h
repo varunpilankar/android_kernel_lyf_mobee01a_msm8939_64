@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2012-2014 The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2012-2015 The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -163,7 +167,12 @@ enum qca_nl80211_vendor_subcmds {
     /* Set nodfs_flag */
     QCA_NL80211_VENDOR_SUBCMD_NO_DFS_FLAG = 40,
     /* Get Concurrency Matrix */
+<<<<<<< HEAD
     QCA_NL80211_VENDOR_SUBCMD_GET_CONCURRENCY_MATRIX = 42
+=======
+    QCA_NL80211_VENDOR_SUBCMD_GET_CONCURRENCY_MATRIX = 42,
+    QCA_NL80211_VENDOR_SUBCMD_SETBAND = 105,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 };
 
 enum qca_nl80211_vendor_subcmds_index {
@@ -192,6 +201,10 @@ enum qca_nl80211_vendor_subcmds_index {
     QCA_NL80211_VENDOR_SUBCMD_EXTSCAN_RESET_SIGNIFICANT_CHANGE_INDEX,
     /*EXT TDLS*/
     QCA_NL80211_VENDOR_SUBCMD_TDLS_STATE_CHANGE_INDEX,
+<<<<<<< HEAD
+=======
+    QCA_NL80211_VENDOR_SUBCMD_NAN_INDEX,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 };
 
 enum qca_wlan_vendor_attr
@@ -209,6 +222,11 @@ enum qca_wlan_vendor_attr
      * by enum qca_roaming_policy. */
     QCA_WLAN_VENDOR_ATTR_ROAMING_POLICY = 5,
     QCA_WLAN_VENDOR_ATTR_MAC_ADDR = 6,
+<<<<<<< HEAD
+=======
+    /* Unsigned 32-bit value from enum qca_set_band. */
+    QCA_WLAN_VENDOR_ATTR_SETBAND_VALUE = 12,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     /* keep last */
     QCA_WLAN_VENDOR_ATTR_AFTER_LAST,
     QCA_WLAN_VENDOR_ATTR_MAX = QCA_WLAN_VENDOR_ATTR_AFTER_LAST - 1,
@@ -319,6 +337,31 @@ enum qca_wlan_vendor_attr_ll_stats_clr
                         QCA_WLAN_VENDOR_ATTR_LL_STATS_CLR_AFTER_LAST - 1,
 };
 
+<<<<<<< HEAD
+=======
+/**
+ * enum qca_wlan_vendor_attr_ll_stats_results_type - ll stats result type
+ *
+ * @QCA_WLAN_VENDOR_ATTR_LL_STATS_TYPE_INVALID: Initial invalid value
+ * @QCA_WLAN_VENDOR_ATTR_LL_STATS_TYPE_RADIO: Link layer stats type radio
+ * @QCA_WLAN_VENDOR_ATTR_LL_STATS_TYPE_IFACE: Link layer stats type interface
+ * @QCA_WLAN_VENDOR_ATTR_LL_STATS_TYPE_PEER: Link layer stats type peer
+ * @QCA_WLAN_VENDOR_ATTR_LL_STATS_TYPE_AFTER_LAST: Last value
+ * @QCA_WLAN_VENDOR_ATTR_LL_STATS_TYPE_MAX: Max value
+ */
+enum qca_wlan_vendor_attr_ll_stats_results_type {
+    QCA_WLAN_VENDOR_ATTR_LL_STATS_TYPE_INVALID = 0,
+
+    QCA_WLAN_VENDOR_ATTR_LL_STATS_TYPE_RADIO = 1,
+    QCA_WLAN_VENDOR_ATTR_LL_STATS_TYPE_IFACE,
+    QCA_WLAN_VENDOR_ATTR_LL_STATS_TYPE_PEER,
+
+    QCA_WLAN_VENDOR_ATTR_LL_STATS_TYPE_AFTER_LAST,
+    QCA_WLAN_VENDOR_ATTR_LL_STATS_TYPE_MAX =
+    QCA_WLAN_VENDOR_ATTR_LL_STATS_TYPE_AFTER_LAST - 1
+};
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 enum qca_wlan_vendor_attr_ll_stats_results
 {
     QCA_WLAN_VENDOR_ATTR_LL_STATS_INVALID = 0,
@@ -545,6 +588,24 @@ enum qca_wlan_vendor_attr_ll_stats_results
      */
     QCA_WLAN_VENDOR_ATTR_LL_STATS_RESULTS_MORE_DATA,
 
+<<<<<<< HEAD
+=======
+    /* Unsigned 64bit value */
+    QCA_WLAN_VENDOR_ATTR_LL_STATS_IFACE_AVERAGE_TSF_OFFSET,
+
+    /* Unsigned 32bit value */
+    QCA_WLAN_VENDOR_ATTR_LL_STATS_IFACE_LEAKY_AP_DETECTED,
+
+    /* Unsigned 32bit value */
+    QCA_WLAN_VENDOR_ATTR_LL_STATS_IFACE_LEAKY_AP_AVG_NUM_FRAMES_LEAKED,
+
+    /* Unsigned 32bit value */
+    QCA_WLAN_VENDOR_ATTR_LL_STATS_IFACE_LEAKY_AP_GUARD_TIME,
+
+    /* Unsigned 32bit value to indicate ll stats result type */
+    QCA_WLAN_VENDOR_ATTR_LL_STATS_TYPE,
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     /* keep last */
     QCA_WLAN_VENDOR_ATTR_LL_STATS_AFTER_LAST,
     QCA_WLAN_VENDOR_ATTR_LL_STATS_MAX   =
@@ -858,6 +919,11 @@ enum qca_wlan_vendor_attr_get_concurrency_matrix {
 #define WIFI_FEATURE_EPR                0x4000   /* Enhanced power reporting */
 #define WIFI_FEATURE_AP_STA             0x8000   /* Support for AP STA
                                                     Concurrency */
+<<<<<<< HEAD
+=======
+#define WIFI_FEATURE_LINK_LAYER_STATS   0x10000  /* Link layer stats */
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 /* Add more features here */
 enum qca_wlan_vendor_attr_set_no_dfs_flag
 {
@@ -879,7 +945,11 @@ enum qca_wlan_vendor_attr_set_no_dfs_flag
 
 
 #ifdef FEATURE_WLAN_CH_AVOID
+<<<<<<< HEAD
 #define HDD_MAX_AVOID_FREQ_RANGES   4
+=======
+#define HDD_MAX_AVOID_FREQ_RANGES   15
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 typedef struct sHddAvoidFreqRange
 {
    u32 startFreq;
@@ -916,7 +986,11 @@ VOS_STATUS wlan_hdd_cfg80211_roam_metrics_handover(hdd_adapter_t *pAdapter,
 
 #ifdef FEATURE_WLAN_WAPI
 void wlan_hdd_cfg80211_set_key_wapi(hdd_adapter_t* pAdapter,
+<<<<<<< HEAD
               u8 key_index, const u8 *mac_addr, u8 *key , int key_Len);
+=======
+              u8 key_index, const u8 *mac_addr, const u8 *key , int key_Len);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #endif
 struct wiphy *wlan_hdd_cfg80211_wiphy_alloc(int priv_size);
 
@@ -965,6 +1039,16 @@ extern void wlan_hdd_cfg80211_update_replayCounterCallback(void *callbackContext
 void* wlan_hdd_change_country_code_cb(void *pAdapter);
 void hdd_select_cbmode( hdd_adapter_t *pAdapter,v_U8_t operationChannel);
 
+<<<<<<< HEAD
+=======
+v_U8_t* wlan_hdd_cfg80211_get_ie_ptr(
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,18,0))
+                                     const v_U8_t *pIes,
+#else
+                                     v_U8_t *pIes,
+#endif
+                                     int length, v_U8_t eid);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 #ifdef FEATURE_WLAN_CH_AVOID
 int wlan_hdd_send_avoid_freq_event(hdd_context_t *pHddCtx,
@@ -976,4 +1060,23 @@ void wlan_hdd_cfg80211_extscan_callback(void *ctx, const tANI_U16 evType,
                                       void *pMsg);
 #endif /* WLAN_FEATURE_EXTSCAN */
 
+<<<<<<< HEAD
+=======
+void wlan_hdd_cfg80211_nan_init(hdd_context_t *pHddCtx);
+
+#if !(defined (SUPPORT_WDEV_CFG80211_VENDOR_EVENT_ALLOC))
+static inline struct sk_buff *
+backported_cfg80211_vendor_event_alloc(struct wiphy *wiphy,
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,18,0))
+    struct wireless_dev *wdev,
+#endif
+    int approxlen,
+    int event_idx, gfp_t gfp)
+{
+    return cfg80211_vendor_event_alloc(wiphy, approxlen, event_idx, gfp);
+}
+#define cfg80211_vendor_event_alloc backported_cfg80211_vendor_event_alloc
+#endif
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #endif

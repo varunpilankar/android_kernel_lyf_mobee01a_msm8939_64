@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 /* Copyright (c) 2011-2012, 2014 The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2011-2012, 2014, 2016 The Linux Foundation. All rights
+ * reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -216,6 +221,11 @@ static long amrwb_in_compat_ioctl(struct file *file,
 		struct msm_audio_amrwb_enc_config *amrwb_config;
 		struct msm_audio_amrwb_enc_config_32 amrwb_config_32;
 
+<<<<<<< HEAD
+=======
+		memset(&amrwb_config_32, 0, sizeof(amrwb_config_32));
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		amrwb_config =
 		(struct msm_audio_amrwb_enc_config *)audio->enc_cfg;
 		amrwb_config_32.band_mode = amrwb_config->band_mode;
@@ -307,7 +317,11 @@ static int amrwb_in_open(struct inode *inode, struct file *file)
 				(void *)audio);
 
 	if (!audio->ac) {
+<<<<<<< HEAD
 		pr_err("%s:audio[%p]: Could not allocate memory for audio"
+=======
+		pr_err("%s:audio[%pK]: Could not allocate memory for audio"
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			"client\n", __func__, audio);
 		kfree(audio->enc_cfg);
 		kfree(audio);

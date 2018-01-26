@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2011-2014, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2011-2014,2016, The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -333,7 +337,11 @@ static int kgsl_iommu_fault_handler(struct iommu_domain *domain,
 
 	iommu_dev = get_iommu_device(iommu_unit, dev);
 	if (!iommu_dev) {
+<<<<<<< HEAD
 		KGSL_CORE_ERR("Invalid IOMMU device %p\n", dev);
+=======
+		KGSL_CORE_ERR("Invalid IOMMU device %pK\n", dev);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		ret = -ENOSYS;
 		goto done;
 	}
@@ -723,8 +731,13 @@ static void kgsl_detach_pagetable_iommu_domain(struct kgsl_mmu *mmu)
 				iommu_detach_device(iommu_pt->domain,
 						iommu_unit->dev[j].dev);
 				iommu_unit->dev[j].attached = false;
+<<<<<<< HEAD
 				KGSL_MEM_INFO(mmu->device, "iommu %p detached "
 					"from user dev of MMU: %p\n",
+=======
+				KGSL_MEM_INFO(mmu->device, "iommu %pK detached "
+					"from user dev of MMU: %pK\n",
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 					iommu_pt->domain, mmu);
 			}
 		}
@@ -788,7 +801,11 @@ static int kgsl_attach_pagetable_iommu_domain(struct kgsl_mmu *mmu)
 				}
 				iommu_unit->dev[j].attached = true;
 				KGSL_MEM_INFO(mmu->device,
+<<<<<<< HEAD
 				"iommu pt %p attached to dev %p, ctx_id %d\n",
+=======
+				"iommu pt %pK attached to dev %pK, ctx_id %d\n",
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				iommu_pt->domain, iommu_unit->dev[j].dev,
 				iommu_unit->dev[j].ctx_id);
 				/* Init IOMMU unit clks here */
@@ -863,7 +880,11 @@ static int _get_iommu_ctxs(struct kgsl_mmu *mmu,
 		iommu_unit->dev[iommu_unit->dev_count].kgsldev = mmu->device;
 
 		KGSL_DRV_INFO(mmu->device,
+<<<<<<< HEAD
 				"Obtained dev handle %p for iommu context %s\n",
+=======
+				"Obtained dev handle %pK for iommu context %s\n",
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				iommu_unit->dev[iommu_unit->dev_count].dev,
 				data->iommu_ctxs[i].iommu_ctx_name);
 
@@ -1695,7 +1716,11 @@ kgsl_iommu_unmap(struct kgsl_pagetable *pt,
 	} else
 		ret = iommu_unmap_range(iommu_pt->domain, gpuaddr, range);
 	if (ret) {
+<<<<<<< HEAD
 		KGSL_CORE_ERR("iommu_unmap_range(%p, %x, %d) failed "
+=======
+		KGSL_CORE_ERR("iommu_unmap_range(%pK, %x, %d) failed "
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			"with err: %d\n", iommu_pt->domain, gpuaddr,
 			range, ret);
 		return ret;
@@ -1807,7 +1832,11 @@ kgsl_iommu_map(struct kgsl_pagetable *pt,
 				sg_temp ? sg_temp : memdesc->sg,
 				size, protflags);
 	if (ret) {
+<<<<<<< HEAD
 		KGSL_CORE_ERR("iommu_map_range(%p, %x, %p, %zd, %x) err: %d\n",
+=======
+		KGSL_CORE_ERR("iommu_map_range(%pK, %x, %pK, %zd, %x) err: %d\n",
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			iommu_pt->domain, iommu_virt_addr,
 			sg_temp ? sg_temp : memdesc->sg, size,
 			protflags, ret);
@@ -1820,7 +1849,11 @@ kgsl_iommu_map(struct kgsl_pagetable *pt,
 				page_to_phys(kgsl_guard_page), PAGE_SIZE,
 				protflags & ~IOMMU_WRITE);
 		if (ret) {
+<<<<<<< HEAD
 			KGSL_CORE_ERR("iommu_map(%p, %zx, guard, %x) err: %d\n",
+=======
+			KGSL_CORE_ERR("iommu_map(%pK, %zx, guard, %x) err: %d\n",
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				iommu_pt->domain, iommu_virt_addr + size,
 				protflags & ~IOMMU_WRITE,
 				ret);

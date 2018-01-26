@@ -43,8 +43,11 @@ DESCRIPTION
   module to be used by the DAL Data Path Core. 
   
       
+<<<<<<< HEAD
   Copyright (c) 2010 QUALCOMM Incorporated. All Rights Reserved.
   Qualcomm Confidential and Proprietary
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 ===========================================================================*/
 
 
@@ -126,7 +129,13 @@ when        who    what, where, why
    This dynamically changes ACK_POLICY = TRUE for multicast frames */
 #define WDI_RELIABLE_MCAST_REQUESTED_MASK 0x100
 
+<<<<<<< HEAD
 #define WDI_USE_BD_RATE_MASK              0x1000
+=======
+#define WDI_USE_BD_RATE_1_MASK            0x1000
+#define WDI_USE_BD_RATE_2_MASK            0x2000
+#define WDI_USE_BD_RATE_3_MASK            0x4000
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #define WDI_USE_FW_IN_TX_PATH             0x200 //bit 9 used to route the frames to Work Queue 5
 
 /*Macro for getting the size of the TX BD*/
@@ -428,7 +437,12 @@ WDI_FillTxBd
     wpt_uint8              ucProtMgmtFrame,
     wpt_uint32             uTimeStamp,
     wpt_uint8              isEapol,
+<<<<<<< HEAD
     wpt_uint8*             staIndex
+=======
+    wpt_uint8*             staIndex,
+    wpt_uint32             txBdToken
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 );
 
 /**

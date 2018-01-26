@@ -629,10 +629,25 @@ static unsigned int msm_ipc_router_poll(struct file *file,
 static int msm_ipc_router_close(struct socket *sock)
 {
 	struct sock *sk = sock->sk;
+<<<<<<< HEAD
 	struct msm_ipc_port *port_ptr = msm_ipc_sk_port(sk);
 	int ret;
 
 	lock_sock(sk);
+=======
+	struct msm_ipc_port *port_ptr;
+	int ret;
+
+	if (!sk)
+		return -EINVAL;
+
+	lock_sock(sk);
+	port_ptr = msm_ipc_sk_port(sk);
+	if (!port_ptr) {
+		release_sock(sk);
+		return -EINVAL;
+	}
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	ret = msm_ipc_router_close_port(port_ptr);
 	msm_ipc_unload_default_node(msm_ipc_sk(sk)->default_node_vote_info);
 	release_sock(sk);

@@ -1216,7 +1216,11 @@ void limProcessHalAddTsRsp(tpAniSirGlobal pMac, tpSirMsgQ limMsg)
 
     if(pAddTsRspMsg->status == eHAL_STATUS_SUCCESS)
     {
+<<<<<<< HEAD
         PELOG1(limLog(pMac, LOG1, FL("Received successful ADDTS response from HAL "));)
+=======
+        limLog(pMac, LOG1, FL("Received successful ADDTS response from HAL "));
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
         // Use the smesessionId and smetransactionId from the PE session context
         limSendSmeAddtsRsp(pMac, rspReqd, eSIR_SME_SUCCESS, psessionEntry, pAddTsRspMsg->tspec,
                 psessionEntry->smeSessionId, psessionEntry->transactionId);
@@ -1224,7 +1228,11 @@ void limProcessHalAddTsRsp(tpAniSirGlobal pMac, tpSirMsgQ limMsg)
     }
     else
     {
+<<<<<<< HEAD
         PELOG1(limLog(pMac, LOG1, FL("Received failure ADDTS response from HAL "));)
+=======
+        limLog(pMac, LOG1, FL("Received failure ADDTS response from HAL "));
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
         // Send DELTS action frame to AP        
         // 090803: Get peer MAC addr from session        

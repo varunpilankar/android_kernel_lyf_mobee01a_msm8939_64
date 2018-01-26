@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2014, The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2016, The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -115,7 +119,11 @@ static inline u32 __readl(void * __iomem addr)
 {
 	u32 value = 0;
 
+<<<<<<< HEAD
 	pr_debug("read %p ", addr);
+=======
+	pr_debug("read %pK ", addr);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	value = readl_relaxed(addr);
 	pr_debug("-> %08x\n", value);
 
@@ -124,7 +132,11 @@ static inline u32 __readl(void * __iomem addr)
 
 static inline void __writel(u32 val, void * __iomem addr)
 {
+<<<<<<< HEAD
 	pr_debug("write %08x -> %p\n", val, addr);
+=======
+	pr_debug("write %08x -> %pK\n", val, addr);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	writel_relaxed(val, addr);
 	/*
 	 * Commit all writes via a mem barrier, as subsequent __readl()

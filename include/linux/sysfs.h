@@ -79,6 +79,18 @@ struct attribute_group {
 	.show	= _name##_show,					\
 }
 
+<<<<<<< HEAD
+=======
+
+#define __ATTR_WO(_name) {						\
+	.attr	= { .name = __stringify(_name), .mode = S_IWUSR },	\
+	.store	= _name##_store,					\
+}
+
+#define __ATTR_RW(_name) __ATTR(_name, (S_IWUSR | S_IRUGO),		\
+			 _name##_show, _name##_store)
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #define __ATTR_NULL { .attr = { .name = NULL } }
 
 #ifdef CONFIG_DEBUG_LOCK_ALLOC

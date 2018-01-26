@@ -185,7 +185,12 @@ int rxrpc_recvmsg(struct kiocb *iocb, struct socket *sock,
 						      msg->msg_iov, copy);
 		} else {
 			ret = skb_copy_and_csum_datagram_iovec(skb, offset,
+<<<<<<< HEAD
 							       msg->msg_iov);
+=======
+							       msg->msg_iov,
+							       copy);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			if (ret == -EINVAL)
 				goto csum_copy_error;
 		}

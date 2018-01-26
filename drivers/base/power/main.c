@@ -1000,6 +1000,10 @@ static int device_suspend_late(struct device *dev, pm_message_t state)
 {
 	pm_callback_t callback = NULL;
 	char *info = NULL;
+<<<<<<< HEAD
+=======
+	int error = 0;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	__pm_runtime_disable(dev, false);
 
@@ -1025,7 +1029,19 @@ static int device_suspend_late(struct device *dev, pm_message_t state)
 		callback = pm_late_early_op(dev->driver->pm, state);
 	}
 
+<<<<<<< HEAD
 	return dpm_run_callback(callback, dev, state, info);
+=======
+	error = dpm_run_callback(callback, dev, state, info);
+	if (error)
+		/*
+		 * dpm_resume_early wouldn't be run for this failed device,
+		 * hence enable runtime_pm now
+		 */
+		pm_runtime_enable(dev);
+
+	return error;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 }
 
 /**

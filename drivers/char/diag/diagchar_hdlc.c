@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2008-2009, 2012-2013, The Linux Foundation.
+=======
+/* Copyright (c) 2008-2009, 2012-2013, 2016, The Linux Foundation.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  * All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -242,7 +246,11 @@ int crc_check(uint8_t *buf, uint16_t len)
 	 * of data and 3 bytes for CRC
 	 */
 	if (!buf || len < 4) {
+<<<<<<< HEAD
 		pr_err_ratelimited("diag: In %s, invalid packet or length, buf: 0x%p, len: %d",
+=======
+		pr_err_ratelimited("diag: In %s, invalid packet or length, buf: 0x%pK, len: %d",
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				   __func__, buf, len);
 		return -EIO;
 	}

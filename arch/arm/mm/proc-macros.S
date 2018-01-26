@@ -30,8 +30,13 @@
  * act_mm - get current->active_mm
  */
 	.macro	act_mm, rd
+<<<<<<< HEAD
 	bic	\rd, sp, #8128
 	bic	\rd, \rd, #63
+=======
+	mov	\rd, sp, lsr #12 + THREAD_SIZE_ORDER
+	mov	\rd, \rd, lsl #12 + THREAD_SIZE_ORDER
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	ldr	\rd, [\rd, #TI_TASK]
 	ldr	\rd, [\rd, #TSK_ACTIVE_MM]
 	.endm

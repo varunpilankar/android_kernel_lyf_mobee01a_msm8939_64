@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2012-2014 The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2012-2015 The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -37,7 +41,11 @@
 
 #include "aniGlobal.h"
 
+<<<<<<< HEAD
 #include "wniCfgSta.h"
+=======
+#include "wniCfg.h"
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #include "sirMacProtDef.h"
 #include "cfgApi.h"
 #include "limTypes.h"
@@ -649,7 +657,11 @@ limApplyConfiguration(tpAniSirGlobal pMac,tpPESession psessionEntry)
 {
     tANI_U32          val=0, phyMode;
 
+<<<<<<< HEAD
     PELOG2(limLog(pMac, LOG2, FL("Applying config"));)
+=======
+    limLog(pMac, LOG2, FL("Applying config"));
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
     limInitWdsInfoParams(pMac);
 
@@ -691,9 +703,16 @@ limApplyConfiguration(tpAniSirGlobal pMac,tpPESession psessionEntry)
         return;
     }
 
+<<<<<<< HEAD
     PELOG1(limLog(pMac, LOG1, FL("pMac->lim.gScanInPowersave = %hu"),
                 pMac->lim.gScanInPowersave);)
     pMac->lim.gScanInPowersave = (tANI_U8) val;
+=======
+    pMac->lim.gScanInPowersave = (tANI_U8) val;
+    limLog(pMac, LOG1, FL("pMac->lim.gScanInPowersave = %hu"),
+                pMac->lim.gScanInPowersave);
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 } /*** end limApplyConfiguration() ***/
 

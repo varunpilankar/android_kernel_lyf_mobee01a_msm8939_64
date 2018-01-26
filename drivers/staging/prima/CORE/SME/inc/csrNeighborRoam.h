@@ -169,7 +169,10 @@ typedef struct sCsrNeighborRoamControlInfo
     vos_timer_t                 neighborScanTimer;
     vos_timer_t                 neighborResultsRefreshTimer;
     vos_timer_t                 emptyScanRefreshTimer;
+<<<<<<< HEAD
     tCsrTimerInfo               neighborScanTimerInfo;
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     tCsrNeighborRoamChannelInfo roamChannelInfo;
     tANI_U8                     currentNeighborLookupThreshold;
     tANI_BOOLEAN                scanRspPending;
@@ -206,6 +209,10 @@ typedef struct sCsrNeighborRoamControlInfo
     tSirMacAddr                 cfgRoambssId;
     vos_timer_t                 forcedInitialRoamTo5GHTimer;
     tANI_U8                     isForcedInitialRoamTo5GH;
+<<<<<<< HEAD
+=======
+    tANI_U8                     lastSentCmd;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 } tCsrNeighborRoamControlInfo, *tpCsrNeighborRoamControlInfo;
 
 

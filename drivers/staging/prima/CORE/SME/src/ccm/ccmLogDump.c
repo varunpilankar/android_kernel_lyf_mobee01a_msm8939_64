@@ -30,9 +30,12 @@ ccmLogDump.c
 
 Implements the dump commands specific to the ccm module. 
 
+<<<<<<< HEAD
 Copyright (c) 2007 QUALCOMM Incorporated.
 All Rights Reserved.
 Qualcomm Confidential and Proprietary
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  ============================================================================*/
 
 

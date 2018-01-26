@@ -517,6 +517,12 @@ static int msm_iommu_sec_ptbl_map(struct msm_iommu_drvdata *iommu_drvdata,
 	phys_addr_t flush_pa;
 	int ret = 0;
 
+<<<<<<< HEAD
+=======
+	if (!IS_ALIGNED(va, SZ_1M) || !IS_ALIGNED(len, SZ_1M) ||
+		!IS_ALIGNED(pa, SZ_1M))
+		return -EINVAL;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	map.plist.list = virt_to_phys(&pa);
 	map.plist.list_size = 1;
 	map.plist.size = len;
@@ -568,22 +574,49 @@ static int msm_iommu_sec_ptbl_map_range(struct msm_iommu_drvdata *iommu_drvdata,
 	unsigned int offset = 0, chunk_offset = 0;
 	int ret;
 
+<<<<<<< HEAD
+=======
+	if (!IS_ALIGNED(va, SZ_1M) || !IS_ALIGNED(len, SZ_1M))
+		return -EINVAL;
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	map.info.id = iommu_drvdata->sec_id;
 	map.info.ctx_id = ctx_drvdata->num;
 	map.info.va = va;
 	map.info.size = len;
 
 	if (sg->length == len) {
+<<<<<<< HEAD
 		pa = get_phys_addr(sg);
+=======
+		/*
+		 * physical address for secure mapping needs
+		 * to be 1MB aligned
+		 */
+		pa = get_phys_addr(sg);
+		if (!IS_ALIGNED(pa, SZ_1M))
+			return -EINVAL;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		map.plist.list = virt_to_phys(&pa);
 		map.plist.list_size = 1;
 		map.plist.size = len;
 		flush_va = &pa;
 	} else {
 		sgiter = sg;
+<<<<<<< HEAD
 		cnt = sg->length / SZ_1M;
 		while ((sgiter = sg_next(sgiter)))
 			cnt += sgiter->length / SZ_1M;
+=======
+		if (!IS_ALIGNED(sgiter->length, SZ_1M))
+			return -EINVAL;
+		cnt = sg->length / SZ_1M;
+		while ((sgiter = sg_next(sgiter))) {
+			if (!IS_ALIGNED(sgiter->length, SZ_1M))
+				return -EINVAL;
+			cnt += sgiter->length / SZ_1M;
+		}
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 		pa_list = kmalloc(cnt * sizeof(*pa_list), GFP_KERNEL);
 		if (!pa_list)
@@ -592,6 +625,13 @@ static int msm_iommu_sec_ptbl_map_range(struct msm_iommu_drvdata *iommu_drvdata,
 		sgiter = sg;
 		cnt = 0;
 		pa = get_phys_addr(sgiter);
+<<<<<<< HEAD
+=======
+		if (!IS_ALIGNED(pa, SZ_1M)) {
+			kfree(pa_list);
+			return -EINVAL;
+		}
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		while (offset < len) {
 			pa += chunk_offset;
 			pa_list[cnt] = pa;
@@ -638,6 +678,11 @@ static int msm_iommu_sec_ptbl_unmap(struct msm_iommu_drvdata *iommu_drvdata,
 	int ret, scm_ret;
 	struct scm_desc desc = {0};
 
+<<<<<<< HEAD
+=======
+	if (!IS_ALIGNED(va, SZ_1M) || !IS_ALIGNED(len, SZ_1M))
+		return -EINVAL;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	desc.args[0] = unmap.info.id = iommu_drvdata->sec_id;
 	desc.args[1] = unmap.info.ctx_id = ctx_drvdata->num;
 	desc.args[2] = unmap.info.va = va;
@@ -878,6 +923,12 @@ static int msm_iommu_unmap_range(struct iommu_domain *domain, unsigned int va,
 	struct msm_iommu_ctx_drvdata *ctx_drvdata;
 	int ret = -EINVAL;
 
+<<<<<<< HEAD
+=======
+	if (!IS_ALIGNED(va, SZ_1M) || !IS_ALIGNED(len, SZ_1M))
+		return -EINVAL;
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	iommu_access_ops->iommu_lock_acquire(0);
 
 	ret = get_drvdata(domain, &iommu_drvdata, &ctx_drvdata);

@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2012-2013 The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2012-2015 The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -35,8 +39,11 @@
   @brief 
                
    This file contains the external API exposed by the wlan data transfer abstraction layer module.
+<<<<<<< HEAD
    Copyright (c) 2008 QUALCOMM Incorporated. All Rights Reserved.
    Qualcomm Confidential and Proprietary
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 ========================================================================*/
 
 /*===========================================================================
@@ -85,6 +92,16 @@ when           who        what, where, why
  * Size must be same with Vos Packet Size */
 #define WLANDXE_DEFAULT_RX_OS_BUFFER_SIZE  (VPKT_SIZE_BUFFER)
 
+<<<<<<< HEAD
+=======
+/*reserve 30B of skb buff, to add NL header*/
+#define WLANDXE_NL_HEADER_SZ (30)
+
+/*MAX data transferred in one skb*/
+#define WLANDXE_FW_LOGGING_XFSIZE  (WLANDXE_DEFAULT_RX_OS_BUFFER_SIZE - \
+                                    WLANDXE_NL_HEADER_SZ)
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 /*The maximum number of packets that can be chained in dxe for the Low 
   priority channel
   Note: Increased it to 240 from 128 for Windows(EA) becase Windows is
@@ -174,6 +191,26 @@ typedef WDTS_LowResourceCbType WLANDXE_LowResourceCbType;
 
 /*==========================================================================
   @  Type Name
+<<<<<<< HEAD
+=======
+  WLANDXE_MbReceiveMsgCbType
+
+  @  Description
+  DXE Mailbox mes receive indiacation
+
+  @  Parameters
+  void
+
+  @  Return
+  void
+===========================================================================*/
+typedef WDTS_MbReceiveMsgType WLANDXE_MbReceiveMsgCbType;
+
+typedef WDTS_RxLogDoneType WLANDXE_RxLogDoneType;
+
+/*==========================================================================
+  @  Type Name
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
       WLANDXE_SetPowerStateCbType 
 
   @  Description 
@@ -221,9 +258,13 @@ void *WLANDXE_Open
 
   @  Parameters
       pVoid                       pDXEContext : DXE module control block
+<<<<<<< HEAD
       WDTS_RxFrameReadyCbType     rxFrameReadyCB : RX Frame ready CB function pointer
       WDTS_TxCompleteCbType       txCompleteCB : TX complete CB function pointer
       WDTS_LowResourceCbType      lowResourceCB : Low DXE resource notification CB function pointer
+=======
+      WDTS_ClientCallbacks        WDTSCb : Callbacks to WDTS to indicate various events
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
       void                       *userContext : DXE Cliennt control block
 
   @  Return
@@ -232,9 +273,13 @@ void *WLANDXE_Open
 wpt_status WLANDXE_ClientRegistration
 (
    void                       *pDXEContext,
+<<<<<<< HEAD
    WDTS_RxFrameReadyCbType     rxFrameReadyCB,
    WDTS_TxCompleteCbType       txCompleteCB,
    WDTS_LowResourceCbType      lowResourceCB,
+=======
+   WDTS_ClientCallbacks       WDTSCb,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
    void                       *userContext
 );
 
@@ -424,6 +469,7 @@ void WLANDXE_ChannelDebug
    wpt_uint8      debugFlags
 );
 
+<<<<<<< HEAD
 #ifdef WLANDXE_TEST_CHANNEL_ENABLE
 /*==========================================================================
   @  Function Name 
@@ -440,10 +486,28 @@ void WLANDXE_ChannelDebug
 
 ===========================================================================*/
 void WLANDXE_UnitTestStartDXE
+=======
+/*==========================================================================
+  @  Function Name
+    WLANDXE_KickDxe
+
+  @  Description
+    Kick Dxe when HDD TX timeout happen
+
+  @  Parameters
+    NONE
+
+  @  Return
+    NONE
+
+===========================================================================*/
+void WLANDXE_KickDxe
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 (
    void
 );
 
+<<<<<<< HEAD
 /*==========================================================================
   @  Function Name 
 
@@ -474,4 +538,16 @@ void WLANDXE_UnitTestEventHandle
    void     *dxeCB
 );
 #endif /* WLANDXE_TEST_CHANNEL_ENABLE */
+=======
+wpt_uint32 WLANDXE_SetupLogTransfer
+(
+   wpt_uint64 bufferAddr,
+   wpt_uint32 bufferLen
+);
+
+wpt_status WLANDXE_StartLogTransfer
+(
+void
+);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #endif /* WLAN_QCT_DXE_H */

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2014-2015, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2014-2016, The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -188,7 +192,12 @@ static int voice_svc_send_req(struct voice_svc_cmd_request *apr_request,
 	int ret = 0;
 	void *apr_handle = NULL;
 	struct apr_data *aprdata = NULL;
+<<<<<<< HEAD
 	uint32_t user_payload_size = 0;
+=======
+	uint32_t user_payload_size;
+	uint32_t payload_size;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	pr_debug("%s\n", __func__);
 
@@ -200,6 +209,7 @@ static int voice_svc_send_req(struct voice_svc_cmd_request *apr_request,
 	}
 
 	user_payload_size = apr_request->payload_size;
+<<<<<<< HEAD
 
 	aprdata = kmalloc(sizeof(struct apr_data) + user_payload_size,
 			  GFP_KERNEL);
@@ -209,6 +219,21 @@ static int voice_svc_send_req(struct voice_svc_cmd_request *apr_request,
 
 		ret = -ENOMEM;
 		goto done;
+=======
+	payload_size = sizeof(struct apr_data) + user_payload_size;
+
+	if (payload_size <= user_payload_size) {
+		pr_err("%s: invalid payload size ( 0x%x ).\n",
+			__func__, user_payload_size);
+		ret = -EINVAL;
+		goto done;
+	} else {
+		aprdata = kmalloc(payload_size, GFP_KERNEL);
+		if (aprdata == NULL) {
+			ret = -ENOMEM;
+			goto done;
+		}
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	}
 
 	voice_svc_update_hdr(apr_request, aprdata);
@@ -218,8 +243,13 @@ static int voice_svc_send_req(struct voice_svc_cmd_request *apr_request,
 	} else if (!strcmp(apr_request->svc_name, VOICE_SVC_MVM_STR)) {
 		apr_handle = prtd->apr_q6_mvm;
 	} else {
+<<<<<<< HEAD
 		pr_err("%s: Invalid service %s\n", __func__,
 			apr_request->svc_name);
+=======
+		pr_err("%s: Invalid service %.*s\n", __func__,
+			MAX_APR_SERVICE_NAME_LEN, apr_request->svc_name);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 		ret = -EINVAL;
 		goto done;
@@ -333,8 +363,13 @@ static int process_reg_cmd(struct voice_svc_register *apr_reg_svc,
 		svc = VOICE_SVC_CVS_STR;
 		handle = &prtd->apr_q6_cvs;
 	} else {
+<<<<<<< HEAD
 		pr_err("%s: Invalid Service: %s\n", __func__,
 		       apr_reg_svc->svc_name);
+=======
+		pr_err("%s: Invalid Service: %.*s\n", __func__,
+			MAX_APR_SERVICE_NAME_LEN, apr_reg_svc->svc_name);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		ret = -EINVAL;
 		goto done;
 	}
@@ -360,7 +395,21 @@ static ssize_t voice_svc_write(struct file *file, const char __user *buf,
 
 	pr_debug("%s\n", __func__);
 
+<<<<<<< HEAD
 	data = kmalloc(count, GFP_KERNEL);
+=======
+	/*
+	 * Check if enough memory is allocated to parse the message type.
+	 * Will check there is enough to hold the payload later.
+	 */
+	if (count >= sizeof(struct voice_svc_write_msg)) {
+		data = kmalloc(count, GFP_KERNEL);
+	} else {
+		pr_debug("%s: invalid data size\n", __func__);
+		ret = -EINVAL;
+		goto done;
+	}
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	if (data == NULL) {
 		pr_err("%s: data kmalloc failed.\n", __func__);
@@ -378,7 +427,11 @@ static ssize_t voice_svc_write(struct file *file, const char __user *buf,
 	}
 
 	cmd = data->msg_type;
+<<<<<<< HEAD
 	prtd = (struct voice_svc_prvt *)file->private_data;
+=======
+	prtd = (struct voice_svc_prvt *) file->private_data;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	if (prtd == NULL) {
 		pr_err("%s: prtd is NULL\n", __func__);
 
@@ -388,6 +441,7 @@ static ssize_t voice_svc_write(struct file *file, const char __user *buf,
 
 	switch (cmd) {
 	case MSG_REGISTER:
+<<<<<<< HEAD
 		ret = process_reg_cmd(
 			(struct voice_svc_register *)data->payload, prtd);
 		if (!ret)
@@ -395,11 +449,46 @@ static ssize_t voice_svc_write(struct file *file, const char __user *buf,
 
 		break;
 	case MSG_REQUEST:
+=======
+		/*
+		 * Check that count reflects the expected size to ensure
+		 * sufficient memory was allocated. Since voice_svc_register
+		 * has a static size, this should be exact.
+		 */
+		if (count == (sizeof(struct voice_svc_write_msg) +
+			      sizeof(struct voice_svc_register))) {
+			ret = process_reg_cmd(
+			(struct voice_svc_register *)data->payload, prtd);
+			if (!ret)
+				ret = count;
+		} else {
+			pr_err("%s: invalid payload size\n", __func__);
+			ret = -EINVAL;
+			goto done;
+		}
+		break;
+	case MSG_REQUEST:
+		/*
+		 * Check that count reflects the expected size to ensure
+		 * sufficient memory was allocated. Since voice_svc_cmd_request
+		 * has a variable size, check the minimum value count must be.
+		 */
+		if (count >= (sizeof(struct voice_svc_write_msg) +
+			      sizeof(struct voice_svc_cmd_request))) {
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		ret = voice_svc_send_req(
 			(struct voice_svc_cmd_request *)data->payload, prtd);
 		if (!ret)
 			ret = count;
+<<<<<<< HEAD
 
+=======
+	} else {
+		pr_err("%s: invalid payload size\n", __func__);
+		ret = -EINVAL;
+		goto done;
+	}
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		break;
 	default:
 		pr_debug("%s: Invalid command: %u\n", __func__, cmd);

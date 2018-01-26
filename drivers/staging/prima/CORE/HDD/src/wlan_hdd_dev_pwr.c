@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2012-2013 The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2012-2016 The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -47,6 +51,10 @@
  * Include Files
  * -------------------------------------------------------------------------*/
 #include <wlan_hdd_dev_pwr.h>
+<<<<<<< HEAD
+=======
+#include <vos_sched.h>
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #ifdef ANI_BUS_TYPE_PLATFORM
 #include <linux/wcnss_wlan.h>
 #else
@@ -107,6 +115,10 @@ static bool suspend_notify_sent;
 static int wlan_suspend(hdd_context_t* pHddCtx)
 {
    long rc = 0;
+<<<<<<< HEAD
+=======
+   VOS_STATUS status = VOS_STATUS_SUCCESS;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
    pVosSchedContext vosSchedContext = NULL;
 
@@ -117,10 +129,43 @@ static int wlan_suspend(hdd_context_t* pHddCtx)
       VOS_TRACE(VOS_MODULE_ID_HDD,VOS_TRACE_LEVEL_FATAL,"%s: Global VOS_SCHED context is Null",__func__);
       return 0;
    }
+<<<<<<< HEAD
    if(!vos_is_apps_power_collapse_allowed(pHddCtx))
    {
        /* Fail this suspend */
        VOS_TRACE(VOS_MODULE_ID_HDD, VOS_TRACE_LEVEL_ERROR, "%s: Fail wlan suspend: not in IMPS/BMPS", __func__);
+=======
+
+   if (!pHddCtx->last_suspend_success)
+     pHddCtx->last_suspend_success = vos_timer_get_system_time();
+
+   if (!vos_is_apps_power_collapse_allowed(pHddCtx))
+   {
+       /* Fail this suspend */
+       pHddCtx->continuous_suspend_fail_cnt++;
+       VOS_TRACE(VOS_MODULE_ID_HDD, VOS_TRACE_LEVEL_INFO,
+        FL("Fail wlan suspend: not in IMPS/BMPS, continuous Failcnt %d"),
+        pHddCtx->continuous_suspend_fail_cnt);
+
+       /*
+        * call vos_wlanRestart() if power collapse fails for
+        * WLAN_POWER_COLLAPSE_FAIL_THRESHOLD time.
+        */
+       if ((vos_timer_get_system_time() - pHddCtx->last_suspend_success) >=
+                                         WLAN_POWER_COLLAPSE_FAIL_THRESHOLD)
+       {
+           pHddCtx->last_suspend_success = 0;
+
+           if (!(vos_isLoadUnloadInProgress() ||
+                 vos_is_logp_in_progress(VOS_MODULE_ID_SME, NULL)))
+           {
+              pHddCtx->continuous_suspend_fail_cnt = 0;
+              status = vos_wlanRestart();
+              VOS_TRACE(VOS_MODULE_ID_HDD, VOS_TRACE_LEVEL_ERROR,
+                    FL("Triggering SSR, SSR status = %d"),status);
+           }
+       }
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
        return -EPERM;
    }
 
@@ -132,7 +177,11 @@ static int wlan_suspend(hdd_context_t* pHddCtx)
    INIT_COMPLETION(pHddCtx->tx_sus_event_var);
 
    /* Indicate Tx Thread to Suspend */
+<<<<<<< HEAD
    set_bit(TX_SUSPEND_EVENT_MASK, &vosSchedContext->txEventFlag);
+=======
+   set_bit(TX_SUSPEND_EVENT, &vosSchedContext->txEventFlag);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
    wake_up_interruptible(&vosSchedContext->txWaitQueue);
 
@@ -150,7 +199,11 @@ static int wlan_suspend(hdd_context_t* pHddCtx)
        * Thread then it means it is going to suspend, so do not return failure
        * from here.
        */
+<<<<<<< HEAD
       if (!test_and_clear_bit(TX_SUSPEND_EVENT_MASK,
+=======
+      if (!test_and_clear_bit(TX_SUSPEND_EVENT,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
                               &vosSchedContext->txEventFlag))
       {
          VOS_TRACE(VOS_MODULE_ID_HDD, VOS_TRACE_LEVEL_ERROR,
@@ -158,6 +211,27 @@ static int wlan_suspend(hdd_context_t* pHddCtx)
          goto tx_suspend;
       }
 
+<<<<<<< HEAD
+=======
+      /*
+       * call vos_wlanRestart() if suspend for
+       * WLAN_POWER_COLLAPSE_FAIL_THRESHOLD time.
+       */
+      if ((vos_timer_get_system_time() - pHddCtx->last_suspend_success) >=
+                                         WLAN_POWER_COLLAPSE_FAIL_THRESHOLD)
+      {
+           pHddCtx->last_suspend_success = 0;
+
+           if (!(vos_isLoadUnloadInProgress() ||
+                 vos_is_logp_in_progress(VOS_MODULE_ID_SME, NULL)))
+           {
+              status = vos_wlanRestart();
+              VOS_TRACE(VOS_MODULE_ID_HDD, VOS_TRACE_LEVEL_ERROR,
+                    FL("Triggering SSR, SSR status = %d"),status);
+              pHddCtx->continuous_suspend_fail_cnt = 0;
+           }
+      }
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
       return -ETIME;
    }
 
@@ -168,7 +242,11 @@ tx_suspend:
    INIT_COMPLETION(pHddCtx->rx_sus_event_var);
 
    /* Indicate Rx Thread to Suspend */
+<<<<<<< HEAD
    set_bit(RX_SUSPEND_EVENT_MASK, &vosSchedContext->rxEventFlag);
+=======
+   set_bit(RX_SUSPEND_EVENT, &vosSchedContext->rxEventFlag);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
    wake_up_interruptible(&vosSchedContext->rxWaitQueue);
 
@@ -185,7 +263,11 @@ tx_suspend:
         * Thread then it means it is going to suspend, so do not return failure
         * from here.
         */
+<<<<<<< HEAD
        if (!test_and_clear_bit(RX_SUSPEND_EVENT_MASK,
+=======
+       if (!test_and_clear_bit(RX_SUSPEND_EVENT,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
                                &vosSchedContext->rxEventFlag))
        {
            VOS_TRACE(VOS_MODULE_ID_HDD, VOS_TRACE_LEVEL_ERROR,
@@ -199,6 +281,28 @@ tx_suspend:
        /* Set the Tx Thread as Resumed */
        pHddCtx->isTxThreadSuspended = FALSE;
 
+<<<<<<< HEAD
+=======
+       /*
+        * call vos_wlanRestart() if suspend for
+        * WLAN_POWER_COLLAPSE_FAIL_THRESHOLD time.
+        */
+       if ((vos_timer_get_system_time() - pHddCtx->last_suspend_success) >=
+                                          WLAN_POWER_COLLAPSE_FAIL_THRESHOLD)
+       {
+           pHddCtx->last_suspend_success = 0;
+
+           if (!(vos_isLoadUnloadInProgress() ||
+                 vos_is_logp_in_progress(VOS_MODULE_ID_SME, NULL)))
+           {
+              status = vos_wlanRestart();
+              VOS_TRACE(VOS_MODULE_ID_HDD, VOS_TRACE_LEVEL_ERROR,
+                    FL("Triggering SSR, SSR status = %d"),status);
+              pHddCtx->continuous_suspend_fail_cnt = 0;
+           }
+       }
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
        return -ETIME;
    }
 
@@ -209,14 +313,25 @@ rx_suspend:
    INIT_COMPLETION(pHddCtx->mc_sus_event_var);
 
    /* Indicate MC Thread to Suspend */
+<<<<<<< HEAD
    set_bit(MC_SUSPEND_EVENT_MASK, &vosSchedContext->mcEventFlag);
+=======
+   set_bit(MC_SUSPEND_EVENT, &vosSchedContext->mcEventFlag);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
    wake_up_interruptible(&vosSchedContext->mcWaitQueue);
 
    /* Wait for Suspend Confirmation from MC Thread */
+<<<<<<< HEAD
    rc = wait_for_completion_interruptible_timeout(&pHddCtx->mc_sus_event_var, msecs_to_jiffies(200));
 
    if(!rc)
+=======
+   rc = wait_for_completion_interruptible_timeout(&pHddCtx->mc_sus_event_var,
+                                                        msecs_to_jiffies(200));
+
+   if (rc <= 0)
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
    {
        VOS_TRACE(VOS_MODULE_ID_HDD, VOS_TRACE_LEVEL_FATAL,
             "%s: MC Thread: timeout while suspending %ld",
@@ -227,7 +342,11 @@ rx_suspend:
         * Thread then it means it is going to suspend, so do not return failure
         * from here.
         */
+<<<<<<< HEAD
        if (!test_and_clear_bit(MC_SUSPEND_EVENT_MASK,
+=======
+       if (!test_and_clear_bit(MC_SUSPEND_EVENT,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
                                &vosSchedContext->mcEventFlag))
        {
            VOS_TRACE(VOS_MODULE_ID_HDD, VOS_TRACE_LEVEL_ERROR,
@@ -247,6 +366,28 @@ rx_suspend:
        /* Set the Tx Thread as Resumed */
        pHddCtx->isTxThreadSuspended = FALSE;
 
+<<<<<<< HEAD
+=======
+       /*
+        * call vos_wlanRestart() if suspend for
+        * WLAN_POWER_COLLAPSE_FAIL_THRESHOLD time.
+        */
+       if ((vos_timer_get_system_time() - pHddCtx->last_suspend_success) >=
+                                          WLAN_POWER_COLLAPSE_FAIL_THRESHOLD)
+       {
+           pHddCtx->last_suspend_success = 0;
+
+           if (!(vos_isLoadUnloadInProgress() ||
+                 vos_is_logp_in_progress(VOS_MODULE_ID_SME, NULL)))
+           {
+              status = vos_wlanRestart();
+              VOS_TRACE(VOS_MODULE_ID_HDD, VOS_TRACE_LEVEL_ERROR,
+                    FL("Triggering SSR, SSR status = %d"),status);
+              pHddCtx->continuous_suspend_fail_cnt = 0;
+           }
+       }
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
        return -ETIME;
    }
 
@@ -256,6 +397,10 @@ mc_suspend:
    
    /* Set the Station state as Suspended */
    pHddCtx->isWlanSuspended = TRUE;
+<<<<<<< HEAD
+=======
+   pHddCtx->last_suspend_success = 0;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
    return 0;
 }
@@ -321,11 +466,16 @@ static void wlan_resume(hdd_context_t* pHddCtx)
    @return None
 
 ----------------------------------------------------------------------------*/
+<<<<<<< HEAD
 int hddDevSuspendHdlr(struct device *dev)
+=======
+int __hddDevSuspendHdlr(struct device *dev)
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 {
    int ret = 0;
    hdd_context_t* pHddCtx = NULL;
 
+<<<<<<< HEAD
    pHddCtx =  (hdd_context_t*)wcnss_wlan_get_drvdata(dev);
 
    VOS_TRACE(VOS_MODULE_ID_HDD, VOS_TRACE_LEVEL_INFO, "%s: WLAN suspended by platform driver",__func__);
@@ -336,6 +486,18 @@ int hddDevSuspendHdlr(struct device *dev)
       return 0;
    }
 
+=======
+   ENTER();
+
+   pHddCtx =  (hdd_context_t*)wcnss_wlan_get_drvdata(dev);
+
+   /* Get the HDD context */
+   ret = wlan_hdd_validate_context(pHddCtx);
+   if (0 != ret)
+   {
+       return ret;
+   }
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
    if(pHddCtx->isWlanSuspended == TRUE)
    {
       VOS_TRACE(VOS_MODULE_ID_HDD,VOS_TRACE_LEVEL_FATAL,"%s: WLAN is already in suspended state",__func__);
@@ -357,9 +519,27 @@ int hddDevSuspendHdlr(struct device *dev)
       suspend_notify_sent = true;
    }
 #endif
+<<<<<<< HEAD
    return 0;
 }
 
+=======
+
+   EXIT();
+   return 0;
+}
+
+int hddDevSuspendHdlr(struct device *dev)
+{
+    int ret;
+    vos_ssr_protect(__func__);
+    ret = __hddDevSuspendHdlr(dev);
+    vos_ssr_unprotect(__func__);
+
+    return ret;
+}
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 /*----------------------------------------------------------------------------
 
    @brief Function to resume the wlan driver.
@@ -371,6 +551,7 @@ int hddDevSuspendHdlr(struct device *dev)
    @return None
 
 ----------------------------------------------------------------------------*/
+<<<<<<< HEAD
 int hddDevResumeHdlr(struct device *dev)
 {
    hdd_context_t* pHddCtx = NULL;
@@ -379,6 +560,21 @@ int hddDevResumeHdlr(struct device *dev)
 
    VOS_TRACE(VOS_MODULE_ID_HDD,VOS_TRACE_LEVEL_INFO, "%s: WLAN being resumed by Android OS",__func__);
 
+=======
+int __hddDevResumeHdlr(struct device *dev)
+{
+   hdd_context_t* pHddCtx = NULL;
+   int ret = 0;
+
+   ENTER();
+
+   pHddCtx =  (hdd_context_t*)wcnss_wlan_get_drvdata(dev);
+   ret = wlan_hdd_validate_context(pHddCtx);
+   if (0 != ret)
+   {
+       return ret;
+   }
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
    if(pHddCtx->isWlanSuspended != TRUE)
    {
       VOS_TRACE(VOS_MODULE_ID_HDD,VOS_TRACE_LEVEL_FATAL,"%s: WLAN is already in resumed state",__func__);
@@ -394,10 +590,28 @@ int hddDevResumeHdlr(struct device *dev)
       suspend_notify_sent = false;
    }
 #endif
+<<<<<<< HEAD
 
    return 0;
 }
 
+=======
+   EXIT();
+   return 0;
+}
+
+int hddDevResumeHdlr(struct device *dev)
+{
+    int ret;
+
+    vos_ssr_protect(__func__);
+    ret = __hddDevResumeHdlr(dev);
+    vos_ssr_unprotect(__func__);
+
+    return ret;
+}
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 static const struct dev_pm_ops pm_ops = {
    .suspend = hddDevSuspendHdlr,
    .resume = hddDevResumeHdlr,
@@ -419,9 +633,13 @@ static const struct dev_pm_ops pm_ops = {
 ----------------------------------------------------------------------------*/
 VOS_STATUS hddRegisterPmOps(hdd_context_t *pHddCtx)
 {
+<<<<<<< HEAD
 #ifndef FEATURE_R33D
     wcnss_wlan_register_pm_ops(pHddCtx->parent_dev, &pm_ops);
 #endif /* FEATURE_R33D */
+=======
+    wcnss_wlan_register_pm_ops(pHddCtx->parent_dev, &pm_ops);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     return VOS_STATUS_SUCCESS;
 }
 
@@ -440,9 +658,13 @@ VOS_STATUS hddRegisterPmOps(hdd_context_t *pHddCtx)
 ----------------------------------------------------------------------------*/
 VOS_STATUS hddDeregisterPmOps(hdd_context_t *pHddCtx)
 {
+<<<<<<< HEAD
 #ifndef FEATURE_R33D
     wcnss_wlan_unregister_pm_ops(pHddCtx->parent_dev, &pm_ops);
 #endif /* FEATURE_R33D */
+=======
+    wcnss_wlan_unregister_pm_ops(pHddCtx->parent_dev, &pm_ops);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     return VOS_STATUS_SUCCESS;
 }
 
@@ -461,6 +683,7 @@ void hddDevTmTxBlockTimeoutHandler(void *usrData)
 {
    hdd_context_t        *pHddCtx = (hdd_context_t *)usrData;
    hdd_adapter_t        *staAdapater;
+<<<<<<< HEAD
    /* Sanity, This should not happen */
    if(NULL == pHddCtx)
    {
@@ -468,14 +691,28 @@ void hddDevTmTxBlockTimeoutHandler(void *usrData)
                 "%s: NULL Context", __func__);
       VOS_ASSERT(0);
       return;
+=======
+
+   ENTER();
+   if (0 != (wlan_hdd_validate_context(pHddCtx)))
+   {
+       return;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
    }
 
    staAdapater = hdd_get_adapter(pHddCtx, WLAN_HDD_INFRA_STATION);
 
+<<<<<<< HEAD
    if(NULL == staAdapater)
    {
       VOS_TRACE(VOS_MODULE_ID_HDD,VOS_TRACE_LEVEL_ERROR,
                 "%s: NULL Adapter", __func__);
+=======
+   if ((NULL == staAdapater) || (WLAN_HDD_ADAPTER_MAGIC != staAdapater->magic))
+   {
+      VOS_TRACE(VOS_MODULE_ID_HDD,VOS_TRACE_LEVEL_ERROR,
+                FL("invalid Adapter %p"), staAdapater);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
       VOS_ASSERT(0);
       return;
    }
@@ -489,11 +726,19 @@ void hddDevTmTxBlockTimeoutHandler(void *usrData)
    pHddCtx->tmInfo.txFrameCount = 0;
 
    /* Resume TX flow */
+<<<<<<< HEAD
     
+=======
+   hddLog(VOS_TRACE_LEVEL_INFO, FL("Enabling queues"));
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
    netif_tx_wake_all_queues(staAdapater->dev);
    pHddCtx->tmInfo.qBlocked = VOS_FALSE;
    mutex_unlock(&pHddCtx->tmInfo.tmOperationLock);
 
+<<<<<<< HEAD
+=======
+   EXIT();
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
    return;
 }
 

@@ -51,6 +51,11 @@ struct agg_work {
  * @skb:        Socket buffer ("packet") to modify
  * @hdrlen:     Number of bytes of header data which should not be included in
  *              MAP length field
+<<<<<<< HEAD
+=======
+ * @pad:        Specify if padding the MAP packet to make it 4 byte aligned is
+ *              necessary
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Padding is calculated and set appropriately in MAP header. Mux ID is
  * initialized to 0.
@@ -63,7 +68,11 @@ struct agg_work {
  * todo: Parameterize skb alignment
  */
 struct rmnet_map_header_s *rmnet_map_add_map_header(struct sk_buff *skb,
+<<<<<<< HEAD
 						    int hdrlen)
+=======
+						    int hdrlen, int pad)
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 {
 	uint32_t padding, map_datalen;
 	uint8_t *padbytes;
@@ -77,6 +86,14 @@ struct rmnet_map_header_s *rmnet_map_add_map_header(struct sk_buff *skb,
 			skb_push(skb, sizeof(struct rmnet_map_header_s));
 	memset(map_header, 0, sizeof(struct rmnet_map_header_s));
 
+<<<<<<< HEAD
+=======
+	if (pad == RMNET_MAP_NO_PAD_BYTES) {
+		map_header->pkt_len = htons(map_datalen);
+		return map_header;
+	}
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	padding = ALIGN(map_datalen, 4) - map_datalen;
 
 	if (skb_tailroom(skb) < padding)

@@ -1,5 +1,9 @@
 
+<<<<<<< HEAD
 /* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2013-2014, 2016 The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
  * only version 2 as published by the Free Software Foundation.
@@ -232,6 +236,10 @@
 
 #define TOTAL_LENGTH_DOLBY_PARAM		745
 #define DOLBY_VIS_PARAM_HEADER_SIZE		25
+<<<<<<< HEAD
+=======
+#define DOLBY_PARAM_VCNB_MAX_LENGTH		40
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 #define DOLBY_INVALID_PORT_ID			-1
 

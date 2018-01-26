@@ -89,11 +89,18 @@ static inline void syscall_set_arguments(struct task_struct *task,
 		regs->orig_gpr2 = args[0];
 }
 
+<<<<<<< HEAD
 static inline int syscall_get_arch(struct task_struct *task,
 				   struct pt_regs *regs)
 {
 #ifdef CONFIG_COMPAT
 	if (test_tsk_thread_flag(task, TIF_31BIT))
+=======
+static inline int syscall_get_arch(void)
+{
+#ifdef CONFIG_COMPAT
+	if (test_tsk_thread_flag(current, TIF_31BIT))
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		return AUDIT_ARCH_S390;
 #endif
 	return sizeof(long) == 8 ? AUDIT_ARCH_S390X : AUDIT_ARCH_S390;

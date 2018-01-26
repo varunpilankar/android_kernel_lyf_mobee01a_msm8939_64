@@ -142,12 +142,22 @@ static inline int avc_audit(u32 ssid, u32 tsid,
 }
 
 #define AVC_STRICT 1 /* Ignore permissive mode. */
+<<<<<<< HEAD
 #define AVC_EXTENDED_PERMS 2	/* update extended permissions */
+=======
+#define AVC_OPERATION_CMD 2	/* ignore command when updating operations */
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 int avc_has_perm_noaudit(u32 ssid, u32 tsid,
 			 u16 tclass, u32 requested,
 			 unsigned flags,
 			 struct av_decision *avd);
 
+<<<<<<< HEAD
+=======
+int avc_has_operation(u32 ssid, u32 tsid, u16 tclass, u32 requested,
+		u16 cmd, struct common_audit_data *ad);
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 int avc_has_perm_flags(u32 ssid, u32 tsid,
 		       u16 tclass, u32 requested,
 		       struct common_audit_data *auditdata,
@@ -160,9 +170,12 @@ static inline int avc_has_perm(u32 ssid, u32 tsid,
 	return avc_has_perm_flags(ssid, tsid, tclass, requested, auditdata, 0);
 }
 
+<<<<<<< HEAD
 int avc_has_extended_perms(u32 ssid, u32 tsid, u16 tclass, u32 requested,
 		u8 driver, u8 perm, struct common_audit_data *ad);
 
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 u32 avc_policy_seqno(void);
 
 #define AVC_CALLBACK_GRANT		1
@@ -173,7 +186,11 @@ u32 avc_policy_seqno(void);
 #define AVC_CALLBACK_AUDITALLOW_DISABLE	32
 #define AVC_CALLBACK_AUDITDENY_ENABLE	64
 #define AVC_CALLBACK_AUDITDENY_DISABLE	128
+<<<<<<< HEAD
 #define AVC_CALLBACK_ADD_XPERMS		256
+=======
+#define AVC_CALLBACK_ADD_OPERATION	256
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 int avc_add_callback(int (*callback)(u32 event), u32 events);
 

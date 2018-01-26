@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2014 The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2014-2015 The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -31,6 +35,10 @@
 #include "macTrace.h"
 
 #define NO_SESSION 0xFF
+<<<<<<< HEAD
+=======
+#define TRACE_CODE_HDD_RX_SME_MSG 0xFF
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 enum
 {
@@ -81,6 +89,11 @@ enum
     TRACE_CODE_HDD_CHANGE_STATION,
     TRACE_CODE_HDD_CFG80211_UPDATE_BSS,
     TRACE_CODE_HDD_CFG80211_SCAN,
+<<<<<<< HEAD
+=======
+    TRACE_CODE_HDD_CFG80211_SCHED_SCAN_START,
+    TRACE_CODE_HDD_CFG80211_SCHED_SCAN_STOP,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     TRACE_CODE_HDD_REMAIN_ON_CHANNEL,
     TRACE_CODE_HDD_REMAINCHANREADYHANDLER,
     TRACE_CODE_HDD_CFG80211_CANCEL_REMAIN_ON_CHANNEL,
@@ -91,6 +104,10 @@ enum
     TRACE_CODE_HDD_CFG80211_DEL_STA,
     TRACE_CODE_HDD_CFG80211_ADD_STA,
     TRACE_CODE_HDD_CFG80211_SET_PMKSA,
+<<<<<<< HEAD
+=======
+    TRACE_CODE_HDD_CFG80211_DEL_PMKSA,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     TRACE_CODE_HDD_CFG80211_UPDATE_FT_IES,
     TRACE_CODE_HDD_CFG80211_TDLS_MGMT,
     TRACE_CODE_HDD_CFG80211_TDLS_OPER,
@@ -101,6 +118,14 @@ enum
     TRACE_CODE_HDD_STOP_NETDEV,
     TRACE_CODE_HDD_WAKE_NETDEV,
     TRACE_CODE_HDD_FLUSH_TX_QUEUES,
+<<<<<<< HEAD
+=======
+    TRACE_CODE_HDD_CFG80211_RESUME_WLAN,
+    TRACE_CODE_HDD_CFG80211_SUSPEND_WLAN,
+    TRACE_CODE_HDD_CFG80211_SET_MAC_ACL,
+    TRACE_CODE_HDD_CFG80211_TESTMODE,
+    TRACE_CODE_HDD_CFG80211_DUMP_SURVEY,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 };
 
 extern void hddTraceDump(void *pMac, tpvosTraceRecord pRecord, tANI_U16 recIndex);

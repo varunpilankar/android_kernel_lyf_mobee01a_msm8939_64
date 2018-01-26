@@ -195,6 +195,10 @@ static struct sensors_classdev sensors_light_cdev = {
 	.fifo_max_event_count = 0,
 	.enabled = 0,
 	.delay_msec = 200,
+<<<<<<< HEAD
+=======
+	.flags = 2,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	.sensors_enable = NULL,
 	.sensors_poll_delay = NULL,
 };
@@ -213,6 +217,10 @@ static struct sensors_classdev sensors_proximity_cdev = {
 	.fifo_max_event_count = 0,
 	.enabled = 0,
 	.delay_msec = 200,
+<<<<<<< HEAD
+=======
+	.flags =3,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	.sensors_enable = NULL,
 	.sensors_poll_delay = NULL,
 };
@@ -1733,13 +1741,28 @@ static void stk_als_work_func(struct work_struct *work)
 {
 	struct stk3x1x_data *ps_data = container_of(work, struct stk3x1x_data, stk_als_work);
 	int32_t reading;
+<<<<<<< HEAD
 
     mutex_lock(&ps_data->io_lock);
+=======
+	ktime_t ts;
+
+	mutex_lock(&ps_data->io_lock);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	reading = stk3x1x_get_als_reading(ps_data);
 	if(reading < 0)
 		return;
 	ps_data->als_lux_last = stk_alscode2lux(ps_data, reading);
+<<<<<<< HEAD
 	input_report_abs(ps_data->als_input_dev, ABS_MISC, ps_data->als_lux_last);
+=======
+	ts = ktime_get_boottime();
+	input_report_abs(ps_data->als_input_dev, ABS_MISC, ps_data->als_lux_last);
+	input_event(ps_data->als_input_dev, EV_SYN, SYN_TIME_SEC,
+			ktime_to_timespec(ts).tv_sec);
+	input_event(ps_data->als_input_dev, EV_SYN, SYN_TIME_NSEC,
+			ktime_to_timespec(ts).tv_nsec);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	input_sync(ps_data->als_input_dev);
 	mutex_unlock(&ps_data->io_lock);
 }
@@ -1763,10 +1786,19 @@ static void stk_ps_work_func(struct work_struct *work)
 	struct stk3x1x_data *ps_data = container_of(work, struct stk3x1x_data, stk_ps_work);
 	uint32_t reading;
 	int32_t near_far_state;
+<<<<<<< HEAD
     uint8_t org_flag_reg;
 	int32_t ret;
     uint8_t disable_flag = 0;
     mutex_lock(&ps_data->io_lock);
+=======
+	uint8_t org_flag_reg;
+	int32_t ret;
+	uint8_t disable_flag = 0;
+	ktime_t ts;
+
+	mutex_lock(&ps_data->io_lock);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	org_flag_reg = stk3x1x_get_flag(ps_data);
 	if(org_flag_reg < 0)
@@ -1776,10 +1808,21 @@ static void stk_ps_work_func(struct work_struct *work)
 	}
 	near_far_state = (org_flag_reg & STK_FLG_NF_MASK)?1:0;
 	reading = stk3x1x_get_ps_reading(ps_data);
+<<<<<<< HEAD
+=======
+	ts = ktime_get_boottime();
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	if(ps_data->ps_distance_last != near_far_state)
 	{
 		ps_data->ps_distance_last = near_far_state;
 		input_report_abs(ps_data->ps_input_dev, ABS_DISTANCE, near_far_state);
+<<<<<<< HEAD
+=======
+		input_event(ps_data->ps_input_dev, EV_SYN, SYN_TIME_SEC,
+				ktime_to_timespec(ts).tv_sec);
+		input_event(ps_data->ps_input_dev, EV_SYN, SYN_TIME_NSEC,
+				ktime_to_timespec(ts).tv_nsec);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		input_sync(ps_data->ps_input_dev);
 		wake_lock_timeout(&ps_data->ps_wakelock, 3*HZ);
 #ifdef STK_DEBUG_PRINTF

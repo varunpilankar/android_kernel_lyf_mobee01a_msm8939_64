@@ -1402,6 +1402,44 @@ static int ap3426_cdev_als_flush(struct sensors_classdev *sensors_cdev)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+static inline void swap_at(u16 *x, u16 *y)
+{
+	u16 temp = *x;
+
+	*x = *y;
+	*y = temp;
+}
+
+static u16 ap3426_median_average(u16 *sample_data, int size)
+{
+	int i, j;
+	u32 sum = 0;
+	int start_index = 0;
+	int end_index = size - 1;
+	int average;
+	for (i = 0; i < size - 1; i++) {
+		for (j = i + 1; j < size; j++) {
+			if (sample_data[i] > sample_data[j]) {
+				 swap_at(&sample_data[i], &sample_data[j]);
+			}
+		}
+	}
+	// collect the median samples only (cut off first and last 2)
+	if (size > 4) {
+		start_index = 2;
+		end_index = size - 3;
+	}
+	for (i = start_index; i <= end_index; i++) {
+		sum += sample_data[i];
+	}
+	average = (u16) (sum / (end_index - start_index + 1));
+
+	return average;
+}
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 /* This function should be called when sensor is disabled */
 static int ap3426_cdev_ps_calibrate(struct sensors_classdev *sensors_cdev,
 		int axis, int apply_now)
@@ -1410,6 +1448,7 @@ static int ap3426_cdev_ps_calibrate(struct sensors_classdev *sensors_cdev,
 	int power;
 	unsigned int config;
 	unsigned int interrupt;
+<<<<<<< HEAD
 	u16 min = PS_DATA_MASK;
 	u8 ps_data[2];
 	int count = AP3426_CALIBRATE_SAMPLES;
@@ -1417,6 +1456,15 @@ static int ap3426_cdev_ps_calibrate(struct sensors_classdev *sensors_cdev,
 			struct ap3426_data, ps_cdev);
 
 
+=======
+	u16 avg = 0;
+	u16 data[AP3426_CALIBRATE_SAMPLES];
+	u8 ps_data[2];
+	int count = AP3426_CALIBRATE_SAMPLES + 1;
+	struct ap3426_data *di = container_of(sensors_cdev,
+			struct ap3426_data, ps_cdev);
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	if (axis != AXIS_BIAS)
 		return 0;
 
@@ -1506,20 +1554,34 @@ static int ap3426_cdev_ps_calibrate(struct sensors_classdev *sensors_cdev,
 			dev_err(&di->i2c->dev, "read PS data failed\n");
 			break;
 		}
+<<<<<<< HEAD
 		if (min > ((ps_data[1] << 8) | ps_data[0]))
 			min = (ps_data[1] << 8) | ps_data[0];
 	}
 
 	if (!count) {
 		if (min > (PS_DATA_MASK >> 1)) {
+=======
+		data[count - 1] = (ps_data[1] << 8) | ps_data[0];
+	}
+	avg = ap3426_median_average(data, AP3426_CALIBRATE_SAMPLES);
+	dev_dbg(&di->i2c->dev, "calibrated average %d\n", avg);
+	if (!count) {
+		if (avg > (PS_DATA_MASK >> 1)) {
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			dev_err(&di->i2c->dev, "ps data out of range, check if shield\n");
 			rc = -EINVAL;
 			goto exit_disable_ps;
 		}
 
 		if (apply_now) {
+<<<<<<< HEAD
 			ps_data[0] = PS_LOW_BYTE(min);
 			ps_data[1] = PS_HIGH_BYTE(min);
+=======
+			ps_data[0] = PS_LOW_BYTE(avg);
+			ps_data[1] = PS_HIGH_BYTE(avg);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			rc = regmap_bulk_write(di->regmap, AP3426_REG_PS_CAL_L,
 					ps_data, 2);
 			if (rc) {
@@ -1527,11 +1589,19 @@ static int ap3426_cdev_ps_calibrate(struct sensors_classdev *sensors_cdev,
 						AP3426_REG_PS_CAL_L, rc);
 				goto exit_disable_ps;
 			}
+<<<<<<< HEAD
 			di->bias = min;
 		}
 
 		snprintf(di->calibrate_buf, sizeof(di->calibrate_buf), "0,0,%d",
 				min);
+=======
+			di->bias = avg;
+		}
+
+		snprintf(di->calibrate_buf, sizeof(di->calibrate_buf), "0,0,%d",
+				avg);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		dev_dbg(&di->i2c->dev, "result: %s\n", di->calibrate_buf);
 	} else {
 		dev_err(&di->i2c->dev, "calibration failed\n");

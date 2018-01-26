@@ -651,7 +651,11 @@ int ping_common_sendmsg(int family, struct msghdr *msg, size_t len,
 			void *user_icmph, size_t icmph_len) {
 	u8 type, code;
 
+<<<<<<< HEAD
 	if (len > 0xFFFF)
+=======
+	if (len > 0xFFFF || len < icmph_len)
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		return -EMSGSIZE;
 
 	/*

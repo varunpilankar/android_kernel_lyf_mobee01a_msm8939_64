@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2012-2014 The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2012-2015 The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -37,6 +41,7 @@ BRIEF DESCRIPTION:
    Build number automaticly updated by build scripts.
 
 
+<<<<<<< HEAD
                 Copyright (c) 2008-2011 QUALCOMM Incorporated.
                 All Right Reserved.
                 Qualcomm Confidential and Proprietary
@@ -50,5 +55,17 @@ BRIEF DESCRIPTION:
 #define QWLAN_VERSION_BUILD            23
 
 #define QWLAN_VERSIONSTR               "3.8.20.23"
+=======
+===========================================================================*/
+
+#define QWLAN_VERSION_MAJOR            3
+#define QWLAN_VERSION_MINOR            0
+#define QWLAN_VERSION_PATCH            10
+#define QWLAN_VERSION_EXTRA            ""
+
+#define QWLAN_VERSION_BUILD            85
+
+#define QWLAN_VERSIONSTR               "3.0.10.085"
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 #endif /* QWLAN_VERSION_H */

@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2011-2014 The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2011-2015 The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -271,6 +275,7 @@ tSirRetStatus limSendSwitchChnlParams(tpAniSirGlobal pMac,
     msgQ.bodyptr = pChnlParams;
     msgQ.bodyval = 0;
 #if defined WLAN_FEATURE_VOWIFI  
+<<<<<<< HEAD
     PELOG3(limLog( pMac, LOG3,
         FL( "Sending WDA_CHNL_SWITCH_REQ with SecondaryChnOffset - %d, ChannelNumber - %d, maxTxPower - %d"),
         pChnlParams->secondaryChannelOffset, pChnlParams->channelNumber, pChnlParams->maxTxPower);)
@@ -278,6 +283,19 @@ tSirRetStatus limSendSwitchChnlParams(tpAniSirGlobal pMac,
     PELOG3(limLog( pMac, LOG3,
         FL( "Sending WDA_CHNL_SWITCH_REQ with SecondaryChnOffset - %d, ChannelNumber - %d, LocalPowerConstraint - %d"),
         pChnlParams->secondaryChannelOffset, pChnlParams->channelNumber, pChnlParams->localPowerConstraint);)
+=======
+    limLog( pMac, LOG1,
+        FL( "Sending WDA_CHNL_SWITCH_REQ with SecondaryChnOffset - %d,"
+        " ChannelNumber - %d, maxTxPower - %d"),
+        pChnlParams->secondaryChannelOffset, pChnlParams->channelNumber,
+                                                pChnlParams->maxTxPower);
+#else
+    limLog( pMac, LOG1,
+        FL( "Sending WDA_CHNL_SWITCH_REQ with SecondaryChnOffset - %d, "
+        "ChannelNumber - %d, LocalPowerConstraint - %d"),
+        pChnlParams->secondaryChannelOffset, pChnlParams->channelNumber,
+                                        pChnlParams->localPowerConstraint);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #endif
     MTRACE(macTraceMsgTx(pMac, peSessionId, msgQ.type));
     limLog(pMac,LOG1,"SessionId:%d WDA_CHNL_SWITCH_REQ for SSID:%s",peSessionId,
@@ -669,10 +687,20 @@ tSirRetStatus limSendHT40OBSSScanInd(tpAniSirGlobal pMac,
     {
         limLog(pMac, LOGE,
                    FL("could not retrieve Valid channel list"));
+<<<<<<< HEAD
     }
     /* Extract 24G channel list */
     channel24GNum = 0;
     for( count =0 ;count < validChannelNum ;count++)
+=======
+        vos_mem_free(ht40OBSSScanInd);
+        return eSIR_FAILURE;
+    }
+    /* Extract 24G channel list */
+    channel24GNum = 0;
+    for( count =0 ;count < validChannelNum &&
+                   (channel24GNum < SIR_ROAM_MAX_CHANNELS);count++)
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     {
        if ((validChanList[count]> RF_CHAN_1) &&
            (validChanList[count] < RF_CHAN_14))
@@ -692,7 +720,14 @@ tSirRetStatus limSendHT40OBSSScanInd(tpAniSirGlobal pMac,
     msgQ.reserved = 0;
     msgQ.bodyptr = (void *)ht40OBSSScanInd;
     msgQ.bodyval = 0;
+<<<<<<< HEAD
     PELOGW(limLog(pMac, LOGW, FL("Sending WDA_HT40_OBSS_SCAN_IND to WDA"));)
+=======
+    limLog(pMac, LOG1, FL("Sending WDA_HT40_OBSS_SCAN_IND to WDA"
+           "Obss Scan trigger width = %d, delay factor = %d"),
+           ht40OBSSScanInd->BSSChannelWidthTriggerScanInterval,
+            ht40OBSSScanInd->BSSWidthChannelTransitionDelayFactor);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     MTRACE(macTraceMsgTx(pMac, psessionEntry->peSessionId, msgQ.type));
     retCode = wdaPostCtrlMsg(pMac, &msgQ);
     if (eSIR_SUCCESS != retCode)
@@ -724,7 +759,11 @@ tSirRetStatus limSendHT40OBSSStopScanInd(tpAniSirGlobal pMac,
     bssIdx = psessionEntry->bssIdx;
 
     VOS_TRACE (VOS_MODULE_ID_PE,VOS_TRACE_LEVEL_INFO,
+<<<<<<< HEAD
                " Sending STOP OBSS cmd, bssid %d staid %d \n",
+=======
+               " Sending STOP OBSS cmd, bssid %d staid %d ",
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
                psessionEntry->bssIdx, psessionEntry->staId);
 
     msgQ.type = WDA_HT40_OBSS_STOP_SCAN_IND;
@@ -915,6 +954,7 @@ tSirRetStatus limSendModeUpdate(tpAniSirGlobal pMac,
     return retCode;
 }
 
+<<<<<<< HEAD
 #ifdef FEATURE_WLAN_TDLS_INTERNAL
 /** ---------------------------------------------------------
 \fn      limSendTdlsLinkEstablish
@@ -1016,6 +1056,8 @@ tSirRetStatus limSendTdlsLinkTeardown(tpAniSirGlobal pMac, tANI_U16 staId)
 
 #endif
 
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #ifdef WLAN_FEATURE_11W
 /** ---------------------------------------------------------
 \fn      limSendExcludeUnencryptInd
@@ -1050,8 +1092,13 @@ tSirRetStatus limSendExcludeUnencryptInd(tpAniSirGlobal pMac,
     msgQ.reserved = 0;
     msgQ.bodyptr = pExcludeUnencryptParam;
     msgQ.bodyval = 0;
+<<<<<<< HEAD
     PELOG3(limLog(pMac, LOG3,
                 FL("Sending WDA_EXCLUDE_UNENCRYPTED_IND"));)
+=======
+    limLog(pMac, LOG1,
+                FL("Sending WDA_EXCLUDE_UNENCRYPTED_IND"));
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     MTRACE(macTraceMsgTx(pMac, psessionEntry->peSessionId, msgQ.type));
     retCode = wdaPostCtrlMsg(pMac, &msgQ);
     if (eSIR_SUCCESS != retCode)

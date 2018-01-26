@@ -4631,7 +4631,11 @@ int wcd9xxx_mbhc_start(struct wcd9xxx_mbhc *mbhc,
 			schedule_delayed_work(&mbhc->mbhc_firmware_dwork,
 					     usecs_to_jiffies(FW_READ_TIMEOUT));
 		else
+<<<<<<< HEAD
 			pr_debug("%s: Skipping to read mbhc fw, 0x%p %p\n",
+=======
+			pr_debug("%s: Skipping to read mbhc fw, 0x%pK %pK\n",
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				 __func__, mbhc->mbhc_fw, mbhc->mbhc_cal);
 	}
 
@@ -5024,7 +5028,11 @@ static int wcd9xxx_remeasure_z_values(struct wcd9xxx_mbhc *mbhc,
 	right = !!(r);
 
 	dev_dbg(codec->dev, "%s: Remeasuring impedance values\n", __func__);
+<<<<<<< HEAD
 	dev_dbg(codec->dev, "%s: l: %p, r: %p, left=%d, right=%d\n", __func__,
+=======
+	dev_dbg(codec->dev, "%s: l: %pK, r: %pK, left=%d, right=%d\n", __func__,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		 l, r, left, right);
 
 	/* Remeasure V2 values */

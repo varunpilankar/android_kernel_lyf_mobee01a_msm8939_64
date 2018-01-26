@@ -38,9 +38,12 @@
   
   \brief prototype for SME internal structures and APIs used for SME and MAC
   
+<<<<<<< HEAD
    Copyright 2008 (c) Qualcomm, Incorporated.  All Rights Reserved.
    
    Qualcomm Confidential and Proprietary.
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
   
   ========================================================================*/
 
@@ -55,6 +58,10 @@
 #include "vos_memory.h"
 #include "vos_types.h"
 #include "csrLinkList.h"
+<<<<<<< HEAD
+=======
+#include "vos_diag_core_event.h"
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 /*-------------------------------------------------------------------------- 
   Type declarations
@@ -75,6 +82,14 @@ typedef enum eSmeCommandType
     eSmeCommandAddStaSession,
     eSmeCommandDelStaSession,
     eSmeCommandPnoReq,
+<<<<<<< HEAD
+=======
+    eSmeCommandMacSpoofRequest,
+    eSmeCommandGetFrameLogRequest,
+    eSmeCommandSetMaxTxPower,
+    eSmeCommandSetMaxTxPowerPerBand,
+    eSmeCommandUpdateChannelList,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #ifdef FEATURE_WLAN_TDLS
     //eSmeTdlsCommandMask = 0x80000,  //To identify TDLS commands <TODO>
     //These can be considered as csr commands. 
@@ -83,6 +98,7 @@ typedef enum eSmeCommandType
     eSmeCommandTdlsDelPeer, 
     eSmeCommandTdlsLinkEstablish,
     eSmeCommandTdlsChannelSwitch, // tdlsoffchan
+<<<<<<< HEAD
 #ifdef FEATURE_WLAN_TDLS_INTERNAL
     eSmeCommandTdlsDiscovery,
     eSmeCommandTdlsLinkSetup,
@@ -91,6 +107,10 @@ typedef enum eSmeCommandType
     eSmeCommandTdlsExitUapsd,
 #endif
 #endif
+=======
+#endif
+    eSmeCommandNanReq,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     //PMC
     eSmePmcCommandMask = 0x20000, //To identify PMC commands
     eSmeCommandEnterImps,
@@ -124,6 +144,17 @@ typedef enum eSmeState
 #define SME_IS_START(pMac)  (SME_STATE_STOP != (pMac)->sme.state)
 #define SME_IS_READY(pMac)  (SME_STATE_READY == (pMac)->sme.state)
 
+<<<<<<< HEAD
+=======
+/* HDD Callback function */
+typedef void(*pEncryptMsgRSPCb)(void *pUserData, void *infoParam);
+
+typedef struct tagSmeEncMsgHddCbkInfo
+{
+   void *pUserData;
+   pEncryptMsgRSPCb pEncMsgCbk;
+}tSmeEncMsgHddCbkInfo;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 typedef struct tagSmeStruct
 {
@@ -160,7 +191,13 @@ typedef struct tagSmeStruct
    int  extScanStartReqId;
    void *pEXTScanCallbackContext;
 #endif /* WLAN_FEATURE_EXTSCAN */
+<<<<<<< HEAD
    void (*pBtCoexTDLSNotification) (void *pAdapter, int);
+=======
+   tSmeEncMsgHddCbkInfo pEncMsgInfoParams;
+   void (*pBtCoexTDLSNotification) (void *pAdapter, int);
+   void (*nanCallback) (void*, tSirNanEvent*);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 } tSmeStruct, *tpSmeStruct;
 

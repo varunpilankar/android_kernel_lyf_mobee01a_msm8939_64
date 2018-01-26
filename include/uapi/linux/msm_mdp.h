@@ -182,6 +182,16 @@ enum {
 	NUM_HSIC_PARAM,
 };
 
+<<<<<<< HEAD
+=======
+enum mdss_mdp_max_bw_mode {
+	MDSS_MAX_BW_LIMIT_DEFAULT = 0x1,
+	MDSS_MAX_BW_LIMIT_CAMERA = 0x2,
+	MDSS_MAX_BW_LIMIT_HFLIP = 0x4,
+	MDSS_MAX_BW_LIMIT_VFLIP = 0x8,
+};
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #define MDSS_MDP_ROT_ONLY		0x80
 #define MDSS_MDP_RIGHT_MIXER		0x100
 #define MDSS_MDP_DUAL_PIPE		0x200

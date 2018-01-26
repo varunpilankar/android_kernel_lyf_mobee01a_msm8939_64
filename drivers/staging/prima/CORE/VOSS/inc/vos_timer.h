@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2012-2013 The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2014, 2016 The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -36,9 +40,12 @@
                
    Definitions for vOSS Timer services
   
+<<<<<<< HEAD
    Copyright 2008 (c) Qualcomm, Incorporated.  All Rights Reserved.
    
    Qualcomm Confidential and Proprietary.
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
   
   ========================================================================*/
 
@@ -195,6 +202,7 @@ VOS_TIMER_STATE vos_timer_getCurrentState( vos_timer_t *pTimer );
 ---------------------------------------------------------------------------*/
 #ifdef TIMER_MANAGER
 #define vos_timer_init(timer, timerType, callback, userdata) \
+<<<<<<< HEAD
       vos_timer_init_debug(timer, timerType, callback, userdata, __FILE__, __LINE__)
       
 VOS_STATUS vos_timer_init_debug( vos_timer_t *timer, VOS_TIMER_TYPE timerType, 
@@ -202,6 +210,28 @@ VOS_STATUS vos_timer_init_debug( vos_timer_t *timer, VOS_TIMER_TYPE timerType,
                            char* fileName, v_U32_t lineNum );      
 #else
 VOS_STATUS vos_timer_init( vos_timer_t *timer, VOS_TIMER_TYPE timerType, 
+=======
+      vos_timer_init_debug(timer, timerType, callback, userdata, \
+      __FILE__, __LINE__)
+
+VOS_STATUS vos_timer_init_debug( vos_timer_t *timer, VOS_TIMER_TYPE timerType,
+                           vos_timer_callback_t callback, v_PVOID_t userData,
+                           char* fileName, v_U32_t lineNum );
+
+#define vos_timer_init_deferrable(timer, timerType, callback, userdata) \
+      vos_timer_init_deferrable_debug(timer, timerType, \
+      callback, userdata, __FILE__, __LINE__)
+
+VOS_STATUS vos_timer_init_deferrable_debug( vos_timer_t *timer,
+                           VOS_TIMER_TYPE timerType,
+                           vos_timer_callback_t callback, v_PVOID_t userData,
+                           char* fileName, v_U32_t lineNum );
+#else
+VOS_STATUS vos_timer_init( vos_timer_t *timer, VOS_TIMER_TYPE timerType,
+                           vos_timer_callback_t callback, v_PVOID_t userData );
+VOS_STATUS vos_timer_init_deferrable( vos_timer_t *timer,
+                           VOS_TIMER_TYPE timerType,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
                            vos_timer_callback_t callback, v_PVOID_t userData );
 #endif
 
@@ -331,6 +361,10 @@ v_TIME_t vos_timer_get_system_ticks( v_VOID_t );
   ------------------------------------------------------------------------*/
 v_TIME_t vos_timer_get_system_time( v_VOID_t );
 
+<<<<<<< HEAD
 
+=======
+v_BOOL_t vos_timer_is_initialized(vos_timer_t *timer);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 #endif // #if !defined __VOSS_TIMER_H

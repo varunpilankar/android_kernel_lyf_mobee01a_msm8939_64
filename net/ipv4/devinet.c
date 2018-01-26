@@ -324,6 +324,12 @@ static void __inet_del_ifa(struct in_device *in_dev, struct in_ifaddr **ifap,
 
 	ASSERT_RTNL();
 
+<<<<<<< HEAD
+=======
+	if (in_dev->dead)
+		goto no_promotions;
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	/* 1. Deleting primary ifaddr forces deletion all secondaries
 	 * unless alias promotion is set
 	 **/
@@ -370,6 +376,10 @@ static void __inet_del_ifa(struct in_device *in_dev, struct in_ifaddr **ifap,
 			fib_del_ifaddr(ifa, ifa1);
 	}
 
+<<<<<<< HEAD
+=======
+no_promotions:
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	/* 2. Unlink it */
 
 	*ifap = ifa1->ifa_next;

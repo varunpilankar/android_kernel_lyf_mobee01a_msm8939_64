@@ -83,15 +83,39 @@ static struct debugfs_blob_wrapper help_msg = {
 
 };
 
+<<<<<<< HEAD
 static void add_to_ptable(uint64_t *arg)
 {
 	struct core_debug *node;
 	int i, cpu = arg[CPU_OFFSET];
+=======
+static void add_to_ptable(unsigned int *arg)
+{
+	struct core_debug *node;
+	int i, cpu = arg[CPU_OFFSET];
+	uint32_t freq = arg[FREQ_OFFSET];
+	uint32_t power = arg[POWER_OFFSET];
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	if (!cpu_possible(cpu))
 		return;
 
+<<<<<<< HEAD
 	node = &per_cpu(c_dgfs, cpu);
+=======
+	if ((freq == 0) || (power == 0)) {
+		pr_warn("Incorrect power data\n");
+		return;
+	}
+
+	node = &per_cpu(c_dgfs, cpu);
+
+	if (node->len >= MAX_PSTATES) {
+		pr_warn("Dropped ptable update - no space left.\n");
+		return;
+	}
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	if (!node->head) {
 		node->head = kzalloc(sizeof(struct cpu_pstate_pwr) *
 				     (MAX_PSTATES + 1),
@@ -99,6 +123,7 @@ static void add_to_ptable(uint64_t *arg)
 		if (!node->head)
 			return;
 	}
+<<<<<<< HEAD
 	for (i = 0; i < MAX_PSTATES; i++) {
 		if (node->head[i].freq == arg[FREQ_OFFSET]) {
 			node->head[i].power = arg[POWER_OFFSET];
@@ -111,12 +136,24 @@ static void add_to_ptable(uint64_t *arg)
 	if (i == MAX_PSTATES) {
 		pr_warn("Dropped ptable update - no space left.\n");
 		return;
+=======
+
+	for (i = 0; i < node->len; i++) {
+		if (node->head[i].freq == freq) {
+			node->head[i].power = power;
+			return;
+		}
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	}
 
 	/* Insert a new frequency (may need to move things around to
 	   keep in ascending order). */
 	for (i = MAX_PSTATES - 1; i > 0; i--) {
+<<<<<<< HEAD
 		if (node->head[i-1].freq > arg[FREQ_OFFSET]) {
+=======
+		if (node->head[i-1].freq > freq) {
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			node->head[i].freq = node->head[i-1].freq;
 			node->head[i].power = node->head[i-1].power;
 		} else if (node->head[i-1].freq != 0) {
@@ -124,15 +161,27 @@ static void add_to_ptable(uint64_t *arg)
 		}
 	}
 
+<<<<<<< HEAD
 	node->head[i].freq = arg[FREQ_OFFSET];
 	node->head[i].power = arg[POWER_OFFSET];
 	node->len++;
+=======
+	if (node->len < MAX_PSTATES) {
+		node->head[i].freq = freq;
+		node->head[i].power = power;
+		node->len++;
+	}
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	if (node->ptr)
 		node->ptr->len = node->len;
 }
 
+<<<<<<< HEAD
 static int split_ptable_args(char *line, uint64_t *arg, uint32_t n)
+=======
+static int split_ptable_args(char *line, unsigned int *arg, uint32_t n)
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 {
 	char *args;
 	int i;
@@ -142,7 +191,13 @@ static int split_ptable_args(char *line, uint64_t *arg, uint32_t n)
 		if (!line)
 			break;
 		args = strsep(&line, " ");
+<<<<<<< HEAD
 		ret = kstrtoull(args, 10, &arg[i]);
+=======
+		ret = kstrtouint(args, 10, &arg[i]);
+		if (ret)
+			return ret;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	}
 	return ret;
 }
@@ -152,7 +207,11 @@ static ssize_t msm_core_ptable_write(struct file *file,
 {
 	char *kbuf;
 	int ret;
+<<<<<<< HEAD
 	uint64_t arg[3];
+=======
+	unsigned int arg[3];
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	if (len == 0)
 		return 0;
@@ -204,7 +263,11 @@ static int msm_core_ptable_read(struct seq_file *m, void *data)
 			seq_printf(m, "--- CPU%d - Live numbers at %ldC---\n",
 			cpu, node->ptr->temp);
 			print_table(m, msm_core_data[cpu].ptable,
+<<<<<<< HEAD
 					msm_core_data[cpu].len);
+=======
+					node->driver_len);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		}
 	}
 	return 0;
@@ -215,7 +278,11 @@ static ssize_t msm_core_enable_write(struct file *file,
 {
 	char *kbuf;
 	int ret;
+<<<<<<< HEAD
 	uint64_t arg[3];
+=======
+	unsigned int arg[3];
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	int cpu;
 
 	if (len == 0)

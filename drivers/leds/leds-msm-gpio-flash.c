@@ -24,15 +24,21 @@
 #include <linux/pinctrl/consumer.h>
 
 /* #define CONFIG_GPIO_FLASH_DEBUG */
+<<<<<<< HEAD
 /*
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #undef CDBG
 #ifdef CONFIG_GPIO_FLASH_DEBUG
 #define CDBG(fmt, args...) pr_err(fmt, ##args)
 #else
 #define CDBG(fmt, args...) do { } while (0)
 #endif
+<<<<<<< HEAD
 */
 #define CDBG(fmt, args...) pr_err(fmt, ##args)
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 #define LED_GPIO_FLASH_DRIVER_NAME	"qcom,leds-gpio-flash"
 #define LED_TRIGGER_DEFAULT		"none"
@@ -40,6 +46,7 @@
 #define GPIO_OUT_LOW          (0 << 1)
 #define GPIO_OUT_HIGH         (1 << 1)
 
+<<<<<<< HEAD
 int number_pin=3; //Jelly add for detect whether the forth pin of the gpio is specified for led 
 
 
@@ -48,12 +55,20 @@ enum msm_flash_seq_type_t {
 	FLASH_NOW,
 	TORCH_EN,
 	ENABLE_MULTI,
+=======
+enum msm_flash_seq_type_t {
+	FLASH_EN,
+	FLASH_NOW,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 };
 
 struct msm_flash_ctrl_seq {
 	enum msm_flash_seq_type_t seq_type;
 	uint8_t flash_on_val;
+<<<<<<< HEAD
 	uint8_t pre_on_val;
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	uint8_t torch_on_val;
 	uint8_t flash_off_val;
 };
@@ -61,19 +76,28 @@ struct msm_flash_ctrl_seq {
 struct led_gpio_flash_data {
 	int flash_en;
 	int flash_now;
+<<<<<<< HEAD
 	int torch_en;
 	int rear_enable;
 	int front_enable;
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	int brightness;
 	struct led_classdev cdev;
 	struct pinctrl *pinctrl;
 	struct pinctrl_state *gpio_state_default;
+<<<<<<< HEAD
 	struct msm_flash_ctrl_seq ctrl_seq[4];
 };
 
 extern uint32_t get_camera_id(void);
 
 
+=======
+	struct msm_flash_ctrl_seq ctrl_seq[2];
+};
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 static struct of_device_id led_gpio_flash_of_match[] = {
 	{.compatible = LED_GPIO_FLASH_DRIVER_NAME,},
 	{},
@@ -87,6 +111,7 @@ static void led_gpio_brightness_set(struct led_classdev *led_cdev,
 	    container_of(led_cdev, struct led_gpio_flash_data, cdev);
 
 	int brightness = value;
+<<<<<<< HEAD
 	int flash_en = 0, flash_now = 0, torch_en = 0, enable_multi = 0;
     if(brightness > LED_PRE){
 		flash_en  = flash_led->ctrl_seq[FLASH_EN].flash_on_val;
@@ -112,6 +137,25 @@ static void led_gpio_brightness_set(struct led_classdev *led_cdev,
 	}
 	CDBG("%s:flash_en=%d, flash_now=%d, torch_en=%d, enable_multi=%d,brightness = %d\n", __func__,
 		flash_en, flash_now,torch_en,enable_multi,brightness);
+=======
+	int flash_en = 0, flash_now = 0;
+
+	if (brightness > LED_HALF) {
+		flash_en =
+			flash_led->ctrl_seq[FLASH_EN].flash_on_val;
+		flash_now =
+			flash_led->ctrl_seq[FLASH_NOW].flash_on_val;
+	} else if (brightness > LED_OFF) {
+		flash_en =
+			flash_led->ctrl_seq[FLASH_EN].torch_on_val;
+		flash_now =
+			flash_led->ctrl_seq[FLASH_NOW].torch_on_val;
+	} else {
+		flash_en = 0;
+		flash_now = 0;
+	}
+	CDBG("%s:flash_en=%d, flash_now=%d\n", __func__, flash_en, flash_now);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	rc = gpio_direction_output(flash_led->flash_en, flash_en);
 	if (rc) {
@@ -125,6 +169,7 @@ static void led_gpio_brightness_set(struct led_classdev *led_cdev,
 		       flash_led->flash_now);
 		goto err;
 	}
+<<<<<<< HEAD
 	rc = gpio_direction_output(flash_led->torch_en, torch_en);
 	if (rc) {
 		pr_err("%s: Failed to set gpio %d\n", __func__,
@@ -150,6 +195,8 @@ if (number_pin==4){
 	    }
 	}
 }//endif Jelly add for detect whether the forth pin of the gpio is specified 2015/4/18
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	flash_led->brightness = brightness;
 err:
 	return;
@@ -170,12 +217,18 @@ int led_gpio_flash_probe(struct platform_device *pdev)
 	struct led_gpio_flash_data *flash_led = NULL;
 	struct device_node *node = pdev->dev.of_node;
 	const char *seq_name = NULL;
+<<<<<<< HEAD
 	uint32_t array_flash_seq[4];
 	uint32_t array_pre_seq[4];
 	uint32_t array_torch_seq[4];
 	int i = 0;
 
 	printk("<1>yulinghan led_gpio_flash_probe !!!!!!!!!11");
+=======
+	uint32_t array_flash_seq[2];
+	uint32_t array_torch_seq[2];
+	int i = 0;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	flash_led = devm_kzalloc(&pdev->dev, sizeof(struct led_gpio_flash_data),
 				 GFP_KERNEL);
 	if (flash_led == NULL) {
@@ -230,9 +283,12 @@ int led_gpio_flash_probe(struct platform_device *pdev)
 			"Looking up %s property in node %s failed. rc =  %d\n",
 			"flash-now", node->full_name, flash_led->flash_now);
 		goto error;
+<<<<<<< HEAD
 	/*+++ wangzhihong add for led flash use two gpios 20150420*/
 	}else if(flash_led->flash_en == flash_led->flash_now){
 		dev_err(&pdev->dev,"skip request flash_now gpio.\n");
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	} else {
 		rc = gpio_request(flash_led->flash_now, "FLASH_NOW");
 		if (rc) {
@@ -243,6 +299,7 @@ int led_gpio_flash_probe(struct platform_device *pdev)
 		}
 	}
 
+<<<<<<< HEAD
 	flash_led->torch_en = of_get_named_gpio(node, "qcom,torch-en", 0);
 	if (flash_led->torch_en < 0) {
 		dev_err(&pdev->dev,
@@ -302,6 +359,8 @@ int led_gpio_flash_probe(struct platform_device *pdev)
 
 	}/*end if  Jelly add for whether property is  specified2015/4/18*/
       
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	rc = of_property_read_string(node, "linux,name", &flash_led->cdev.name);
 	if (rc) {
 		dev_err(&pdev->dev, "%s: Failed to read linux name. rc = %d\n",
@@ -310,13 +369,18 @@ int led_gpio_flash_probe(struct platform_device *pdev)
 	}
 
 	rc = of_property_read_u32_array(node, "qcom,flash-seq-val",
+<<<<<<< HEAD
 		array_flash_seq, number_pin);
+=======
+		array_flash_seq, 2);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	if (rc < 0) {
 		pr_err("%s get flash op seq failed %d\n",
 			__func__, __LINE__);
 		goto error;
 	}
+<<<<<<< HEAD
 	
 	rc = of_property_read_u32_array(node, "qcom,pre-seq-val",
 		array_pre_seq, number_pin);
@@ -329,6 +393,11 @@ int led_gpio_flash_probe(struct platform_device *pdev)
 
 	rc = of_property_read_u32_array(node, "qcom,torch-seq-val",
 		array_torch_seq, number_pin);
+=======
+
+	rc = of_property_read_u32_array(node, "qcom,torch-seq-val",
+		array_torch_seq, 2);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	if (rc < 0) {
 		pr_err("%s get torch op seq failed %d\n",
@@ -336,7 +405,11 @@ int led_gpio_flash_probe(struct platform_device *pdev)
 		goto error;
 	}
 
+<<<<<<< HEAD
 	for (i = 0; i < number_pin; i++) {
+=======
+	for (i = 0; i < 2; i++) {
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		rc = of_property_read_string_index(node,
 			"qcom,op-seq", i,
 			&seq_name);
@@ -358,6 +431,7 @@ int led_gpio_flash_probe(struct platform_device *pdev)
 				flash_led->ctrl_seq[FLASH_EN].flash_on_val =
 					GPIO_OUT_HIGH;
 
+<<<<<<< HEAD
             if (array_pre_seq[i] == 0)
 				flash_led->ctrl_seq[FLASH_EN].pre_on_val =
 					GPIO_OUT_LOW;
@@ -365,6 +439,8 @@ int led_gpio_flash_probe(struct platform_device *pdev)
 				flash_led->ctrl_seq[FLASH_EN].pre_on_val =
 					GPIO_OUT_HIGH;
 
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			if (array_torch_seq[i] == 0)
 				flash_led->ctrl_seq[FLASH_EN].torch_on_val =
 					GPIO_OUT_LOW;
@@ -382,6 +458,7 @@ int led_gpio_flash_probe(struct platform_device *pdev)
 			else
 				flash_led->ctrl_seq[FLASH_NOW].flash_on_val =
 					GPIO_OUT_HIGH;
+<<<<<<< HEAD
 			
             if (array_pre_seq[i] == 0)
 				flash_led->ctrl_seq[FLASH_NOW].pre_on_val =
@@ -389,6 +466,8 @@ int led_gpio_flash_probe(struct platform_device *pdev)
 			else
 				flash_led->ctrl_seq[FLASH_NOW].pre_on_val =
 					GPIO_OUT_HIGH;
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 			if (array_torch_seq[i] == 0)
 				flash_led->ctrl_seq[FLASH_NOW].torch_on_val =
@@ -396,6 +475,7 @@ int led_gpio_flash_probe(struct platform_device *pdev)
 			 else
 				flash_led->ctrl_seq[FLASH_NOW].torch_on_val =
 					GPIO_OUT_HIGH;
+<<<<<<< HEAD
 		} else if (!strcmp(seq_name, "torch_en")) {
 			flash_led->ctrl_seq[TORCH_EN].seq_type =
 				TORCH_EN;
@@ -448,6 +528,10 @@ int led_gpio_flash_probe(struct platform_device *pdev)
 				flash_led->ctrl_seq[ENABLE_MULTI].torch_on_val =
 					GPIO_OUT_HIGH;
 		}
+=======
+		}
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	}
 
 	platform_set_drvdata(pdev, flash_led);
@@ -494,7 +578,10 @@ static struct platform_driver led_gpio_flash_driver = {
 
 static int __init led_gpio_flash_init(void)
 {
+<<<<<<< HEAD
 	printk("<1>yulinghan led_gpio_flash_init\n");
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	return platform_driver_register(&led_gpio_flash_driver);
 }
 

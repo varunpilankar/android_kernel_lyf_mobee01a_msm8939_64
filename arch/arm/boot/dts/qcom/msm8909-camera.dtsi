@@ -98,6 +98,11 @@
 		interrupt-names = "ispif";
 		clocks = <&clock_gcc clk_gcc_camss_ispif_ahb_clk>,
 			<&clock_gcc clk_gcc_camss_ahb_clk>,
+<<<<<<< HEAD
+=======
+			<&clock_gcc clk_gcc_camss_top_ahb_clk>,
+			<&clock_gcc clk_camss_top_ahb_clk_src>,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			<&clock_gcc clk_csi0_clk_src>,
 			<&clock_gcc clk_gcc_camss_csi0_clk>,
 			<&clock_gcc clk_gcc_camss_csi0pix_clk>,
@@ -110,12 +115,20 @@
 			<&clock_gcc clk_gcc_camss_vfe0_clk>,
 			<&clock_gcc clk_gcc_camss_csi_vfe0_clk>;
 		clock-names = "ispif_ahb_clk","camss_ahb_clk",
+<<<<<<< HEAD
+=======
+			"camss_top_ahb_clk", "camss_ahb_src",
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			"csi0_src_clk", "csi0_clk",
 			"csi0_pix_clk","csi0_rdi_clk", "csi1_src_clk",
 			"csi1_clk", "csi1_pix_clk", "csi1_rdi_clk",
 			"vfe0_clk_src", "camss_vfe_vfe0_clk",
 			"camss_csi_vfe0_clk";
+<<<<<<< HEAD
 		qcom,clock-rates = <40000000 0 0 0 0 0 0 0 0 0 0 0 0>;
+=======
+		qcom,clock-rates = <40000000 0 0 0 0 0 0 0 0 0 0 0 0 0 0>;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	};
 
 	qcom,vfe@1b10000 {

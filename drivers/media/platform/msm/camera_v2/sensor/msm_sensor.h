@@ -53,6 +53,13 @@ struct msm_sensor_fn_t {
 	int (*sensor_power_down) (struct msm_sensor_ctrl_t *);
 	int (*sensor_power_up) (struct msm_sensor_ctrl_t *);
 	int (*sensor_match_id) (struct msm_sensor_ctrl_t *);
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_MACH_YULONG
+	int (*sensor_prepare_otp)(struct msm_sensor_ctrl_t *s_ctrl);
+	int (*sensor_update_otp) (struct msm_sensor_ctrl_t *);
+#endif
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 };
 
 struct msm_sensor_ctrl_t {
@@ -82,6 +89,12 @@ struct msm_sensor_ctrl_t {
 };
 
 int msm_sensor_config(struct msm_sensor_ctrl_t *s_ctrl, void __user *argp);
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_MACH_YULONG
+int msm_sensor_config32(struct msm_sensor_ctrl_t *s_ctrl, void __user *argp);
+#endif
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 int msm_sensor_power_up(struct msm_sensor_ctrl_t *s_ctrl);
 
@@ -118,4 +131,12 @@ long msm_sensor_subdev_fops_ioctl(struct file *file,
 	unsigned int cmd,
 	unsigned long arg);
 #endif
+<<<<<<< HEAD
+=======
+
+#ifdef CONFIG_MACH_YULONG
+bool msm_sensor_is_probed(int position);
+#endif
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #endif

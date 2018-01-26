@@ -1148,6 +1148,10 @@ static void hid_input_field(struct hid_device *hid, struct hid_field *field,
 		/* Ignore report if ErrorRollOver */
 		if (!(field->flags & HID_MAIN_ITEM_VARIABLE) &&
 		    value[n] >= min && value[n] <= max &&
+<<<<<<< HEAD
+=======
+		    value[n] - min < field->maxusage &&
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		    field->usage[value[n] - min].hid == HID_UP_KEYBOARD + 1)
 			goto exit;
 	}
@@ -1160,11 +1164,19 @@ static void hid_input_field(struct hid_device *hid, struct hid_field *field,
 		}
 
 		if (field->value[n] >= min && field->value[n] <= max
+<<<<<<< HEAD
+=======
+			&& field->value[n] - min < field->maxusage
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			&& field->usage[field->value[n] - min].hid
 			&& search(value, field->value[n], count))
 				hid_process_event(hid, field, &field->usage[field->value[n] - min], 0, interrupt);
 
 		if (value[n] >= min && value[n] <= max
+<<<<<<< HEAD
+=======
+			&& value[n] - min < field->maxusage
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			&& field->usage[value[n] - min].hid
 			&& search(field->value, value[n], count))
 				hid_process_event(hid, field, &field->usage[value[n] - min], 1, interrupt);
@@ -1678,6 +1690,12 @@ static const struct hid_device_id hid_have_special_driver[] = {
 	{ HID_USB_DEVICE(USB_VENDOR_ID_GYRATION, USB_DEVICE_ID_GYRATION_REMOTE) },
 	{ HID_USB_DEVICE(USB_VENDOR_ID_GYRATION, USB_DEVICE_ID_GYRATION_REMOTE_2) },
 	{ HID_USB_DEVICE(USB_VENDOR_ID_GYRATION, USB_DEVICE_ID_GYRATION_REMOTE_3) },
+<<<<<<< HEAD
+=======
+#if IS_ENABLED(CONFIG_HID_FIIO)
+	{ HID_USB_DEVICE(USB_VENDOR_ID_GYROCOM, USB_DEVICE_ID_GYROCOM_E18) },
+#endif
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	{ HID_USB_DEVICE(USB_VENDOR_ID_HOLTEK, USB_DEVICE_ID_HOLTEK_ON_LINE_GRIP) },
 	{ HID_USB_DEVICE(USB_VENDOR_ID_HOLTEK_ALT, USB_DEVICE_ID_HOLTEK_ALT_KEYBOARD) },
 	{ HID_USB_DEVICE(USB_VENDOR_ID_JESS2, USB_DEVICE_ID_JESS2_COLOR_RUMBLE_PAD) },

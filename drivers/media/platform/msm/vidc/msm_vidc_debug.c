@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2012-2015, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2012-2016, The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -72,13 +76,21 @@ static ssize_t core_info_read(struct file *file, char __user *buf,
 	int i = 0, rc = 0;
 
 	if (!core || !core->device) {
+<<<<<<< HEAD
 		dprintk(VIDC_ERR, "Invalid params, core: %p\n", core);
+=======
+		dprintk(VIDC_ERR, "Invalid params, core: %pK\n", core);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		return 0;
 	}
 	hdev = core->device;
 	INIT_DBG_BUF(dbg_buf);
 	write_str(&dbg_buf, "===============================\n");
+<<<<<<< HEAD
 	write_str(&dbg_buf, "CORE %d: 0x%p\n", core->id, core);
+=======
+	write_str(&dbg_buf, "CORE %d: 0x%pK\n", core->id, core);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	write_str(&dbg_buf, "===============================\n");
 	write_str(&dbg_buf, "Core state: %d\n", core->state);
 	rc = call_hfi_op(hdev, get_fw_info, hdev->hfi_device_data, &fw_info);
@@ -215,7 +227,11 @@ struct dentry *msm_vidc_debugfs_init_core(struct msm_vidc_core *core,
 	struct dentry *dir = NULL;
 	char debugfs_name[MAX_DEBUGFS_NAME];
 	if (!core) {
+<<<<<<< HEAD
 		dprintk(VIDC_ERR, "Invalid params, core: %p\n", core);
+=======
+		dprintk(VIDC_ERR, "Invalid params, core: %pK\n", core);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		goto failed_create_dir;
 	}
 
@@ -279,15 +295,26 @@ static ssize_t inst_info_read(struct file *file, char __user *buf,
 	struct msm_vidc_inst *inst = file->private_data;
 	int i, j;
 	if (!inst) {
+<<<<<<< HEAD
 		dprintk(VIDC_ERR, "Invalid params, core: %p\n", inst);
+=======
+		dprintk(VIDC_ERR, "Invalid params, core: %pK\n", inst);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		return 0;
 	}
 	INIT_DBG_BUF(dbg_buf);
 	write_str(&dbg_buf, "===============================\n");
+<<<<<<< HEAD
 	write_str(&dbg_buf, "INSTANCE: 0x%p (%s)\n", inst,
 		inst->session_type == MSM_VIDC_ENCODER ? "Encoder" : "Decoder");
 	write_str(&dbg_buf, "===============================\n");
 	write_str(&dbg_buf, "core: 0x%p\n", inst->core);
+=======
+	write_str(&dbg_buf, "INSTANCE: 0x%pK (%s)\n", inst,
+		inst->session_type == MSM_VIDC_ENCODER ? "Encoder" : "Decoder");
+	write_str(&dbg_buf, "===============================\n");
+	write_str(&dbg_buf, "core: 0x%pK\n", inst->core);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	write_str(&dbg_buf, "height: %d\n", inst->prop.height[CAPTURE_PORT]);
 	write_str(&dbg_buf, "width: %d\n", inst->prop.width[CAPTURE_PORT]);
 	write_str(&dbg_buf, "fps: %d\n", inst->prop.fps);
@@ -354,10 +381,17 @@ struct dentry *msm_vidc_debugfs_init_inst(struct msm_vidc_inst *inst,
 	struct dentry *dir = NULL;
 	char debugfs_name[MAX_DEBUGFS_NAME];
 	if (!inst) {
+<<<<<<< HEAD
 		dprintk(VIDC_ERR, "Invalid params, inst: %p\n", inst);
 		goto failed_create_dir;
 	}
 	snprintf(debugfs_name, MAX_DEBUGFS_NAME, "inst_%p", inst);
+=======
+		dprintk(VIDC_ERR, "Invalid params, inst: %pK\n", inst);
+		goto failed_create_dir;
+	}
+	snprintf(debugfs_name, MAX_DEBUGFS_NAME, "inst_%pK", inst);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	dir = debugfs_create_dir(debugfs_name, parent);
 	if (!dir) {
 		dprintk(VIDC_ERR, "Failed to create debugfs for msm_vidc\n");

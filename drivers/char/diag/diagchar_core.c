@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2008-2015, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2008-2016, The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -706,7 +710,11 @@ static int diag_process_userspace_remote(int proc, void *buf, int len)
 	int bridge_index = proc - 1;
 
 	if (!buf || len < 0) {
+<<<<<<< HEAD
 		pr_err("diag: Invalid input in %s, buf: %p, len: %d\n",
+=======
+		pr_err("diag: Invalid input in %s, buf: %pK, len: %d\n",
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		       __func__, buf, len);
 		return -EINVAL;
 	}

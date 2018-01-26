@@ -37,11 +37,34 @@ obj-$(CONFIG_MFD_ARIZONA)	+= arizona-core.o
 obj-$(CONFIG_MFD_ARIZONA)	+= arizona-irq.o
 obj-$(CONFIG_MFD_ARIZONA_I2C)	+= arizona-i2c.o
 obj-$(CONFIG_MFD_ARIZONA_SPI)	+= arizona-spi.o
+<<<<<<< HEAD
 ifneq ($(CONFIG_MFD_WM5102),n)
 obj-$(CONFIG_MFD_ARIZONA)	+= wm5102-tables.o
 endif
 ifneq ($(CONFIG_MFD_WM5110),n)
 obj-$(CONFIG_MFD_ARIZONA)	+= wm5110-tables.o
+=======
+ifeq ($(CONFIG_MFD_WM5102),y)
+obj-$(CONFIG_MFD_ARIZONA)	+= wm5102-tables.o
+endif
+ifeq ($(CONFIG_MFD_FLORIDA),y)
+obj-$(CONFIG_MFD_ARIZONA)	+= florida-tables.o
+endif
+ifeq ($(CONFIG_MFD_WM8997),y)
+obj-$(CONFIG_MFD_ARIZONA)	+= wm8997-tables.o
+endif
+ifeq ($(CONFIG_MFD_VEGAS),y)
+obj-$(CONFIG_MFD_ARIZONA)	+= vegas-tables.o
+endif
+ifeq ($(CONFIG_MFD_CLEARWATER),y)
+obj-$(CONFIG_MFD_ARIZONA)	+= clearwater-tables.o
+endif
+ifeq ($(CONFIG_MFD_MARLEY),y)
+obj-$(CONFIG_MFD_ARIZONA)	+= marley-tables.o
+endif
+ifeq ($(CONFIG_MFD_LARGO),y)
+obj-$(CONFIG_MFD_ARIZONA)	+= largo-tables.o
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 endif
 obj-$(CONFIG_MFD_WM8400)	+= wm8400-core.o
 wm831x-objs			:= wm831x-core.o wm831x-irq.o wm831x-otp.o

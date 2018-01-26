@@ -537,10 +537,24 @@ int kgsl_cache_range_op(struct kgsl_memdesc *memdesc, size_t offset,
 	void *addr = (memdesc->hostptr) ?
 		memdesc->hostptr : (void *) memdesc->useraddr;
 
+<<<<<<< HEAD
 	/* Make sure that size is non-zero */
 	if (!size)
 		return -EINVAL;
 
+=======
+	if (size == 0 || size > UINT_MAX)
+		return -EINVAL;
+
+	/* Make sure that the offset + size does not overflow */
+	if ((offset + size < offset) || (offset + size < size))
+		return -ERANGE;
+
+	/* Make sure the offset + size do not overflow the address */
+	if ((addr + offset + size) < addr)
+		return -ERANGE;
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	/* Check that offset+length does not exceed memdesc->size */
 	if ((offset + size) > memdesc->size)
 		return -ERANGE;
@@ -590,6 +604,7 @@ _kgsl_sharedmem_page_alloc(struct kgsl_memdesc *memdesc,
 			struct kgsl_pagetable *pagetable,
 			size_t size)
 {
+<<<<<<< HEAD
 	int pcount = 0, ret = 0;
 	int j, page_size, sglen_alloc, sglen = 0;
 	size_t len;
@@ -598,6 +613,12 @@ _kgsl_sharedmem_page_alloc(struct kgsl_memdesc *memdesc,
 	void *ptr;
 	unsigned int align;
 	int step = ((VMALLOC_END - VMALLOC_START)/8) >> PAGE_SHIFT;
+=======
+	size_t len;
+	int ret = 0, page_size, sglen_alloc, sglen = 0;
+	void *ptr;
+	unsigned int align;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	size = PAGE_ALIGN(size);
 	if (size == 0 || size > UINT_MAX)
@@ -625,6 +646,12 @@ _kgsl_sharedmem_page_alloc(struct kgsl_memdesc *memdesc,
 	memdesc->pagetable = pagetable;
 	memdesc->ops = &kgsl_page_alloc_ops;
 
+<<<<<<< HEAD
+=======
+	/* Check for integer overflow */
+	if (sglen_alloc && (sizeof(struct scatterlist) > INT_MAX / sglen_alloc))
+		return -EINVAL;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	memdesc->sg = kgsl_malloc(sglen_alloc * sizeof(struct scatterlist));
 
 	if (memdesc->sg == NULL) {
@@ -632,6 +659,7 @@ _kgsl_sharedmem_page_alloc(struct kgsl_memdesc *memdesc,
 		goto done;
 	}
 
+<<<<<<< HEAD
 	/*
 	 * Allocate space to store the list of pages to send to vmap. This is an
 	 * array of pointers so we can track 1024 pages per page of allocation
@@ -644,6 +672,8 @@ _kgsl_sharedmem_page_alloc(struct kgsl_memdesc *memdesc,
 		goto done;
 	}
 
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	if (!is_vmalloc_addr(memdesc->sg))
 		kmemleak_not_leak(memdesc->sg);
 
@@ -670,6 +700,11 @@ _kgsl_sharedmem_page_alloc(struct kgsl_memdesc *memdesc,
 		else
 			gfp_mask |= GFP_KERNEL;
 
+<<<<<<< HEAD
+=======
+		gfp_mask |= __GFP_ZERO;
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		page = alloc_pages(gfp_mask, get_order(page_size));
 
 		if (page == NULL) {
@@ -697,8 +732,17 @@ _kgsl_sharedmem_page_alloc(struct kgsl_memdesc *memdesc,
 			goto done;
 		}
 
+<<<<<<< HEAD
 		for (j = 0; j < page_size >> PAGE_SHIFT; j++)
 			pages[pcount++] = nth_page(page, j);
+=======
+		for (j = 0; j < page_size >> PAGE_SHIFT; j++) {
+			struct page *p = nth_page(page, j);
+			ptr = kmap_atomic(p);
+			dmac_flush_range(ptr, ptr + PAGE_SIZE);
+			kunmap_atomic(ptr);
+		}
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 		sg_set_page(&memdesc->sg[sglen++], page, page_size, 0);
 		len -= page_size;
@@ -710,6 +754,7 @@ _kgsl_sharedmem_page_alloc(struct kgsl_memdesc *memdesc,
 	if (sglen > 0)
 		sg_mark_end(&memdesc->sg[sglen - 1]);
 
+<<<<<<< HEAD
 	/*
 	 * All memory that goes to the user has to be zeroed out before it gets
 	 * exposed to userspace. This means that the memory has to be mapped in
@@ -752,12 +797,17 @@ _kgsl_sharedmem_page_alloc(struct kgsl_memdesc *memdesc,
 		}
 	}
 
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 done:
 	KGSL_STATS_ADD(memdesc->size, kgsl_driver.stats.page_alloc,
 		kgsl_driver.stats.page_alloc_max);
 
+<<<<<<< HEAD
 	kgsl_free(pages);
 
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	if (ret)
 		kgsl_sharedmem_free(memdesc);
 

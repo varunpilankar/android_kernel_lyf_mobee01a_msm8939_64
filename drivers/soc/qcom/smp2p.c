@@ -1,6 +1,10 @@
 /* drivers/soc/qcom/smp2p.c
  *
+<<<<<<< HEAD
  * Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2013-2016, The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -513,8 +517,13 @@ static void smp2p_find_entry_v1(struct smp2p_smem __iomem *item,
 	char entry_name[SMP2P_MAX_ENTRY_NAME];
 
 	if (!item || !name || !entry_ptr) {
+<<<<<<< HEAD
 		SMP2P_ERR("%s: invalid arguments %p, %p, %p\n",
 				__func__, item, name, entry_ptr);
+=======
+		SMP2P_ERR("%s: invalid arguments %d %d %d\n",
+				__func__, !item, !name, !entry_ptr);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		return;
 	}
 

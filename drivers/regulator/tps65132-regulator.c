@@ -154,6 +154,10 @@ static int tps65132_regulator_enable(struct regulator_dev *rdev)
 static int tps65132_regulator_get_voltage(struct regulator_dev *rdev)
 {
 	struct tps65132_regulator *vreg = rdev_get_drvdata(rdev);
+<<<<<<< HEAD
+=======
+#ifndef CONFIG_MACH_T86519A1
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	int rc, val;
 
 	if (!rdev->regmap) {
@@ -177,7 +181,11 @@ static int tps65132_regulator_get_voltage(struct regulator_dev *rdev)
 		vreg->curr_uV = (val & TPS65132_VOLTAGE_MASK) *
 			TPS65132_VOLTAGE_STEP + TPS65132_VOLTAGE_MIN;
 	}
+<<<<<<< HEAD
 
+=======
+#endif
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	return vreg->curr_uV;
 }
 

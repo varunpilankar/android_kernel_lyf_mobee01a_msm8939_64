@@ -53,6 +53,13 @@ static int get_cal_path(int path_type);
 
 static struct mutex routing_lock;
 
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_MACH_SPIRIT
+static int voice_use_count = 0;
+#endif
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 static struct cal_type_data *cal_data;
 
 static int fm_switch_enable;
@@ -1225,6 +1232,12 @@ static int msm_routing_put_listen_mixer(struct snd_kcontrol *kcontrol,
 	return 1;
 }
 
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_MACH_SPIRIT
+extern void smb1360_set_call_current(bool active);
+#endif
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 static void msm_pcm_routing_process_voice(u16 reg, u16 val, int set)
 {
 	u32 session_id = 0;
@@ -1249,6 +1262,27 @@ static void msm_pcm_routing_process_voice(u16 reg, u16 val, int set)
 
 	mutex_lock(&routing_lock);
 
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_MACH_SPIRIT
+	if (set) {
+		if (voice_use_count == 0) {
+			pr_debug("%s: enable charging limit\n",
+					__func__);
+			smb1360_set_call_current(true);
+		}
+		voice_use_count++;
+	} else {
+		voice_use_count--;
+		if (voice_use_count == 0) {
+			pr_debug("%s: disable charging limit\n",
+					__func__);
+			smb1360_set_call_current(false);
+		}
+	}
+#endif
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	if (set)
 		set_bit(val, &msm_bedais[reg].fe_sessions);
 	else

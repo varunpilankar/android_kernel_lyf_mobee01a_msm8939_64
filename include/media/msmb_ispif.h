@@ -24,6 +24,10 @@ enum msm_ispif_intftype {
 };
 #define MAX_PARAM_ENTRIES (INTF_MAX * 2)
 #define MAX_CID_CH	8
+<<<<<<< HEAD
+=======
+#define MAX_CID_CH_V2	3
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 #define PIX0_MASK (1 << PIX0)
 #define PIX1_MASK (1 << PIX1)
@@ -72,7 +76,11 @@ struct msm_ispif_params_entry {
 	enum msm_ispif_vfe_intf vfe_intf;
 	enum msm_ispif_intftype intftype;
 	int num_cids;
+<<<<<<< HEAD
 	enum msm_ispif_cid cids[3];
+=======
+	enum msm_ispif_cid cids[MAX_CID_CH_V2];
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	enum msm_ispif_csid csid;
 	int crop_enable;
 	uint16_t crop_start_pixel;

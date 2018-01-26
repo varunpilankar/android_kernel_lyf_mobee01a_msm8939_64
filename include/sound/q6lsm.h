@@ -73,6 +73,10 @@ struct lsm_client {
 	uint16_t	connect_to_port;
 	uint8_t		num_confidence_levels;
 	uint8_t		*confidence_levels;
+<<<<<<< HEAD
+=======
+	bool		opened;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	bool		started;
 	dma_addr_t	lsm_cal_phy_addr;
 	uint32_t	lsm_cal_size;

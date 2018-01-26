@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2013-2016, The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -252,8 +256,11 @@ static int fuse_probe(struct platform_device *pdev)
 	drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
 	if (!drvdata)
 		return -ENOMEM;
+<<<<<<< HEAD
 	/* Store the driver data pointer for use in exported functions */
 	fusedrvdata = drvdata;
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	drvdata->dev = &pdev->dev;
 	platform_set_drvdata(pdev, drvdata);
 
@@ -315,6 +322,12 @@ static int fuse_probe(struct platform_device *pdev)
 	if (IS_ERR(drvdata->csdev))
 		return PTR_ERR(drvdata->csdev);
 
+<<<<<<< HEAD
+=======
+	/* Store the driver data pointer for use in exported functions */
+	fusedrvdata = drvdata;
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	dev_info(dev, "Fuse initialized\n");
 	return 0;
 }

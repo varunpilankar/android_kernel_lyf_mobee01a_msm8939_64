@@ -558,8 +558,59 @@ static inline void init_hrtick(void)
 }
 #endif	/* CONFIG_SCHED_HRTICK */
 
+<<<<<<< HEAD
 /*
  * resched_task - mark a task 'to be rescheduled now'.
+=======
+void wake_q_add(struct wake_q_head *head, struct task_struct *task)
+{
+	struct wake_q_node *node = &task->wake_q;
+
+	/*
+	 * Atomically grab the task, if ->wake_q is !nil already it means
+	 * its already queued (either by us or someone else) and will get the
+	 * wakeup due to that.
+	 *
+	 * This cmpxchg() implies a full barrier, which pairs with the write
+	 * barrier implied by the wakeup in wake_up_list().
+	 */
+	if (cmpxchg(&node->next, NULL, WAKE_Q_TAIL))
+		return;
+
+	get_task_struct(task);
+
+	/*
+	 * The head is context local, there can be no concurrency.
+	 */
+	*head->lastp = node;
+	head->lastp = &node->next;
+}
+
+void wake_up_q(struct wake_q_head *head)
+{
+	struct wake_q_node *node = head->first;
+
+	while (node != WAKE_Q_TAIL) {
+		struct task_struct *task;
+
+		task = container_of(node, struct task_struct, wake_q);
+		BUG_ON(!task);
+		/* task can safely be re-inserted now */
+		node = node->next;
+		task->wake_q.next = NULL;
+
+		/*
+		 * wake_up_process() implies a wmb() to pair with the queueing
+		 * in wake_q_add() so as not to miss wakeups.
+		 */
+		wake_up_process(task);
+		put_task_struct(task);
+	}
+}
+
+/*
+ * resched_curr - mark rq's current task 'to be rescheduled now'.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * On UP this means the setting of the need_resched flag, on SMP it
  * might also involve a cross-CPU call to trigger the scheduler on
@@ -1227,8 +1278,11 @@ __read_mostly unsigned int sched_ravg_window = 10000000;
 unsigned int __read_mostly sched_disable_window_stats;
 
 static unsigned int sync_cpu;
+<<<<<<< HEAD
 static u64 sched_init_jiffy;
 static u64 sched_clock_at_init_jiffy;
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 #define EXITING_TASK_MARKER	0xdeaddead
 
@@ -1909,13 +1963,17 @@ static inline void mark_task_starting(struct task_struct *p)
 	p->ravg.mark_start = wallclock;
 }
 
+<<<<<<< HEAD
 static int update_alignment;
 
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 static inline void set_window_start(struct rq *rq)
 {
 	int cpu = cpu_of(rq);
 	struct rq *sync_rq = cpu_rq(sync_cpu);
 
+<<<<<<< HEAD
 	if (cpu == sync_cpu && !update_alignment) {
 		sched_init_jiffy = get_jiffies_64();
 		sched_clock_at_init_jiffy = sched_clock();
@@ -1926,6 +1984,14 @@ static inline void set_window_start(struct rq *rq)
 
 	if (cpu == sync_cpu) {
 		rq->window_start = sched_clock_at_init_jiffy;
+=======
+	if (rq->window_start || !sched_enable_hmp ||
+	    !sched_clock_initialized() || !sched_clock_cpu(cpu))
+		return;
+
+	if (cpu == sync_cpu) {
+		rq->window_start = sched_clock();
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	} else {
 		raw_spin_unlock(&rq->lock);
 		double_rq_lock(rq, sync_rq);
@@ -2174,13 +2240,20 @@ void sched_set_io_is_busy(int val)
 
 int sched_set_window(u64 window_start, unsigned int window_size)
 {
+<<<<<<< HEAD
 	u64 ws, now;
+=======
+	u64 now, cur_jiffies, jiffy_sched_clock;
+	s64 ws;
+	unsigned long flags;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	if (sched_use_pelt ||
 		 (window_size * TICK_NSEC <  MIN_SCHED_RAVG_WINDOW))
 			return -EINVAL;
 
 	mutex_lock(&policy_mutex);
+<<<<<<< HEAD
 	update_alignment = 1;
 
 	ws = (window_start - sched_init_jiffy); /* jiffy difference */
@@ -2188,6 +2261,22 @@ int sched_set_window(u64 window_start, unsigned int window_size)
 	ws += sched_clock_at_init_jiffy;
 
 	now = sched_clock();
+=======
+
+	/* Get a consistent view of sched_clock, jiffies, and the time
+	 * since the last jiffy (based on last_jiffies_update). */
+	local_irq_save(flags);
+	cur_jiffies = jiffy_to_sched_clock(&now, &jiffy_sched_clock);
+	local_irq_restore(flags);
+
+	/* translate window_start from jiffies to nanoseconds */
+	ws = (window_start - cur_jiffies); /* jiffy difference */
+	ws *= TICK_NSEC;
+	ws += jiffy_sched_clock;
+
+	/* roll back calculated window start so that it is in
+	 * the past (window stats must have a current window) */
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	while (ws > now)
 		ws -= (window_size * TICK_NSEC);
 
@@ -5792,6 +5881,10 @@ int sched_setscheduler_nocheck(struct task_struct *p, int policy,
 	};
 	return __sched_setscheduler(p, &attr, false);
 }
+<<<<<<< HEAD
+=======
+EXPORT_SYMBOL(sched_setscheduler_nocheck);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 static int
 do_sched_setscheduler(pid_t pid, int policy, struct sched_param __user *param)

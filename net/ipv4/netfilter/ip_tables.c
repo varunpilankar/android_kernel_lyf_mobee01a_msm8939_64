@@ -564,6 +564,7 @@ static void cleanup_match(struct xt_entry_match *m, struct net *net)
 }
 
 static int
+<<<<<<< HEAD
 check_entry(const struct ipt_entry *e, const char *name)
 {
 	const struct xt_entry_target *t;
@@ -572,6 +573,14 @@ check_entry(const struct ipt_entry *e, const char *name)
 		duprintf("ip check failed %p %s.\n", e, name);
 		return -EINVAL;
 	}
+=======
+check_entry(const struct ipt_entry *e)
+{
+	const struct xt_entry_target *t;
+
+	if (!ip_checkentry(&e->ip))
+		return -EINVAL;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	if (e->target_offset + sizeof(struct xt_entry_target) >
 	    e->next_offset)
@@ -661,10 +670,13 @@ find_check_entry(struct ipt_entry *e, struct net *net, const char *name,
 	struct xt_mtchk_param mtpar;
 	struct xt_entry_match *ematch;
 
+<<<<<<< HEAD
 	ret = check_entry(e, name);
 	if (ret)
 		return ret;
 
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	j = 0;
 	mtpar.net	= net;
 	mtpar.table     = name;
@@ -728,6 +740,10 @@ check_entry_size_and_hooks(struct ipt_entry *e,
 			   unsigned int valid_hooks)
 {
 	unsigned int h;
+<<<<<<< HEAD
+=======
+	int err;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	if ((unsigned long)e % __alignof__(struct ipt_entry) != 0 ||
 	    (unsigned char *)e + sizeof(struct ipt_entry) >= limit ||
@@ -743,6 +759,13 @@ check_entry_size_and_hooks(struct ipt_entry *e,
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
+=======
+	err = check_entry(e);
+	if (err)
+		return err;
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	/* Check hooks & underflows */
 	for (h = 0; h < NF_INET_NUMHOOKS; h++) {
 		if (!(valid_hooks & (1 << h)))
@@ -1504,7 +1527,11 @@ check_compat_entry_size_and_hooks(struct compat_ipt_entry *e,
 	}
 
 	/* For purposes of check_entry casting the compat entry is fine */
+<<<<<<< HEAD
 	ret = check_entry((struct ipt_entry *)e, name);
+=======
+	ret = check_entry((struct ipt_entry *)e);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	if (ret)
 		return ret;
 

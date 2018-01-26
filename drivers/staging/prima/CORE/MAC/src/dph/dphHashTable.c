@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2012-2013 The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2012-2016 The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -134,6 +138,15 @@ tpDphHashNode dphLookupHashEntry(tpAniSirGlobal pMac, tANI_U8 staAddr[], tANI_U1
     tpDphHashNode ptr = NULL;
     tANI_U16 index = hashFunction(pMac, staAddr, pDphHashTable->size);
 
+<<<<<<< HEAD
+=======
+    if (!pDphHashTable->pHashTable)
+    {
+        limLog(pMac, LOGE, FL(" pHashTable is NULL "));
+        return ptr;
+    }
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     for (ptr = pDphHashTable->pHashTable[index]; ptr; ptr = ptr->next)
         {
             if (dphCompareMacAddr(staAddr, ptr->staAddr))
@@ -285,6 +298,14 @@ tpDphHashNode dphInitStaState(tpAniSirGlobal pMac, tSirMacAddr staAddr,
     pStaDs->apsdMaxSpLen = 0;
     pStaDs->acMode[0] = pStaDs->acMode[1] = pStaDs->acMode[2] = pStaDs->acMode[3] =  0;
 #endif /* WMM_APSD */
+<<<<<<< HEAD
+=======
+    pStaDs->isDisassocDeauthInProgress = 0;
+#ifdef WLAN_FEATURE_11W
+    pStaDs->last_assoc_received_time = 0;
+#endif
+    pStaDs->sta_deletion_in_progress = false;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     pStaDs->valid = 1;
     return pStaDs;
 }
@@ -312,9 +333,15 @@ tpDphHashNode dphAddHashEntry(tpAniSirGlobal pMac, tSirMacAddr staAddr, tANI_U16
     tpDphHashNode ptr, node;
     tANI_U16 index = hashFunction(pMac, staAddr, pDphHashTable->size);
 
+<<<<<<< HEAD
     PELOG1(limLog(pMac, LOG1, FL("assocId %d index %d STA addr"),
            assocId, index);
     dphPrintMacAddr(pMac, staAddr, LOG1);)
+=======
+    limLog(pMac, LOG1, FL("assocId %d index %d STA addr"),
+           assocId, index);
+    dphPrintMacAddr(pMac, staAddr, LOG1);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
     if (assocId >= pDphHashTable->size)
     {
@@ -389,9 +416,15 @@ tSirRetStatus dphDeleteHashEntry(tpAniSirGlobal pMac, tSirMacAddr staAddr, tANI_
   tANI_U16 index = hashFunction(pMac, staAddr, pDphHashTable->size);
 
 
+<<<<<<< HEAD
   PELOG1(limLog(pMac, LOG1, FL("assocId %d index %d STA addr"),
                   assocId, index);
   dphPrintMacAddr(pMac, staAddr, LOG1);)
+=======
+  limLog(pMac, LOG1, FL("assocId %d index %d STA addr"),
+                  assocId, index);
+  dphPrintMacAddr(pMac, staAddr, LOG1);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
   if (assocId >= pDphHashTable->size)
   {
@@ -429,6 +462,14 @@ tSirRetStatus dphDeleteHashEntry(tpAniSirGlobal pMac, tSirMacAddr staAddr, tANI_
       else
          prev->next = ptr->next;
       ptr->added = 0;
+<<<<<<< HEAD
+=======
+      ptr->isDisassocDeauthInProgress = 0;
+#ifdef WLAN_FEATURE_11W
+      ptr->last_assoc_received_time = 0;
+#endif
+      ptr->sta_deletion_in_progress = false;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
       ptr->next = 0;
     }
   else
@@ -462,7 +503,11 @@ tSirRetStatus dphDeleteHashEntry(tpAniSirGlobal pMac, tSirMacAddr staAddr, tANI_
 void
 dphPrintMacAddr(tpAniSirGlobal pMac, tANI_U8 addr[], tANI_U32 level)
 {
+<<<<<<< HEAD
     limLog(pMac, (tANI_U16) level, FL("MAC ADDR = %d:%d:%d:%d:%d:%d"),
+=======
+    limLog(pMac, (tANI_U16) level, FL("MAC ADDR = %02x:%02x:%02x:%02x:%02x:%02x"),
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
            addr[0], addr[1], addr[2], addr[3], addr[4], addr[5]);
 }
 

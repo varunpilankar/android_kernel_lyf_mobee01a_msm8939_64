@@ -173,6 +173,10 @@ char* dumpLOG( tpAniSirGlobal pMac, char *p )
         switch (i)
         {
             case SIR_HAL_MODULE_ID: p += log_sprintf( pMac, p, "HAL "); break;
+<<<<<<< HEAD
+=======
+            case SIR_HAL_EXT_MODULE_ID: p += log_sprintf( pMac, p, "HAL "); break;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
             case SIR_CFG_MODULE_ID: p += log_sprintf( pMac, p, "CFG "); break;
             case SIR_LIM_MODULE_ID: p += log_sprintf( pMac, p, "LIM "); break;
             case SIR_ARQ_MODULE_ID: p += log_sprintf( pMac, p, "ARQ "); break;

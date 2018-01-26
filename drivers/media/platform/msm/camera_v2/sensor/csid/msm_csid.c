@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2011-2015, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2011-2016, The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -518,7 +522,11 @@ static int32_t msm_csid_cmd(struct csid_device *csid_dev, void __user *arg)
 			break;
 		}
 		if (csid_params.lut_params.num_cid < 1 ||
+<<<<<<< HEAD
 			csid_params.lut_params.num_cid > 16) {
+=======
+			csid_params.lut_params.num_cid > MAX_CID) {
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			pr_err("%s: %d num_cid outside range\n",
 				 __func__, __LINE__);
 			rc = -EINVAL;
@@ -547,6 +555,13 @@ static int32_t msm_csid_cmd(struct csid_device *csid_dev, void __user *arg)
 			csid_params.lut_params.vc_cfg[i] = vc_cfg;
 		}
 		csid_dev->csid_sof_debug = 0;
+<<<<<<< HEAD
+=======
+		if (rc < 0) {
+			pr_err("%s:%d failed\n", __func__, __LINE__);
+			break;
+		}
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		rc = msm_csid_config(csid_dev, &csid_params);
 		for (i--; i >= 0; i--)
 			kfree(csid_params.lut_params.vc_cfg[i]);
@@ -658,7 +673,11 @@ static int32_t msm_csid_cmd32(struct csid_device *csid_dev, void __user *arg)
 		csid_params.lut_params.num_cid = lut_par32.num_cid;
 
 		if (csid_params.lut_params.num_cid < 1 ||
+<<<<<<< HEAD
 			csid_params.lut_params.num_cid > 16) {
+=======
+			csid_params.lut_params.num_cid > MAX_CID) {
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			pr_err("%s: %d num_cid outside range\n",
 				 __func__, __LINE__);
 			rc = -EINVAL;

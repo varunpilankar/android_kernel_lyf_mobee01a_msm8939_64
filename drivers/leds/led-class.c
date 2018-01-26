@@ -85,6 +85,7 @@ static ssize_t led_max_brightness_show(struct device *dev,
 	return snprintf(buf, LED_BUFF_SIZE, "%u\n", led_cdev->max_brightness);
 }
 
+<<<<<<< HEAD
 static ssize_t led_blink_show(struct device *dev,
 		struct device_attribute *attr, char *buf)
 {
@@ -116,11 +117,16 @@ static ssize_t led_blink_store(struct device *dev,
 
 	return size;
 }
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 static struct device_attribute led_class_attrs[] = {
 	__ATTR(brightness, 0644, led_brightness_show, led_brightness_store),
 	__ATTR(max_brightness, 0644, led_max_brightness_show,
 			led_max_brightness_store),
+<<<<<<< HEAD
 	__ATTR(blink, 0644, led_blink_show, led_blink_store),
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #ifdef CONFIG_LEDS_TRIGGERS
 	__ATTR(trigger, 0644, led_trigger_show, led_trigger_store),
 #endif

@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2012-2013 The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2012-2015 The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -35,11 +39,16 @@
 
 * Description: Power Management Control (PMC) API definitions.
 
+<<<<<<< HEAD
 * Copyright 2008 (c) Qualcomm, Incorporated.  
 
 * All Rights Reserved.
 
 * Qualcomm Confidential and Proprietary.
+=======
+* All Rights Reserved.
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 *
 
@@ -59,6 +68,14 @@
 //should be large enough to allow the auth, DHCP handshake to complete
 #define BMPS_TRAFFIC_TIMER_ALLOW_SECURITY_DHCP 8000  //unit = ms
 
+<<<<<<< HEAD
+=======
+//This timer value is used to start the timer right after key completion
+//during roaming. This should be small enough to allow STA to enter PS
+//immediately after key completion as no DHCP phase during roaming.
+#define TRAFFIC_TIMER_ROAMING 100  //unit = ms
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #define PMC_IS_CHIP_ACCESSIBLE(pmcState) ( (IMPS != (pmcState)) && (REQUEST_IMPS != (pmcState)) && \
        (STANDBY != (pmcState)) && (REQUEST_STANDBY != (pmcState)) )
 

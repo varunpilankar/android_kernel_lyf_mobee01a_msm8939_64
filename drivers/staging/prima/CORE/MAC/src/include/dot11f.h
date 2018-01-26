@@ -19,12 +19,15 @@
  * PERFORMANCE OF THIS SOFTWARE.
  */
 
+<<<<<<< HEAD
 /**
   * Copyright (c) 2012 - 2014 Qualcomm Atheros, Inc.
   * All Rights Reserved.
   * Qualcomm Atheros Confidential and Proprietary.
   */
 
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #ifndef DOT11F_H
 #define DOT11F_H
 /**
@@ -5173,7 +5176,11 @@ typedef struct sDot11fIERSN {
 // N.B. These #defines do *not* include the EID & length
 #define DOT11F_IE_RSN_MIN_LEN ( 6 )
 
+<<<<<<< HEAD
 #define DOT11F_IE_RSN_MAX_LEN ( 114 )
+=======
+#define DOT11F_IE_RSN_MAX_LEN ( 255 )
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 #ifdef __cplusplus
 extern "C" {

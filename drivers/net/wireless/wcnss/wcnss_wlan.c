@@ -58,8 +58,11 @@
 #define IS_CAL_DATA_PRESENT     0
 #define WAIT_FOR_CBC_IND	2
 
+<<<<<<< HEAD
 const char *chip_name = NULL;
 
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 /* module params */
 #define WCNSS_CONFIG_UNSPECIFIED (-1)
 #define UINT32_MAX (0xFFFFFFFFU)
@@ -542,6 +545,7 @@ static ssize_t wcnss_version_show(struct device *dev,
 static DEVICE_ATTR(wcnss_version, S_IRUSR,
 		wcnss_version_show, NULL);
 
+<<<<<<< HEAD
 static ssize_t wcnss_name_show(struct device *dev,
 				struct device_attribute *attr, char *buf)
 {
@@ -553,6 +557,8 @@ static ssize_t wcnss_name_show(struct device *dev,
 static DEVICE_ATTR(wcnss_name, S_IRUSR,
 		wcnss_name_show, NULL);
         
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 void wcnss_riva_dump_pmic_regs(void)
 {
 	int i, rc;
@@ -1173,10 +1179,13 @@ static int wcnss_create_sysfs(struct device *dev)
 	if (ret)
 		goto remove_thermal;
 
+<<<<<<< HEAD
 	ret = device_create_file(dev, &dev_attr_wcnss_name);
 	if (ret)
 		goto remove_thermal;
     
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	ret = device_create_file(dev, &dev_attr_wcnss_mac_addr);
 	if (ret)
 		goto remove_version;
@@ -3072,6 +3081,7 @@ wcnss_trigger_config(struct platform_device *pdev)
 		"qcom,wlan-indication-enabled"))
 		wcnss_en_wlan_led_trigger();
 
+<<<<<<< HEAD
    chip_name = kmalloc(PAGE_SIZE, GFP_KERNEL);
    if (!chip_name)
      printk("[%s]:Failed to alloc chip_name.\n", __func__);
@@ -3080,6 +3090,8 @@ wcnss_trigger_config(struct platform_device *pdev)
      printk("Error reading qcom,chip_name rc=%d\n", rc);
      chip_name = NULL;
    }
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	return 0;
 
 fail_ioremap2:
@@ -3231,7 +3243,11 @@ static ssize_t wcnss_wlan_write(struct file *fp, const char __user
 		return -EFAULT;
 
 	if ((UINT32_MAX - count < penv->user_cal_rcvd) ||
+<<<<<<< HEAD
 	     MAX_CALIBRATED_DATA_SIZE < count + penv->user_cal_rcvd) {
+=======
+		(penv->user_cal_exp_size < count + penv->user_cal_rcvd)) {
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		pr_err(DEVICE " invalid size to write %zu\n", count +
 				penv->user_cal_rcvd);
 		rc = -ENOMEM;

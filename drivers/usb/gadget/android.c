@@ -3114,6 +3114,7 @@ static ssize_t remote_wakeup_store(struct device *pdev,
 
 	return size;
 }
+<<<<<<< HEAD
 #if defined(CONFIG_MIRAGE_ONLY) || defined(CONFIG_TESTPLUS_ONLY)
 static ssize_t adb_name_show(struct device *pdev,
 			   struct device_attribute *attr, char *buf)
@@ -3121,6 +3122,9 @@ static ssize_t adb_name_show(struct device *pdev,
 	return snprintf(buf, PAGE_SIZE, "%s\n", strings_dev[STRING_SERIAL_IDX].s);
 }
 #endif
+=======
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 static ssize_t
 functions_show(struct device *pdev, struct device_attribute *attr, char *buf)
 {
@@ -3457,9 +3461,13 @@ DESCRIPTOR_ATTR(bDeviceProtocol, "%d\n")
 DESCRIPTOR_STRING_ATTR(iManufacturer, manufacturer_string)
 DESCRIPTOR_STRING_ATTR(iProduct, product_string)
 DESCRIPTOR_STRING_ATTR(iSerial, serial_string)
+<<<<<<< HEAD
 #if defined(CONFIG_MIRAGE_ONLY) || defined(CONFIG_TESTPLUS_ONLY)
 static DEVICE_ATTR(adb_display_name, S_IRUGO | S_IWUSR, adb_name_show, NULL);
 #endif
+=======
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 static DEVICE_ATTR(functions, S_IRUGO | S_IWUSR, functions_show,
 						 functions_store);
 static DEVICE_ATTR(enable, S_IRUGO | S_IWUSR, enable_show, enable_store);
@@ -3486,9 +3494,12 @@ static struct device_attribute *android_usb_attributes[] = {
 	&dev_attr_iManufacturer,
 	&dev_attr_iProduct,
 	&dev_attr_iSerial,
+<<<<<<< HEAD
 #if defined(CONFIG_MIRAGE_ONLY) || defined(CONFIG_TESTPLUS_ONLY)
 	&dev_attr_adb_display_name,
 #endif
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	&dev_attr_functions,
 	&dev_attr_enable,
 	&dev_attr_pm_qos,
@@ -3851,8 +3862,11 @@ static int android_probe(struct platform_device *pdev)
 	struct android_usb_platform_data *pdata;
 	struct android_dev *android_dev;
 	struct resource *res;
+<<<<<<< HEAD
 	const char *adb_name;
 
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	int ret = 0, i, len = 0, prop_len = 0;
 	u32 usb_core_id = 0;
 
@@ -3914,8 +3928,11 @@ static int android_probe(struct platform_device *pdev)
 		ret = of_property_read_u8(pdev->dev.of_node,
 				"qcom,android-usb-uicc-nluns",
 				&pdata->uicc_nluns);
+<<<<<<< HEAD
 
 		ret = of_property_read_string(pdev->dev.of_node, "adb_diaplay_name", &adb_name);
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	} else {
 		pdata = pdev->dev.platform_data;
 	}

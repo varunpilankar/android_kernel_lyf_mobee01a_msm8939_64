@@ -326,6 +326,19 @@ config LEDS_MSM_GPIO_FLASH
 	  To compile this driver as a module, choose M here: the module will
 	  be called leds-gpio-flash.
 
+<<<<<<< HEAD
+=======
+config LEDS_MSM_GPIO_FLASH_CKT
+	tristate "Support for GPIO Flash LEDs (CKT variant)"
+	help
+	  This driver supports the leds functionality of GPIO Flash LED. It
+	  includes flash mode and torch mode.
+	  This is the CK-Telecom driver variant.
+
+	  To compile this driver as a module, choose M here: the module will
+	  be called leds-gpio-flash.
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 config LEDS_WM831X_STATUS
 	tristate "LED support for status LEDs on WM831x PMICs"
 	depends on LEDS_CLASS
@@ -380,6 +393,21 @@ config LEDS_REGULATOR
 	help
 	  This option enables support for regulator driven LEDs.
 
+<<<<<<< HEAD
+=======
+config LEDS_AW2013
+        tristate "LED driver for AW2013 RGB LED"
+        depends on LEDS_CLASS
+        depends on REGULATOR
+        help
+          This option enables support for AW2013 RGB LED driver chips
+          accessed via the I2C bus.
+config SET_AW2013_VCC_AND_NOT_PULLDWN
+	bool "SET VCC for aw2013 and not pull down"
+	depends on LEDS_AW2013
+	help
+	  This option enables support for set vdd
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 config LEDS_BD2802
 	tristate "LED driver for BD2802 RGB LED"
 	depends on LEDS_CLASS
@@ -517,6 +545,7 @@ config LEDS_BLINKM
 	help
 	  This option enables support for the BlinkM RGB LED connected
 	  through I2C. Say Y to enable support for the BlinkM LED.
+<<<<<<< HEAD
 config LEDS_aw2013rgb                                                                                               
 	 tristate "LED support for the BlinkM I2C RGB LED"
      depends on LEDS_CLASS
@@ -524,6 +553,8 @@ config LEDS_aw2013rgb
      help
        This option enables support for the BlinkM RGB LED connected
        through I2C. Say Y to enable support for the BlinkM LED.
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 config LEDS_AW2013
 	tristate "LED support for AW2013"

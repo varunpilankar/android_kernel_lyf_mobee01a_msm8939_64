@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 
 /* Copyright (c) 2007-2014, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2007-2014,2016 The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -33,7 +37,11 @@ int mdss_register_irq(struct mdss_hw *hw)
 	if (!mdss_irq_handlers[hw->hw_ndx])
 		mdss_irq_handlers[hw->hw_ndx] = hw;
 	else
+<<<<<<< HEAD
 		pr_err("panel %d's irq at %p is already registered\n",
+=======
+		pr_err("panel %d's irq at %pK is already registered\n",
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			hw->hw_ndx, hw->irq_handler);
 	spin_unlock_irqrestore(&mdss_lock, irq_flags);
 

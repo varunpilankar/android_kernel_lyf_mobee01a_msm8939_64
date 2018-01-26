@@ -304,11 +304,22 @@ static void render_cap_t(struct seq_file *m, const char *header,
 	seq_puts(m, header);
 	CAP_FOR_EACH_U32(__capi) {
 		seq_printf(m, "%08x",
+<<<<<<< HEAD
 			   a->cap[CAP_LAST_U32 - __capi]);
+=======
+			   a->cap[(_KERNEL_CAPABILITY_U32S-1) - __capi]);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	}
 	seq_putc(m, '\n');
 }
 
+<<<<<<< HEAD
+=======
+/* Remove non-existent capabilities */
+#define NORM_CAPS(v) (v.cap[CAP_TO_INDEX(CAP_LAST_CAP)] &= \
+				CAP_TO_MASK(CAP_LAST_CAP + 1) - 1)
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 static inline void task_cap(struct seq_file *m, struct task_struct *p)
 {
 	const struct cred *cred;
@@ -322,6 +333,14 @@ static inline void task_cap(struct seq_file *m, struct task_struct *p)
 	cap_bset	= cred->cap_bset;
 	rcu_read_unlock();
 
+<<<<<<< HEAD
+=======
+	NORM_CAPS(cap_inheritable);
+	NORM_CAPS(cap_permitted);
+	NORM_CAPS(cap_effective);
+	NORM_CAPS(cap_bset);
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	render_cap_t(m, "CapInh:\t", &cap_inheritable);
 	render_cap_t(m, "CapPrm:\t", &cap_permitted);
 	render_cap_t(m, "CapEff:\t", &cap_effective);

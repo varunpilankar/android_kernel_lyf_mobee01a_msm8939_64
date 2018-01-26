@@ -134,6 +134,7 @@ static int synaptics_rmi4_i2c_write(struct synaptics_rmi4_data *rmi4_data,
 {
 	int retval;
 	unsigned char retry;
+<<<<<<< HEAD
 	unsigned char buf[length + 1];
 	struct i2c_client *i2c = to_i2c_client(rmi4_data->pdev->dev.parent);
 	struct i2c_msg msg[] = {
@@ -144,6 +145,19 @@ static int synaptics_rmi4_i2c_write(struct synaptics_rmi4_data *rmi4_data,
 			.buf = buf,
 		}
 	};
+=======
+	unsigned char *buf;
+	struct i2c_client *i2c = to_i2c_client(rmi4_data->pdev->dev.parent);
+	struct i2c_msg msg[1];
+
+	buf = kzalloc(length + 1, GFP_KERNEL);
+	if (!buf) {
+		dev_err(rmi4_data->pdev->dev.parent,
+				"%s: Failed to alloc mem for buffer\n",
+				__func__);
+		return -ENOMEM;
+	}
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	mutex_lock(&rmi4_data->rmi4_io_ctrl_mutex);
 
@@ -153,6 +167,14 @@ static int synaptics_rmi4_i2c_write(struct synaptics_rmi4_data *rmi4_data,
 		goto exit;
 	}
 
+<<<<<<< HEAD
+=======
+	msg[0].addr = i2c->addr;
+	msg[0].flags = 0;
+	msg[0].len = length + 1;
+	msg[0].buf = buf;
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	buf[0] = addr & MASK_8BIT;
 	memcpy(&buf[1], &data[0], length);
 
@@ -176,6 +198,10 @@ static int synaptics_rmi4_i2c_write(struct synaptics_rmi4_data *rmi4_data,
 
 exit:
 	mutex_unlock(&rmi4_data->rmi4_io_ctrl_mutex);
+<<<<<<< HEAD
+=======
+	kfree(buf);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	return retval;
 }

@@ -128,6 +128,7 @@ enum {
 	RX_MIX1_INP_SEL_RX3,
 };
 
+<<<<<<< HEAD
 enum{
 	MODE_1 = 0,
 	MODE_2,
@@ -137,6 +138,8 @@ enum{
 
 static int test_spk_pa_mode = 0;
 
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 static const DECLARE_TLV_DB_SCALE(digital_gain, 0, 1, 0);
 static const DECLARE_TLV_DB_SCALE(analog_gain, 0, 25, 1);
 static struct snd_soc_dai_driver msm8x16_wcd_i2s_dai[];
@@ -2050,6 +2053,7 @@ static int msm8x16_wcd_pa_gain_put(struct snd_kcontrol *kcontrol,
 	return 0;
 }
 
+<<<<<<< HEAD
 static int test_spk_pa_get(struct snd_kcontrol *kcontrol,
 				struct snd_ctl_elem_value *ucontrol)
 {
@@ -2068,10 +2072,23 @@ static int test_spk_pa_get(struct snd_kcontrol *kcontrol,
 			__func__, test_spk_pa_mode);
 		return -EINVAL;
 	}
+=======
+#ifdef CONFIG_MACH_JALEBI
+static int msm8x16_wcd_ext_spk_get(struct snd_kcontrol *kcontrol,
+				struct snd_ctl_elem_value *ucontrol)
+{
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct msm8x16_wcd_priv *msm8x16_wcd = snd_soc_codec_get_drvdata(codec);
+
+	ucontrol->value.integer.value[0] = (msm8x16_wcd->ext_spk_mode == 0) ? 0 : 1;
+
+	dev_dbg(codec->dev, "%s: ext_spk_mode = %d\n", __func__, msm8x16_wcd->ext_spk_mode);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	return 0;
 }
 
+<<<<<<< HEAD
 static int test_spk_pa_set(struct snd_kcontrol *kcontrol,
 				struct snd_ctl_elem_value *ucontrol)
 {
@@ -2102,6 +2119,31 @@ static int test_spk_pa_set(struct snd_kcontrol *kcontrol,
 		__func__, test_spk_pa_mode);
 	return 0;
 }
+=======
+static int msm8x16_wcd_ext_spk_set(struct snd_kcontrol *kcontrol,
+				struct snd_ctl_elem_value *ucontrol)
+{
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct msm8x16_wcd_priv *msm8x16_wcd = snd_soc_codec_get_drvdata(codec);
+	long value = ucontrol->value.integer.value[0];
+
+	dev_dbg(codec->dev, "%s: ucontrol->value.integer.value[0] = %ld\n", __func__, value);
+
+	if ((value < 0) || (value > 4)) {
+		return -EINVAL;
+	}
+
+	if (msm8x16_wcd->ext_spk_mode == value) {
+		return 0;
+	}
+
+	msm8x16_wcd->ext_spk_mode = value;
+
+	dev_dbg(codec->dev, "%s: ext_spk_mode = %d\n", __func__, msm8x16_wcd->ext_spk_mode);
+	return 0;
+}
+#endif
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 static int msm8x16_wcd_boost_option_get(struct snd_kcontrol *kcontrol,
 				struct snd_ctl_elem_value *ucontrol)
@@ -2473,12 +2515,22 @@ static const struct soc_enum msm8x16_wcd_spk_boost_ctl_enum[] = {
 		SOC_ENUM_SINGLE_EXT(2, msm8x16_wcd_spk_boost_ctrl_text),
 };
 
+<<<<<<< HEAD
 static const char * const test_spk_pa_ctrl_text[] = {
 		"MODE_1", "MODE_2", "MODE_3",
 		"MODE_4"};
 static const struct soc_enum test_spk_pa_ctl_enum[] = {
 		SOC_ENUM_SINGLE_EXT(4, test_spk_pa_ctrl_text),
 };
+=======
+#ifdef CONFIG_MACH_JALEBI
+static const char * const msm8x16_wcd_ext_spk_ctrl_text[] = {
+		"DISABLE", "ENABLE", "MODE_2", "MODE_3", "MODE_4"};
+static const struct soc_enum msm8x16_wcd_ext_spk_ctl_enum[] = {
+		SOC_ENUM_SINGLE_EXT(5, msm8x16_wcd_ext_spk_ctrl_text),
+};
+#endif
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 static const char * const msm8x16_wcd_ext_spk_boost_ctrl_text[] = {
 		"DISABLE", "ENABLE"};
@@ -2508,9 +2560,12 @@ static const struct soc_enum cf_rxmix3_enum =
 
 static const struct snd_kcontrol_new msm8x16_wcd_snd_controls[] = {
 
+<<<<<<< HEAD
 	SOC_ENUM_EXT("Mobee Spk PA Mode", test_spk_pa_ctl_enum[0],
 		test_spk_pa_get, test_spk_pa_set),
 
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	SOC_ENUM_EXT("Boost Option", msm8x16_wcd_boost_option_ctl_enum[0],
 		msm8x16_wcd_boost_option_get, msm8x16_wcd_boost_option_set),
 
@@ -2528,7 +2583,14 @@ static const struct snd_kcontrol_new msm8x16_wcd_snd_controls[] = {
 
 	SOC_ENUM_EXT("LOOPBACK Mode", msm8x16_wcd_loopback_mode_ctl_enum[0],
 		msm8x16_wcd_loopback_mode_get, msm8x16_wcd_loopback_mode_put),
+<<<<<<< HEAD
 
+=======
+#ifdef CONFIG_MACH_JALEBI
+	SOC_ENUM_EXT("Speaker Ext", msm8x16_wcd_ext_spk_ctl_enum[0],
+		msm8x16_wcd_ext_spk_get, msm8x16_wcd_ext_spk_set),
+#endif
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	SOC_SINGLE_TLV("ADC1 Volume", MSM8X16_WCD_A_ANALOG_TX_1_EN, 3,
 					8, 0, analog_gain),
 	SOC_SINGLE_TLV("ADC2 Volume", MSM8X16_WCD_A_ANALOG_TX_2_EN, 3,
@@ -3483,12 +3545,24 @@ static int msm8x16_wcd_codec_enable_micbias(struct snd_soc_dapm_widget *w,
 				snd_soc_update_bits(codec,
 					MSM8X16_WCD_A_ANALOG_TX_1_2_ATEST_CTL_2,
 					0x02, 0x02);
+<<<<<<< HEAD
 			snd_soc_update_bits(codec, micb_int_reg, 0x80, 0x80);
+=======
+#ifndef CONFIG_MACH_SPIRIT
+			snd_soc_update_bits(codec, micb_int_reg, 0x80, 0x80);
+#endif
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		} else if (strnstr(w->name, internal2_text, strlen(w->name))) {
 			snd_soc_update_bits(codec, micb_int_reg, 0x10, 0x10);
 			snd_soc_update_bits(codec, w->reg, 0x60, 0x00);
 		} else if (strnstr(w->name, internal3_text, strlen(w->name))) {
+<<<<<<< HEAD
 			snd_soc_update_bits(codec, micb_int_reg, 0x2, 0x2);
+=======
+#ifndef CONFIG_MACH_SPIRIT
+			snd_soc_update_bits(codec, micb_int_reg, 0x2, 0x2);
+#endif
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		}
 		if (!strnstr(w->name, external_text, strlen(w->name)))
 			snd_soc_update_bits(codec,
@@ -4069,6 +4143,35 @@ static int msm8x16_wcd_hphr_dac_event(struct snd_soc_dapm_widget *w,
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_MACH_JALEBI
+static int enable_ext_spk(struct snd_soc_dapm_widget *w, bool enable)
+{
+	struct snd_soc_codec *codec = w->codec;
+	struct msm8x16_wcd_priv *msm8x16_wcd = snd_soc_codec_get_drvdata(codec);
+	struct msm8916_asoc_mach_data *pdata = snd_soc_card_get_drvdata(codec->card);
+
+	if (!gpio_is_valid(pdata->ext_spk_amp_gpio))
+		return -EINVAL;
+
+	if (enable) {
+		int i;
+		for (i = 0; i < msm8x16_wcd->ext_spk_mode; i++) {
+			gpio_direction_output(pdata->ext_spk_amp_gpio, 0);
+			udelay(1);
+			gpio_direction_output(pdata->ext_spk_amp_gpio, 1);
+			udelay(1);
+		}
+	} else {
+		gpio_direction_output(pdata->ext_spk_amp_gpio, 0);
+	}
+
+	return 0;
+}
+#endif
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 static int msm8x16_wcd_hph_pa_event(struct snd_soc_dapm_widget *w,
 			      struct snd_kcontrol *kcontrol, int event)
 {
@@ -4101,6 +4204,12 @@ static int msm8x16_wcd_hph_pa_event(struct snd_soc_dapm_widget *w,
 				MSM8X16_WCD_A_ANALOG_RX_HPH_R_TEST, 0x04, 0x04);
 			snd_soc_update_bits(codec,
 				MSM8X16_WCD_A_CDC_RX2_B6_CTL, 0x01, 0x00);
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_MACH_JALEBI
+			enable_ext_spk(w, true);
+#endif
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		}
 		break;
 
@@ -4115,6 +4224,12 @@ static int msm8x16_wcd_hph_pa_event(struct snd_soc_dapm_widget *w,
 			msm8x16_notifier_call(codec,
 					WCD_EVENT_PRE_HPHL_PA_OFF);
 		} else if (w->shift == 4) {
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_MACH_JALEBI
+			enable_ext_spk(w, false);
+#endif
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			snd_soc_update_bits(codec,
 				MSM8X16_WCD_A_CDC_RX2_B6_CTL, 0x01, 0x01);
 			msleep(20);
@@ -4310,12 +4425,29 @@ static const struct snd_soc_dapm_route audio_map[] = {
 	{"IIR2 INP1 MUX", "DEC2", "DEC2 MUX"},
 	{"MIC BIAS Internal1", NULL, "INT_LDO_H"},
 	{"MIC BIAS Internal2", NULL, "INT_LDO_H"},
+<<<<<<< HEAD
+=======
+#if defined(CONFIG_MACH_LONGCHEER) || defined(CONFIG_MACH_SPIRIT)
+	{"MIC BIAS Internal3", NULL, "INT_LDO_H"},
+#endif
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	{"MIC BIAS External", NULL, "INT_LDO_H"},
 	{"MIC BIAS External2", NULL, "INT_LDO_H"},
 	{"MIC BIAS Internal1", NULL, "MICBIAS_REGULATOR"},
 	{"MIC BIAS Internal2", NULL, "MICBIAS_REGULATOR"},
+<<<<<<< HEAD
 	{"MIC BIAS External", NULL, "MICBIAS_REGULATOR"},
 	{"MIC BIAS External2", NULL, "MICBIAS_REGULATOR"},
+=======
+#if defined(CONFIG_MACH_LONGCHEER) || defined(CONFIG_MACH_SPIRIT) || defined(CONFIG_MACH_T86519A1)
+	{"MIC BIAS Internal3", NULL, "MICBIAS_REGULATOR"},
+#endif
+	{"MIC BIAS External", NULL, "MICBIAS_REGULATOR"},
+	{"MIC BIAS External2", NULL, "MICBIAS_REGULATOR"},
+#if defined(CONFIG_MACH_T86519A1)
+	{"MIC BIAS External3", NULL, "MICBIAS_REGULATOR"},
+#endif
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 };
 
 static int msm8x16_wcd_startup(struct snd_pcm_substream *substream,
@@ -4632,13 +4764,18 @@ static int msm8x16_wcd_codec_enable_spk_ext_pa(struct snd_soc_dapm_widget *w,
 {
 	struct snd_soc_codec *codec = w->codec;
 	struct msm8x16_wcd_priv *msm8x16_wcd = snd_soc_codec_get_drvdata(codec);
+<<<<<<< HEAD
 	int i=0;
+=======
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	dev_dbg(codec->dev, "%s: %s event = %d\n", __func__, w->name, event);
 	switch (event) {
 	case SND_SOC_DAPM_POST_PMU:
 		dev_dbg(w->codec->dev,
 			"%s: enable external speaker PA\n", __func__);
 		if (msm8x16_wcd->codec_spk_ext_pa_cb)
+<<<<<<< HEAD
 			for(i = 0;i<test_spk_pa_mode;i++){
 				msm8x16_wcd->codec_spk_ext_pa_cb(codec, 1);
 				udelay(2);
@@ -4647,6 +4784,9 @@ static int msm8x16_wcd_codec_enable_spk_ext_pa(struct snd_soc_dapm_widget *w,
 			}
 			msm8x16_wcd->codec_spk_ext_pa_cb(codec, 1);
 			mdelay(20);
+=======
+			msm8x16_wcd->codec_spk_ext_pa_cb(codec, 1);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		break;
 	case SND_SOC_DAPM_PRE_PMD:
 		dev_dbg(w->codec->dev,
@@ -4918,10 +5058,23 @@ static const struct snd_soc_dapm_widget msm8x16_wcd_dapm_widgets[] = {
 		msm8x16_wcd_codec_enable_micbias, SND_SOC_DAPM_PRE_PMU |
 		SND_SOC_DAPM_POST_PMD),
 
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_MACH_CP8675
+	SND_SOC_DAPM_MICBIAS_E("MIC BIAS External2",
+		MSM8X16_WCD_A_ANALOG_MICB_2_EN, 7, 0,
+		msm8x16_wcd_codec_enable_micbias, SND_SOC_DAPM_PRE_PMU |
+		SND_SOC_DAPM_POST_PMU | SND_SOC_DAPM_POST_PMD),
+#else
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	SND_SOC_DAPM_MICBIAS_E("MIC BIAS External2",
 		MSM8X16_WCD_A_ANALOG_MICB_2_EN, 7, 0,
 		msm8x16_wcd_codec_enable_micbias, SND_SOC_DAPM_POST_PMU |
 		SND_SOC_DAPM_POST_PMD),
+<<<<<<< HEAD
+=======
+#endif
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 
 	SND_SOC_DAPM_INPUT("AMIC3"),
@@ -5857,7 +6010,11 @@ static int msm8x16_wcd_spmi_probe(struct spmi_device *spmi)
 	}
 
 
+<<<<<<< HEAD
 	dev_dbg(&spmi->dev, "%s(%d):start addr = 0x%pa\n",
+=======
+	dev_dbg(&spmi->dev, "%s(%d):start addr = 0x%pK\n",
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		__func__, __LINE__,  &wcd_resource->start);
 
 	if (wcd_resource->start != TOMBAK_CORE_0_SPMI_ADDR)

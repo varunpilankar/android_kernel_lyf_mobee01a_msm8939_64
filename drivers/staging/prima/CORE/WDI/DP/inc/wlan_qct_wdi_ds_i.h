@@ -39,8 +39,11 @@
  *   This file contains the external API exposed by the
  *   wlan device abstarction layer module.
  *
+<<<<<<< HEAD
  *   Copyright (c) 2008 QUALCOMM Incorporated. All Rights Reserved.
  *   Qualcomm Confidential and Proprietary
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  */
 
 #include "wlan_qct_pal_type.h"
@@ -49,7 +52,11 @@
 #include "wlan_qct_pal_trace.h"
 #include "wlan_qct_wdi_ds.h"
 #include "wlan_qct_dxe.h"
+<<<<<<< HEAD
 
+=======
+#include "wlan_hal_msg.h"
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 #define WDI_DS_MAX_CHUNK_SIZE 128
 #define WDI_802_11_MAX_HEADER_LEN 40
@@ -147,11 +154,27 @@ typedef struct
    wpt_uint8   staIdx;
 } WDI_DS_staIdxPerBssIdxType;
 
+<<<<<<< HEAD
+=======
+typedef struct
+{
+   void *   pLoggingMbVirtAddress;
+   void *   pLoggingMbPhysAddress;
+   WDI_DS_LoggingSessionType loggingSession;
+} WDI_DS_LoggingMbType;
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 WDI_Status WDI_DS_MemPoolCreate(WDI_DS_BdMemPoolType *memPool, wpt_uint8 chunkSize, wpt_uint8 numChunks);
 void *WDI_DS_MemPoolAlloc(WDI_DS_BdMemPoolType *memPool, void **pPhysAddress, WDI_ResPoolType wdiResPool);
 void  WDI_DS_MemPoolFree(WDI_DS_BdMemPoolType *memPool, void *pVirtAddress, void *pPhysAddress);
 void WDI_DS_MemPoolDestroy(WDI_DS_BdMemPoolType *memPool);
 
+<<<<<<< HEAD
+=======
+WDI_Status WDI_DS_LoggingMbCreate(WDI_DS_LoggingMbType *pLoggingMailbox, wpt_uint8 size);
+void WDI_DS_LoggingMbDestroy(WDI_DS_LoggingMbType *pLoggingMailbox);
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 typedef struct
 {
   void                            *pcontext;
@@ -162,7 +185,13 @@ typedef struct
   WDI_DS_RxPacketCallback          receiveFrameCB;
   WDI_DS_TxCompleteCallback        txCompleteCB;
   WDI_DS_TxFlowControlCallback     txResourceCB;
+<<<<<<< HEAD
   WDI_DS_staIdxPerBssIdxType       staIdxPerBssIdxTable[WDI_DS_MAX_SUPPORTED_BSS];
+=======
+  WDI_DS_RxLogCallback             rxLogCB;
+  WDI_DS_staIdxPerBssIdxType       staIdxPerBssIdxTable[WDI_DS_MAX_SUPPORTED_BSS];
+  WDI_DS_LoggingMbType             loggingMbContext;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 } WDI_DS_ClientDataType;
 
 WPT_STATIC WPT_INLINE void WDI_GetBDPointers(wpt_packet *pFrame, void **pVirt, void **pPhys)

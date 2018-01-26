@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2012-2013 The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2012-2015 The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -36,9 +40,12 @@
                
    Memory management functions
   
+<<<<<<< HEAD
    Copyright 2008 (c) Qualcomm, Incorporated.  All Rights Reserved.
    
    Qualcomm Confidential and Proprietary.
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
   
   ========================================================================*/
 
@@ -48,7 +55,11 @@
   Include Files
   ------------------------------------------------------------------------*/
 #include <vos_types.h>
+<<<<<<< HEAD
 
+=======
+#include <linux/version.h>
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 /*-------------------------------------------------------------------------- 
   Preprocessor definitions and constants
   ------------------------------------------------------------------------*/
@@ -213,7 +224,22 @@ v_VOID_t vos_mem_move( v_VOID_t *pDst, const v_VOID_t *pSrc, v_SIZE_t numBytes )
                        locations are equal or not equal. 
     
   -------------------------------------------------------------------------------*/
+<<<<<<< HEAD
 v_BOOL_t vos_mem_compare( v_VOID_t *pMemory1, v_VOID_t *pMemory2, v_U32_t numBytes ); 
+=======
+v_BOOL_t vos_mem_compare(
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,18,0))
+                          const v_VOID_t *pMemory1,
+#else
+                          v_VOID_t *pMemory1,
+#endif
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,18,0))
+                          const v_VOID_t *pMemory2,
+#else
+                          v_VOID_t *pMemory2,
+#endif
+                          v_U32_t numBytes);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 
 /** ---------------------------------------------------------------------------
@@ -304,4 +330,35 @@ v_VOID_t vos_mem_dma_free( v_VOID_t *ptr );
   --------------------------------------------------------------------------*/
 v_VOID_t vos_mem_set_dma_ptr(unsigned char *dmaBuffer);
 #endif /* DMA_DIRECT_ACCESS */
+<<<<<<< HEAD
+=======
+
+
+/*----------------------------------------------------------------------------
+
+  \brief vos_mem_vmalloc() - allocate memory which is virtually contiguous
+
+  Wrapper function for vmalloc
+
+  \param size memory size to be allocated
+
+  \return on success returns starting address of allocated memory or NULL
+
+  --------------------------------------------------------------------------*/
+v_VOID_t * vos_mem_vmalloc(v_SIZE_t size);
+
+/*----------------------------------------------------------------------------
+
+  \brief vos_mem_vfree() - free memory allocated by vmalloc
+
+  Wrapper function for vfree
+
+  \param address starting address of the memory to be freed
+
+  \return Nothing
+
+  --------------------------------------------------------------------------*/
+v_VOID_t vos_mem_vfree(void *addr);
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #endif // __VOSS_LOCK_H

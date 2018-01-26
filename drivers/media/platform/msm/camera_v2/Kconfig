@@ -181,6 +181,7 @@ config OV7695
 		and snapshot. The preview and snapshot resolution shall be
 		VGA. It does not support auto focus. It supports
 		few special effects like saturation.
+<<<<<<< HEAD
 		
 config OV2685
 	bool "Sensor OV2685 (YUV 2MP)"
@@ -196,6 +197,8 @@ config ALTEK_AF
 	depends on MSMB_CAMERA
 	---help---
 		ALTEK_AF need to modify kernel af driver in CKT merageplus01a
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 config SP1628
 	bool "Sensor SP1628 (YUV 720P)"

@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2012-2013 The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2012-2015 The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -38,7 +42,11 @@
  */
 
 #include "aniGlobal.h"
+<<<<<<< HEAD
 #include "wniCfgSta.h"
+=======
+#include "wniCfg.h"
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #include "cfgApi.h"
 
 
@@ -144,8 +152,13 @@ limDeleteStaContext(tpAniSirGlobal pMac, tpSirMsgQ limMsg)
              if((eLIM_BT_AMP_AP_ROLE == psessionEntry->limSystemRole) ||
                      (eLIM_AP_ROLE == psessionEntry->limSystemRole))
              {
+<<<<<<< HEAD
                  PELOG1(limLog(pMac, LOG1, FL("SAP:lim Delete Station Context (staId: %d, assocId: %d) "),
                              pMsg->staId, pMsg->assocId);)
+=======
+                 limLog(pMac, LOG1, FL("SAP:lim Delete Station Context (staId: %d, assocId: %d) "),
+                             pMsg->staId, pMsg->assocId);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
                  /*
                   * Check if Deauth/Disassoc is triggered from Host.
                   * If mlmState is in some transient state then
@@ -226,6 +239,7 @@ limDeleteStaContext(tpAniSirGlobal pMac, tpSirMsgQ limMsg)
                         eSIR_MAC_DISASSOC_DUE_TO_INACTIVITY_REASON;
                     pStaDs->mlmStaContext.cleanupTrigger = eLIM_LINK_MONITORING_DEAUTH;
 
+<<<<<<< HEAD
                    /** Set state to mlm State to eLIM_MLM_WT_DEL_STA_RSP_STATE
                     * This is to address the issue of race condition between
                     * disconnect request from the HDD and deauth from
@@ -234,6 +248,16 @@ limDeleteStaContext(tpAniSirGlobal pMac, tpSirMsgQ limMsg)
                     * and thus mlmStaContext.cleanupTrigger will not be overwritten.
                     */
                     pStaDs->mlmStaContext.mlmState   = eLIM_MLM_WT_DEL_STA_RSP_STATE;
+=======
+                    if (pStaDs->isDisassocDeauthInProgress)
+                    {
+                        limLog(pMac, LOGE, FL("No need to cleanup as already"
+                               "disassoc or deauth in progress"));
+                        return;
+                    }
+                    else
+                        pStaDs->isDisassocDeauthInProgress++;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
                     // Issue Deauth Indication to SME.
                     vos_mem_copy((tANI_U8 *) &mlmDeauthInd.peerMacAddr,
@@ -300,6 +324,20 @@ limTriggerSTAdeletion(tpAniSirGlobal pMac, tpDphHashNode pStaDs, tpPESession pse
         PELOGW(limLog(pMac, LOGW, FL("Skip STA deletion (invalid STA)"));)
         return;
     }
+<<<<<<< HEAD
+=======
+
+    if (pStaDs->sta_deletion_in_progress) {
+         /* Already in the process of deleting context for the peer */
+        limLog(pMac, LOG1,
+            FL("Deletion is in progress (%d) for peer:%p in mlmState %d"),
+            pStaDs->sta_deletion_in_progress, pStaDs->staAddr,
+            pStaDs->mlmStaContext.mlmState);
+         return;
+     }
+     pStaDs->sta_deletion_in_progress = true;
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     /**
      * MAC based Authentication was used. Trigger
      * Deauthentication frame to peer since it will
@@ -346,7 +384,12 @@ limTriggerSTAdeletion(tpAniSirGlobal pMac, tpDphHashNode pStaDs, tpPESession pse
     msgLength += sizeof(tSirMacAddr);
 
     //reasonCode 
+<<<<<<< HEAD
     limCopyU16((tANI_U8*)pBuf, (tANI_U16)eLIM_LINK_MONITORING_DISASSOC);
+=======
+    limCopyU16((tANI_U8*)pBuf,
+            (tANI_U16)eSIR_MAC_DISASSOC_DUE_TO_INACTIVITY_REASON);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     pBuf += sizeof(tANI_U16);
     msgLength += sizeof(tANI_U16);
 
@@ -567,8 +610,13 @@ void limHandleHeartBeatFailure(tpAniSirGlobal pMac,tpPESession psessionEntry)
             * or in states other than link-established state.
             * Log error.
             */
+<<<<<<< HEAD
         PELOG1(limLog(pMac, LOG1, FL("received heartbeat timeout in state %d"),
                psessionEntry->limMlmState);)
+=======
+        limLog(pMac, LOG1, FL("received heartbeat timeout in state %d"),
+               psessionEntry->limMlmState);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
         limPrintMlmState(pMac, LOG1, psessionEntry->limMlmState);
         pMac->lim.gLimHBfailureCntInOtherStates++;
         limReactivateHeartBeatTimer(pMac, psessionEntry);

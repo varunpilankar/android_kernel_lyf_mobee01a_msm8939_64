@@ -16,6 +16,10 @@ obj-$(CONFIG_IOSCHED_NOOP)	+= noop-iosched.o
 obj-$(CONFIG_IOSCHED_DEADLINE)	+= deadline-iosched.o
 obj-$(CONFIG_IOSCHED_ROW)	+= row-iosched.o
 obj-$(CONFIG_IOSCHED_CFQ)	+= cfq-iosched.o
+<<<<<<< HEAD
+=======
+obj-$(CONFIG_IOSCHED_BFQ)	+= bfq-iosched.o
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 obj-$(CONFIG_IOSCHED_TEST)	+= test-iosched.o
 
 obj-$(CONFIG_BLOCK_COMPAT)	+= compat_ioctl.o

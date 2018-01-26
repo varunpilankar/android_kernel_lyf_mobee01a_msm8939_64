@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2012-2013 The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2012-2016 The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -142,7 +146,11 @@ typedef struct
 #define QCSAP_IOCTL_COMMIT            (SIOCIWFIRSTPRIV+2)
 
 #define QCSAP_IOCTL_GET_STAWPAIE      (SIOCIWFIRSTPRIV+4)
+<<<<<<< HEAD
 #define QCSAP_IOCTL_SETWPAIE          (SIOCIWFIRSTPRIV+5)
+=======
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #define QCSAP_IOCTL_STOPBSS           (SIOCIWFIRSTPRIV+6)
 #define QCSAP_IOCTL_VERSION           (SIOCIWFIRSTPRIV+7)
 #define QCSAP_IOCTL_GET_WPS_PBC_PROBE_REQ_IES       (SIOCIWFIRSTPRIV+8)
@@ -184,6 +192,10 @@ enum {
     QCSAP_PARAM_AUTO_CHANNEL = 9,
     QCSAP_PARAM_SET_MC_RATE = 10,
     QCSAP_PARAM_SET_AUTO_CHANNEL = 11,
+<<<<<<< HEAD
+=======
+    QCSAP_PARAM_GET_FRAME_LOGS = 12,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 };
 
 int iw_softap_get_channel_list(struct net_device *dev, 

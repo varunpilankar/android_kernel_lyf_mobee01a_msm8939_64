@@ -3,7 +3,11 @@
  *
  * Copyright (C) Linaro 2012
  * Author: <benjamin.gaignard@linaro.org> for ST-Ericsson.
+<<<<<<< HEAD
  * Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2013-2014,2016 The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This software is licensed under the terms of the GNU General Public
  * License version 2, as published by the Free Software Foundation, and
@@ -487,7 +491,11 @@ retry:
 
 	/* keep this for memory release */
 	buffer->priv_virt = info;
+<<<<<<< HEAD
 	dev_dbg(sheap->dev, "Allocate buffer %p\n", buffer);
+=======
+	dev_dbg(sheap->dev, "Allocate buffer %pK\n", buffer);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	return info;
 
 err:
@@ -571,7 +579,11 @@ static void ion_secure_cma_free(struct ion_buffer *buffer)
 	struct ion_secure_cma_buffer_info *info = buffer->priv_virt;
 	int ret = 0;
 
+<<<<<<< HEAD
 	dev_dbg(sheap->dev, "Release buffer %p\n", buffer);
+=======
+	dev_dbg(sheap->dev, "Release buffer %pK\n", buffer);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	if (msm_secure_v2_is_supported())
 		ret = msm_ion_unsecure_table(info->table);
 	atomic_sub(buffer->size, &sheap->total_allocated);
@@ -593,8 +605,13 @@ static int ion_secure_cma_phys(struct ion_heap *heap, struct ion_buffer *buffer,
 		container_of(heap, struct ion_cma_secure_heap, heap);
 	struct ion_secure_cma_buffer_info *info = buffer->priv_virt;
 
+<<<<<<< HEAD
 	dev_dbg(sheap->dev, "Return buffer %p physical address 0x%pa\n", buffer,
 		&info->phys);
+=======
+	dev_dbg(sheap->dev, "Return buffer %pK physical address 0x%pa\n",
+		buffer, &info->phys);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	*addr = info->phys;
 	*len = buffer->size;

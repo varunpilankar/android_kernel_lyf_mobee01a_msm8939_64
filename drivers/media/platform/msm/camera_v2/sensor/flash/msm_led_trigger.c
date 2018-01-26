@@ -82,6 +82,7 @@ static int32_t msm_led_trigger_config(struct msm_led_flash_ctrl_t *fctrl,
 						curr_l);
 			}
 		break;
+<<<<<<< HEAD
     case MSM_CAMERA_LED_PRE:
 		for (i = 0; i < fctrl->torch_num_sources; i++)
 			if (fctrl->torch_trigger[i]) {
@@ -91,6 +92,8 @@ static int32_t msm_led_trigger_config(struct msm_led_flash_ctrl_t *fctrl,
 				led_trigger_event(fctrl->torch_trigger[i],curr_l);
 			}
 		break;
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	case MSM_CAMERA_LED_HIGH:
 		/* Torch off */
@@ -283,7 +286,10 @@ static int32_t msm_led_trigger_probe(struct platform_device *pdev)
 			if (flashtype == GPIO_FLASH) {
 				/* use fake current */
 				fctrl.torch_op_current[i] = LED_HALF;
+<<<<<<< HEAD
 				fctrl.pre_op_current[i] = LED_PRE;
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			} else {
 				rc = of_property_read_u32(flash_src_node,
 					"qcom,current",

@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2012-2013 The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2012-2013, 2016 The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -55,6 +59,10 @@ typedef uint64    tANI_U64;
 
 typedef byte      tANI_BYTE;
 typedef boolean   tANI_BOOLEAN;
+<<<<<<< HEAD
 typedef uint32    tANI_TIMESTAMP;
+=======
+typedef unsigned long   tANI_TIMESTAMP;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 #endif /*__LEGACYPALTYPES_H__*/

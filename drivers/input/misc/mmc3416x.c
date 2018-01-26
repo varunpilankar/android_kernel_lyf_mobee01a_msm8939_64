@@ -140,6 +140,11 @@ static struct sensors_classdev sensors_cdev = {
 	.sensors_poll_delay = NULL,
 };
 
+<<<<<<< HEAD
+=======
+static struct mmc3416x_data *mmc3416x_data_struct;
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 static int mmc3416x_read_xyz(struct mmc3416x_data *memsic,
 		struct mmc3416x_vec *vec)
 {
@@ -151,6 +156,10 @@ static int mmc3416x_read_xyz(struct mmc3416x_data *memsic,
 
 	mutex_lock(&memsic->ecompass_lock);
 
+<<<<<<< HEAD
+=======
+#ifndef CONFIG_SENSORS_MMC3416X_ALLOW_OVERFLOW
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	/* mmc3416x need to be set periodly to avoid overflow */
 	if (time_after(jiffies, memsic->timeout)) {
 		rc = regmap_write(memsic->regmap, MMC3416X_REG_CTRL,
@@ -188,6 +197,10 @@ static int mmc3416x_read_xyz(struct mmc3416x_data *memsic,
 			goto exit;
 		}
 	}
+<<<<<<< HEAD
+=======
+#endif /* !CONFIG_SENSORS_MMC_3416X_ALLOW_OVERFLOW */
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 	/* Read MD */
 	rc = regmap_read(memsic->regmap, MMC3416X_REG_DS, &status);
@@ -609,6 +622,99 @@ static struct regmap_config mmc3416x_regmap_config = {
 	.val_bits = 8,
 };
 
+<<<<<<< HEAD
+=======
+static int mmc3416x_open(struct inode *inode, struct file *file)
+{
+	return nonseekable_open(inode, file);
+}
+
+static int mmc3416x_release(struct inode *inode, struct file *file)
+{
+	return 0;
+}
+
+static long mmc3416x_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
+{
+	int rc = -1;
+
+	switch (cmd) {
+	case MMC3416X_IOC_SET:
+		rc = regmap_write(mmc3416x_data_struct->regmap, MMC3416X_REG_CTRL,
+				MMC3416X_CTRL_REFILL);
+		if (rc) {
+			dev_err(&mmc3416x_data_struct->i2c->dev, "write reg %d failed at %d.(%d)\n",
+					MMC3416X_REG_CTRL, __LINE__, rc);
+			printk("write reg %d failed at %d.(%d)\n",
+					MMC3416X_REG_CTRL, __LINE__, rc);
+			return -EFAULT;
+		}
+
+		/* Time from refill cap to SET */
+		msleep(MMC3416X_DELAY_SET_MS);
+
+		rc = regmap_write(mmc3416x_data_struct->regmap, MMC3416X_REG_CTRL,
+				MMC3416X_CTRL_SET);
+		if (rc) {
+			dev_err(&mmc3416x_data_struct->i2c->dev, "write reg %d failed at %d.(%d)\n",
+					MMC3416X_REG_CTRL, __LINE__, rc);
+			printk("write reg %d failed at %d.(%d)\n",
+					MMC3416X_REG_CTRL, __LINE__, rc);
+			return -EFAULT;
+		}
+		dev_dbg(&mmc3416x_data_struct->i2c->dev, "mmc3416x reset is done\n");
+		printk("mmc3416x reset is done\n");
+		break;
+
+	case MMC3416X_IOC_RESET:
+		rc = regmap_write(mmc3416x_data_struct->regmap, MMC3416X_REG_CTRL,
+				MMC3416X_CTRL_REFILL);
+		if (rc) {
+			dev_err(&mmc3416x_data_struct->i2c->dev, "write reg %d failed at %d.(%d)\n",
+					MMC3416X_REG_CTRL, __LINE__, rc);
+			printk("write reg %d failed at %d.(%d)\n",
+					MMC3416X_REG_CTRL, __LINE__, rc);
+			return -EFAULT;
+		}
+
+		/* Time from refill cap to SET */
+		msleep(MMC3416X_DELAY_SET_MS);
+
+		rc = regmap_write(mmc3416x_data_struct->regmap, MMC3416X_REG_CTRL,
+				MMC3416X_CTRL_RESET);
+		if (rc) {
+			dev_err(&mmc3416x_data_struct->i2c->dev, "write reg %d failed at %d.(%d)\n",
+					MMC3416X_REG_CTRL, __LINE__, rc);
+			printk("write reg %d failed at %d.(%d)\n",
+					MMC3416X_REG_CTRL, __LINE__, rc);
+			return -EFAULT;
+		}
+
+		dev_dbg(&mmc3416x_data_struct->i2c->dev, "mmc3416x reset is done\n");
+		printk("mmc3416x reset is done\n");
+		break;
+
+	default:
+		break;
+	}
+
+	return 0;
+}
+
+static struct file_operations mmc3416x_fops = {
+	.owner		= THIS_MODULE,
+	.open		= mmc3416x_open,
+	.release	= mmc3416x_release,
+	.unlocked_ioctl = mmc3416x_ioctl,
+};
+
+static struct miscdevice mmc3416x_device = {
+	.minor = MISC_DYNAMIC_MINOR,
+	.name = MMC3416X_I2C_NAME,
+	.fops = &mmc3416x_fops,
+};
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 static int mmc3416x_probe(struct i2c_client *client, const struct i2c_device_id *id)
 {
 	int res = 0;
@@ -630,6 +736,11 @@ static int mmc3416x_probe(struct i2c_client *client, const struct i2c_device_id 
 		goto out;
 	}
 
+<<<<<<< HEAD
+=======
+	mmc3416x_data_struct = memsic;
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	if (client->dev.of_node) {
 		res = mmc3416x_parse_dt(client, memsic);
 		if (res) {
@@ -696,6 +807,15 @@ static int mmc3416x_probe(struct i2c_client *client, const struct i2c_device_id 
 		goto out_register_classdev;
 	}
 
+<<<<<<< HEAD
+=======
+	res = misc_register(&mmc3416x_device);
+	if (res) {
+		pr_err("%s: mmc3416x_device register failed\n", __FUNCTION__);
+		goto out_deregister;
+	}
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	res = mmc3416x_power_set(memsic, false);
 	if (res) {
 		dev_err(&client->dev, "Power off failed\n");
@@ -710,6 +830,11 @@ static int mmc3416x_probe(struct i2c_client *client, const struct i2c_device_id 
 
 out_power_set:
 	sensors_classdev_unregister(&memsic->cdev);
+<<<<<<< HEAD
+=======
+out_deregister:
+	misc_deregister(&mmc3416x_device);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 out_register_classdev:
 	if (memsic->data_wq)
 		destroy_workqueue(memsic->data_wq);
@@ -729,6 +854,10 @@ static int mmc3416x_remove(struct i2c_client *client)
 	sensors_classdev_unregister(&memsic->cdev);
 	if (memsic->data_wq)
 		destroy_workqueue(memsic->data_wq);
+<<<<<<< HEAD
+=======
+	misc_deregister(&mmc3416x_device);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	mmc3416x_power_deinit(memsic);
 
 	if (memsic->idev)
@@ -811,7 +940,22 @@ static struct i2c_driver mmc3416x_driver = {
 	},
 };
 
+<<<<<<< HEAD
 module_i2c_driver(mmc3416x_driver);
+=======
+static int __init mmc3416x_init(void)
+{
+	return i2c_add_driver(&mmc3416x_driver);
+}
+
+static void __exit mmc3416x_exit(void)
+{
+	i2c_del_driver(&mmc3416x_driver);
+}
+
+late_initcall(mmc3416x_init);
+module_exit(mmc3416x_exit);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 MODULE_DESCRIPTION("MEMSIC MMC3416X Magnetic Sensor Driver");
 MODULE_LICENSE("GPL");

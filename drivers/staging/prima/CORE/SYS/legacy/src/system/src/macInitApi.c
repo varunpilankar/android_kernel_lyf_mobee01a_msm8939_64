@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2012-2013 The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2012-2015 The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -197,7 +201,11 @@ tSirRetStatus macOpen(tHalHandle *pHalHandle, tHddHandle hHdd, tMacOpenParameter
      */
 
     /* Allocate pMac */
+<<<<<<< HEAD
     pMac = vos_mem_malloc(sizeof(tAniSirGlobal));
+=======
+    pMac = vos_mem_vmalloc(sizeof(tAniSirGlobal));
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     if ( NULL == pMac )
         return eSIR_FAILURE;
 
@@ -219,11 +227,25 @@ tSirRetStatus macOpen(tHalHandle *pHalHandle, tHddHandle hHdd, tMacOpenParameter
     {
         /* Call various PE (and other layer init here) */
         if( eSIR_SUCCESS != logInit(pMac))
+<<<<<<< HEAD
            return eSIR_FAILURE;
 
         /* Call routine to initialize CFG data structures */
         if( eSIR_SUCCESS != cfgInit(pMac) )
             return eSIR_FAILURE;
+=======
+        {
+           vos_mem_vfree(pMac);
+           return eSIR_FAILURE;
+        }
+
+        /* Call routine to initialize CFG data structures */
+        if( eSIR_SUCCESS != cfgInit(pMac) )
+        {
+            vos_mem_vfree(pMac);
+            return eSIR_FAILURE;
+        }
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
         sysInitGlobals(pMac);
     }
@@ -253,7 +275,11 @@ tSirRetStatus macClose(tHalHandle hHal)
     logDeinit(pMac);
 
     // Finally, de-allocate the global MAC datastructure:
+<<<<<<< HEAD
     vos_mem_free( pMac );
+=======
+    vos_mem_vfree( pMac );
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
     return eSIR_SUCCESS;
 }

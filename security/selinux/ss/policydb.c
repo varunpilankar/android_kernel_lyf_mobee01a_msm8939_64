@@ -149,7 +149,11 @@ static struct policydb_compat_info policydb_compat[] = {
 		.ocon_num	= OCON_NUM,
 	},
 	{
+<<<<<<< HEAD
 		.version	= POLICYDB_VERSION_XPERMS_IOCTL,
+=======
+		.version	= POLICYDB_VERSION_IOCTL_OPERATIONS,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		.sym_num	= SYM_NUM,
 		.ocon_num	= OCON_NUM,
 	},

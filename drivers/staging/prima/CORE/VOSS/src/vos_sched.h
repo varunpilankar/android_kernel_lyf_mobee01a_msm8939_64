@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2012-2014 The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2012-2015 The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -42,9 +46,12 @@
    by vOSS.
     
   
+<<<<<<< HEAD
    Copyright 2008 (c) Qualcomm, Incorporated.  All Rights Reserved.
    
    Qualcomm Confidential and Proprietary.
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
   
   ========================================================================*/
 
@@ -77,6 +84,7 @@
 #include "i_vos_packet.h"
 #include <linux/wait.h>
 #include <linux/wakelock.h>
+<<<<<<< HEAD
 
 #define TX_POST_EVENT_MASK               0x001
 #define TX_SUSPEND_EVENT_MASK            0x002
@@ -92,6 +100,28 @@
 #define WD_CHIP_RESET_EVENT_MASK         0x004
 #define WD_WLAN_SHUTDOWN_EVENT_MASK      0x008
 #define WD_WLAN_REINIT_EVENT_MASK        0x010
+=======
+#include <vos_timer.h>
+
+
+#define TX_POST_EVENT               0x000
+#define TX_SUSPEND_EVENT            0x001
+#define MC_POST_EVENT               0x000
+#define MC_SUSPEND_EVENT            0x001
+#define RX_POST_EVENT               0x000
+#define RX_SUSPEND_EVENT            0x001
+#define TX_SHUTDOWN_EVENT           0x002
+#define MC_SHUTDOWN_EVENT           0x002
+#define RX_SHUTDOWN_EVENT           0x002
+
+#define WD_POST_EVENT               0x000
+#define WD_SHUTDOWN_EVENT           0x001
+#define WD_CHIP_RESET_EVENT         0x002
+#define WD_WLAN_SHUTDOWN_EVENT      0x003
+#define WD_WLAN_REINIT_EVENT        0x004
+#define WD_WLAN_DETECT_THREAD_STUCK 0x005
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
  
  
@@ -263,6 +293,17 @@ typedef struct _VosWatchdogContext
 
    /* Lock for preventing multiple reset being triggered simultaneously */
    spinlock_t wdLock;
+<<<<<<< HEAD
+=======
+   /* Timer to detect thread stuck issue */
+   vos_timer_t threadStuckTimer;
+   /* Count for each thread to determine thread stuck */
+   unsigned int mcThreadStuckCount;
+   unsigned int txThreadStuckCount;
+   unsigned int rxThreadStuckCount;
+   /* lock to synchronize access to the thread stuck counts */
+   spinlock_t thread_stuck_lock;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 } VosWatchdogContext, *pVosWatchdogContext;
 
@@ -337,6 +378,14 @@ typedef struct _VosContextType
    /* NV BIN Version */
    eNvVersionType     nvVersion;
 
+<<<<<<< HEAD
+=======
+   /* Roam delay statistic enabled in ini*/
+   v_U8_t             roamDelayStatsEnabled;
+
+   /*Fw log complete Event*/
+   vos_event_t fwLogsComplete;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 } VosContextType, *pVosContextType;
 
 
@@ -347,6 +396,10 @@ typedef struct _VosContextType
  
 int vos_sched_is_tx_thread(int threadID);
 int vos_sched_is_rx_thread(int threadID);
+<<<<<<< HEAD
+=======
+int vos_sched_is_mc_thread(int threadID);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 /*---------------------------------------------------------------------------
   
   \brief vos_sched_open() - initialize the vOSS Scheduler  
@@ -485,6 +538,10 @@ VOS_STATUS vos_watchdog_close ( v_PVOID_t pVosContext );
 VOS_STATUS vos_mq_init(pVosMqType pMq);
 void vos_mq_deinit(pVosMqType pMq);
 void vos_mq_put(pVosMqType pMq, pVosMsgWrapper pMsgWrapper);
+<<<<<<< HEAD
+=======
+void vos_mq_put_front(pVosMqType pMq, pVosMsgWrapper pMsgWrapper);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 pVosMsgWrapper vos_mq_get(pVosMqType pMq);
 v_BOOL_t vos_is_mq_empty(pVosMqType pMq);
 pVosSchedContext get_vos_sched_ctxt(void);
@@ -499,9 +556,19 @@ void clearWlanResetReason(void);
 void vos_timer_module_init( void );
 VOS_STATUS vos_watchdog_wlan_shutdown(void);
 VOS_STATUS vos_watchdog_wlan_re_init(void);
+<<<<<<< HEAD
 v_BOOL_t isWDresetInProgress(void);
 v_BOOL_t isSsrPanicOnFailure(void);
 void vos_ssr_protect(const char *caller_func);
 void vos_ssr_unprotect(const char *caller_func);
+=======
+v_BOOL_t isSsrPanicOnFailure(void);
+void vos_ssr_protect(const char *caller_func);
+void vos_ssr_unprotect(const char *caller_func);
+void vos_wd_reset_thread_stuck_count(int threadId);
+bool vos_is_wd_thread(int threadId);
+void vos_dump_stack(uint8_t value);
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 #endif // #if !defined __VOSS_SCHED_H

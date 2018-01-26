@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2012-2013 The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2011-2015 The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -45,7 +49,11 @@
 #include "sirMacPropExts.h"
 #include "sirCommon.h"
 #include "sirDebug.h"
+<<<<<<< HEAD
 #include "wniCfgSta.h"
+=======
+#include "wniCfg.h"
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #include "csrApi.h"
 #include "sapApi.h"
 #include "dot11f.h"
@@ -358,6 +366,10 @@ typedef struct tLimPreAuthNode
     tANI_U8             rsvd:5;
     TX_TIMER            timer;
     tANI_U16            seqNo;
+<<<<<<< HEAD
+=======
+    v_TIME_t            timestamp;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 }tLimPreAuthNode, *tpLimPreAuthNode;
 
 // Pre-authentication table definition
@@ -670,6 +682,7 @@ typedef struct sLimSpecMgmtInfo
     tANI_BOOLEAN       fRadarIntrConfigured; /* Whether radar interrupt has been configured */
 }tLimSpecMgmtInfo, *tpLimSpecMgmtInfo;
 
+<<<<<<< HEAD
 #ifdef FEATURE_WLAN_TDLS_INTERNAL
 typedef struct sLimDisResultList
 {
@@ -678,6 +691,8 @@ typedef struct sLimDisResultList
 }tLimDisResultList ;
 #endif
 
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #ifdef FEATURE_WLAN_TDLS
 /*
  * Peer info needed for TDLS setup..

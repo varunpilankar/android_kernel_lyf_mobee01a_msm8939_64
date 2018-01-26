@@ -1,6 +1,10 @@
 /*
  * Copyright (C) 2011 Google, Inc
+<<<<<<< HEAD
  * Copyright (c) 2011-2014, The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2011-2014,2016 The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -99,7 +103,11 @@ static int secure_buffer_change_table(struct sg_table *table, int lock)
 		u32 base;
 		u64 tmp = sg_dma_address(sg);
 		WARN((tmp >> 32) & 0xffffffff,
+<<<<<<< HEAD
 			"%s: there are ones in the upper 32 bits of the sg at %p! They will be truncated! Address: 0x%llx\n",
+=======
+			"%s: there are ones in the upper 32 bits of the sg at %pK! They will be truncated! Address: 0x%llx\n",
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			__func__, sg, tmp);
 		if (unlikely(!size || (size % V2_CHUNK_SIZE))) {
 			WARN(1,

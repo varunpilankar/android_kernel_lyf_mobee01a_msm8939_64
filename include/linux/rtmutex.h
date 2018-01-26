@@ -88,11 +88,17 @@ extern void __rt_mutex_init(struct rt_mutex *lock, const char *name);
 extern void rt_mutex_destroy(struct rt_mutex *lock);
 
 extern void rt_mutex_lock(struct rt_mutex *lock);
+<<<<<<< HEAD
 extern int rt_mutex_lock_interruptible(struct rt_mutex *lock,
 						int detect_deadlock);
 extern int rt_mutex_timed_lock(struct rt_mutex *lock,
 					struct hrtimer_sleeper *timeout,
 					int detect_deadlock);
+=======
+extern int rt_mutex_lock_interruptible(struct rt_mutex *lock);
+extern int rt_mutex_timed_lock(struct rt_mutex *lock,
+			       struct hrtimer_sleeper *timeout);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 extern int rt_mutex_trylock(struct rt_mutex *lock);
 

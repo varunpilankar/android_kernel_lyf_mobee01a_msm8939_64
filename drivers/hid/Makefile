@@ -49,6 +49,10 @@ obj-$(CONFIG_HID_DRAGONRISE)	+= hid-dr.o
 obj-$(CONFIG_HID_EMS_FF)	+= hid-emsff.o
 obj-$(CONFIG_HID_ELECOM)	+= hid-elecom.o
 obj-$(CONFIG_HID_EZKEY)		+= hid-ezkey.o
+<<<<<<< HEAD
+=======
+obj-$(CONFIG_HID_FIIO)		+= hid-fiio.o
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 obj-$(CONFIG_HID_GYRATION)	+= hid-gyration.o
 obj-$(CONFIG_HID_HOLTEK)	+= hid-holtek-kbd.o
 obj-$(CONFIG_HID_HOLTEK)	+= hid-holtekff.o

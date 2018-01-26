@@ -50,3 +50,8 @@ obj-$(CONFIG_FB_MSM_QPIC_ILI_QVGA_PANEL) += qpic_panel_ili_qvga.o
 
 obj-$(CONFIG_FB_MSM_MDSS) += mdss_fb.o mdss_util.o
 obj-$(CONFIG_COMPAT) += mdss_compat_utils.o
+<<<<<<< HEAD
+=======
+
+obj-$(CONFIG_FB_MSM_MDSS) += mdss_livedisplay.o
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed

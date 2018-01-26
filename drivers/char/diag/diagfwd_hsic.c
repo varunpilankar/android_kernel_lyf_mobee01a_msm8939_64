@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2012-2014, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2012-2014, 2016, The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -354,7 +358,11 @@ static int hsic_write(int id, unsigned char *buf, int len, int ctxt)
 		return -EINVAL;
 	}
 	if (!buf || len <= 0) {
+<<<<<<< HEAD
 		pr_err_ratelimited("diag: In %s, ch %d, invalid buf %p len %d\n",
+=======
+		pr_err_ratelimited("diag: In %s, ch %d, invalid buf %pK len %d\n",
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				   __func__, id, buf, len);
 		return -EINVAL;
 	}

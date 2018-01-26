@@ -1,6 +1,10 @@
 /* Qualcomm CE device driver.
  *
+<<<<<<< HEAD
  * Copyright (c) 2010-2014, The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2010-2016, The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -43,6 +47,13 @@
 #define CACHE_LINE_SIZE 32
 #define CE_SHA_BLOCK_SIZE SHA256_BLOCK_SIZE
 
+<<<<<<< HEAD
+=======
+#ifndef U32_MAX
+#define U32_MAX ((u32)(~0U))
+#endif
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 /* are FIPS integrity tests done ?? */
 bool is_fips_qcedev_integritytest_done;
 
@@ -614,7 +625,11 @@ static int qcedev_sha_update_max_xfer(struct qcedev_async_req *qcedev_areq,
 		while (len > 0) {
 			user_src =
 			(void __user *)qcedev_areq->sha_op_req.data[i].vaddr;
+<<<<<<< HEAD
 			if (user_src && __copy_from_user(k_src,
+=======
+			if (user_src && copy_from_user(k_src,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				(void __user *)user_src,
 				qcedev_areq->sha_op_req.data[i].len))
 				return -EFAULT;
@@ -650,7 +665,11 @@ static int qcedev_sha_update_max_xfer(struct qcedev_async_req *qcedev_areq,
 
 	/* Copy data from user src(s) */
 	user_src = (void __user *)qcedev_areq->sha_op_req.data[0].vaddr;
+<<<<<<< HEAD
 	if (user_src && __copy_from_user(k_src,
+=======
+	if (user_src && copy_from_user(k_src,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				(void __user *)user_src,
 				qcedev_areq->sha_op_req.data[0].len)) {
 		kzfree(k_buf_src);
@@ -659,7 +678,11 @@ static int qcedev_sha_update_max_xfer(struct qcedev_async_req *qcedev_areq,
 	k_src += qcedev_areq->sha_op_req.data[0].len;
 	for (i = 1; i < qcedev_areq->sha_op_req.entries; i++) {
 		user_src = (void __user *)qcedev_areq->sha_op_req.data[i].vaddr;
+<<<<<<< HEAD
 		if (user_src && __copy_from_user(k_src,
+=======
+		if (user_src && copy_from_user(k_src,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 					(void __user *)user_src,
 					qcedev_areq->sha_op_req.data[i].len)) {
 			kzfree(k_buf_src);
@@ -713,6 +736,7 @@ static int qcedev_sha_update(struct qcedev_async_req *qcedev_areq,
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
 	/* verify address src(s) */
 	for (i = 0; i < qcedev_areq->sha_op_req.entries; i++)
 		if (!access_ok(VERIFY_READ,
@@ -720,6 +744,8 @@ static int qcedev_sha_update(struct qcedev_async_req *qcedev_areq,
 			qcedev_areq->sha_op_req.data[i].len))
 			return -EFAULT;
 
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	if (qcedev_areq->sha_op_req.data_len > QCE_MAX_OPER_DATA) {
 
 		struct	qcedev_sha_op_req *saved_req;
@@ -884,6 +910,7 @@ static int qcedev_hash_cmac(struct qcedev_async_req *qcedev_areq,
 
 	total = qcedev_areq->sha_op_req.data_len;
 
+<<<<<<< HEAD
 	/* verify address src(s) */
 	for (i = 0; i < qcedev_areq->sha_op_req.entries; i++)
 		if (!access_ok(VERIFY_READ,
@@ -897,6 +924,9 @@ static int qcedev_hash_cmac(struct qcedev_async_req *qcedev_areq,
 				qcedev_areq->sha_op_req.authklen))
 			return -EFAULT;
 	if (__copy_from_user(&handle->sha_ctxt.authkey[0],
+=======
+	if (copy_from_user(&handle->sha_ctxt.authkey[0],
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				(void __user *)qcedev_areq->sha_op_req.authkey,
 				qcedev_areq->sha_op_req.authklen))
 		return -EFAULT;
@@ -916,7 +946,11 @@ static int qcedev_hash_cmac(struct qcedev_async_req *qcedev_areq,
 	for (i = 0; i < qcedev_areq->sha_op_req.entries; i++) {
 		user_src =
 			(void __user *)qcedev_areq->sha_op_req.data[i].vaddr;
+<<<<<<< HEAD
 		if (user_src && __copy_from_user(k_src, (void __user *)user_src,
+=======
+		if (user_src && copy_from_user(k_src, (void __user *)user_src,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				qcedev_areq->sha_op_req.data[i].len)) {
 			kzfree(k_buf_src);
 			return -EFAULT;
@@ -944,12 +978,16 @@ static int qcedev_set_hmac_auth_key(struct qcedev_async_req *areq,
 
 	if (areq->sha_op_req.authklen <= QCEDEV_MAX_KEY_SIZE) {
 		qcedev_sha_init(areq, handle);
+<<<<<<< HEAD
 		/* Verify Source Address */
 		if (!access_ok(VERIFY_READ,
 				(void __user *)areq->sha_op_req.authkey,
 				areq->sha_op_req.authklen))
 			return -EFAULT;
 		if (__copy_from_user(&handle->sha_ctxt.authkey[0],
+=======
+		if (copy_from_user(&handle->sha_ctxt.authkey[0],
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				(void __user *)areq->sha_op_req.authkey,
 				areq->sha_op_req.authklen))
 			return -EFAULT;
@@ -1162,7 +1200,11 @@ static int qcedev_vbuf_ablk_cipher_max_xfer(struct qcedev_async_req *areq,
 		byteoffset = areq->cipher_op_req.byteoffset;
 
 	user_src = (void __user *)areq->cipher_op_req.vbuf.src[0].vaddr;
+<<<<<<< HEAD
 	if (user_src && __copy_from_user((k_align_src + byteoffset),
+=======
+	if (user_src && copy_from_user((k_align_src + byteoffset),
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				(void __user *)user_src,
 				areq->cipher_op_req.vbuf.src[0].len))
 		return -EFAULT;
@@ -1172,7 +1214,11 @@ static int qcedev_vbuf_ablk_cipher_max_xfer(struct qcedev_async_req *areq,
 	for (i = 1; i < areq->cipher_op_req.entries; i++) {
 		user_src =
 			(void __user *)areq->cipher_op_req.vbuf.src[i].vaddr;
+<<<<<<< HEAD
 		if (user_src && __copy_from_user(k_align_src,
+=======
+		if (user_src && copy_from_user(k_align_src,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 					(void __user *)user_src,
 					areq->cipher_op_req.vbuf.src[i].len)) {
 			return -EFAULT;
@@ -1204,7 +1250,11 @@ static int qcedev_vbuf_ablk_cipher_max_xfer(struct qcedev_async_req *areq,
 
 	while (creq->data_len > 0) {
 		if (creq->vbuf.dst[dst_i].len <= creq->data_len) {
+<<<<<<< HEAD
 			if (err == 0 && __copy_to_user(
+=======
+			if (err == 0 && copy_to_user(
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				(void __user *)creq->vbuf.dst[dst_i].vaddr,
 					(k_align_dst + byteoffset),
 					creq->vbuf.dst[dst_i].len))
@@ -1215,7 +1265,11 @@ static int qcedev_vbuf_ablk_cipher_max_xfer(struct qcedev_async_req *areq,
 			creq->data_len -= creq->vbuf.dst[dst_i].len;
 			dst_i++;
 		} else {
+<<<<<<< HEAD
 				if (err == 0 && __copy_to_user(
+=======
+				if (err == 0 && copy_to_user(
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				(void __user *)creq->vbuf.dst[dst_i].vaddr,
 				(k_align_dst + byteoffset),
 				creq->data_len))
@@ -1250,6 +1304,7 @@ static int qcedev_vbuf_ablk_cipher(struct qcedev_async_req *areq,
 	struct qcedev_cipher_op_req *saved_req;
 	struct	qcedev_cipher_op_req *creq = &areq->cipher_op_req;
 
+<<<<<<< HEAD
 	/* Verify Source Address's */
 	for (i = 0; i < areq->cipher_op_req.entries; i++)
 		if (!access_ok(VERIFY_READ,
@@ -1288,6 +1343,8 @@ static int qcedev_vbuf_ablk_cipher(struct qcedev_async_req *areq,
 			}
 		}
 	}
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	total = 0;
 
 	if (areq->cipher_op_req.mode == QCEDEV_AES_MODE_CTR)
@@ -1559,7 +1616,11 @@ static int qcedev_check_cipher_params(struct qcedev_cipher_op_req *req,
 	}
 	/* Check for sum of all dst length is equal to data_len  */
 	for (i = 0; i < req->entries; i++) {
+<<<<<<< HEAD
 		if (req->vbuf.dst[i].len >= ULONG_MAX - total) {
+=======
+		if (req->vbuf.dst[i].len >= U32_MAX - total) {
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			pr_err("%s: Integer overflow on total req dst vbuf length\n",
 				__func__);
 			goto error;
@@ -1573,7 +1634,11 @@ static int qcedev_check_cipher_params(struct qcedev_cipher_op_req *req,
 	}
 	/* Check for sum of all src length is equal to data_len  */
 	for (i = 0, total = 0; i < req->entries; i++) {
+<<<<<<< HEAD
 		if (req->vbuf.src[i].len > ULONG_MAX - total) {
+=======
+		if (req->vbuf.src[i].len > U32_MAX - total) {
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			pr_err("%s: Integer overflow on total req src vbuf length\n",
 				__func__);
 			goto error;
@@ -1636,7 +1701,11 @@ static int qcedev_check_sha_params(struct qcedev_sha_op_req *req,
 
 	/* Check for sum of all src length is equal to data_len  */
 	for (i = 0, total = 0; i < req->entries; i++) {
+<<<<<<< HEAD
 		if (req->data[i].len > ULONG_MAX - total) {
+=======
+		if (req->data[i].len > U32_MAX - total) {
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			pr_err("%s: Integer overflow on total req buf length\n",
 				__func__);
 			goto sha_error;
@@ -1681,11 +1750,15 @@ long qcedev_ioctl(struct file *file, unsigned cmd, unsigned long arg)
 	switch (cmd) {
 	case QCEDEV_IOCTL_ENC_REQ:
 	case QCEDEV_IOCTL_DEC_REQ:
+<<<<<<< HEAD
 		if (!access_ok(VERIFY_WRITE, (void __user *)arg,
 				sizeof(struct qcedev_cipher_op_req)))
 			return -EFAULT;
 
 		if (__copy_from_user(&qcedev_areq.cipher_op_req,
+=======
+		if (copy_from_user(&qcedev_areq.cipher_op_req,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				(void __user *)arg,
 				sizeof(struct qcedev_cipher_op_req)))
 			return -EFAULT;
@@ -1698,20 +1771,32 @@ long qcedev_ioctl(struct file *file, unsigned cmd, unsigned long arg)
 		err = qcedev_vbuf_ablk_cipher(&qcedev_areq, handle);
 		if (err)
 			return err;
+<<<<<<< HEAD
 		if (__copy_to_user((void __user *)arg,
 					&qcedev_areq.cipher_op_req,
 					sizeof(struct qcedev_cipher_op_req)))
 				return -EFAULT;
+=======
+		if (copy_to_user((void __user *)arg,
+					&qcedev_areq.cipher_op_req,
+					sizeof(struct qcedev_cipher_op_req)))
+			return -EFAULT;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		break;
 
 	case QCEDEV_IOCTL_SHA_INIT_REQ:
 		{
 		struct scatterlist sg_src;
+<<<<<<< HEAD
 		if (!access_ok(VERIFY_WRITE, (void __user *)arg,
 				sizeof(struct qcedev_sha_op_req)))
 			return -EFAULT;
 
 		if (__copy_from_user(&qcedev_areq.sha_op_req,
+=======
+
+		if (copy_from_user(&qcedev_areq.sha_op_req,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 					(void __user *)arg,
 					sizeof(struct qcedev_sha_op_req)))
 			return -EFAULT;
@@ -1721,9 +1806,15 @@ long qcedev_ioctl(struct file *file, unsigned cmd, unsigned long arg)
 		err = qcedev_hash_init(&qcedev_areq, handle, &sg_src);
 		if (err)
 			return err;
+<<<<<<< HEAD
 		if (__copy_to_user((void __user *)arg, &qcedev_areq.sha_op_req,
 					sizeof(struct qcedev_sha_op_req)))
 				return -EFAULT;
+=======
+		if (copy_to_user((void __user *)arg, &qcedev_areq.sha_op_req,
+					sizeof(struct qcedev_sha_op_req)))
+			return -EFAULT;
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		}
 		handle->sha_ctxt.init_done = true;
 		break;
@@ -1733,11 +1824,16 @@ long qcedev_ioctl(struct file *file, unsigned cmd, unsigned long arg)
 	case QCEDEV_IOCTL_SHA_UPDATE_REQ:
 		{
 		struct scatterlist sg_src;
+<<<<<<< HEAD
 		if (!access_ok(VERIFY_WRITE, (void __user *)arg,
 				sizeof(struct qcedev_sha_op_req)))
 			return -EFAULT;
 
 		if (__copy_from_user(&qcedev_areq.sha_op_req,
+=======
+
+		if (copy_from_user(&qcedev_areq.sha_op_req,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 					(void __user *)arg,
 					sizeof(struct qcedev_sha_op_req)))
 			return -EFAULT;
@@ -1759,10 +1855,22 @@ long qcedev_ioctl(struct file *file, unsigned cmd, unsigned long arg)
 				return err;
 		}
 
+<<<<<<< HEAD
 		memcpy(&qcedev_areq.sha_op_req.digest[0],
 				&handle->sha_ctxt.digest[0],
 				handle->sha_ctxt.diglen);
 		if (__copy_to_user((void __user *)arg, &qcedev_areq.sha_op_req,
+=======
+		if (handle->sha_ctxt.diglen > QCEDEV_MAX_SHA_DIGEST) {
+			pr_err("Invalid sha_ctxt.diglen %d\n",
+					handle->sha_ctxt.diglen);
+			return -EINVAL;
+		}
+		memcpy(&qcedev_areq.sha_op_req.digest[0],
+				&handle->sha_ctxt.digest[0],
+				handle->sha_ctxt.diglen);
+		if (copy_to_user((void __user *)arg, &qcedev_areq.sha_op_req,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 					sizeof(struct qcedev_sha_op_req)))
 			return -EFAULT;
 		}
@@ -1774,11 +1882,15 @@ long qcedev_ioctl(struct file *file, unsigned cmd, unsigned long arg)
 			pr_err("%s Init was not called\n", __func__);
 			return -EINVAL;
 		}
+<<<<<<< HEAD
 		if (!access_ok(VERIFY_WRITE, (void __user *)arg,
 				sizeof(struct qcedev_sha_op_req)))
 			return -EFAULT;
 
 		if (__copy_from_user(&qcedev_areq.sha_op_req,
+=======
+		if (copy_from_user(&qcedev_areq.sha_op_req,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 					(void __user *)arg,
 					sizeof(struct qcedev_sha_op_req)))
 			return -EFAULT;
@@ -1792,7 +1904,11 @@ long qcedev_ioctl(struct file *file, unsigned cmd, unsigned long arg)
 		memcpy(&qcedev_areq.sha_op_req.digest[0],
 				&handle->sha_ctxt.digest[0],
 				handle->sha_ctxt.diglen);
+<<<<<<< HEAD
 		if (__copy_to_user((void __user *)arg, &qcedev_areq.sha_op_req,
+=======
+		if (copy_to_user((void __user *)arg, &qcedev_areq.sha_op_req,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 					sizeof(struct qcedev_sha_op_req)))
 			return -EFAULT;
 		handle->sha_ctxt.init_done = false;
@@ -1801,11 +1917,16 @@ long qcedev_ioctl(struct file *file, unsigned cmd, unsigned long arg)
 	case QCEDEV_IOCTL_GET_SHA_REQ:
 		{
 		struct scatterlist sg_src;
+<<<<<<< HEAD
 		if (!access_ok(VERIFY_WRITE, (void __user *)arg,
 				sizeof(struct qcedev_sha_op_req)))
 			return -EFAULT;
 
 		if (__copy_from_user(&qcedev_areq.sha_op_req,
+=======
+
+		if (copy_from_user(&qcedev_areq.sha_op_req,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 					(void __user *)arg,
 					sizeof(struct qcedev_sha_op_req)))
 			return -EFAULT;
@@ -1823,7 +1944,11 @@ long qcedev_ioctl(struct file *file, unsigned cmd, unsigned long arg)
 		memcpy(&qcedev_areq.sha_op_req.digest[0],
 				&handle->sha_ctxt.digest[0],
 				handle->sha_ctxt.diglen);
+<<<<<<< HEAD
 		if (__copy_to_user((void __user *)arg, &qcedev_areq.sha_op_req,
+=======
+		if (copy_to_user((void __user *)arg, &qcedev_areq.sha_op_req,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 					sizeof(struct qcedev_sha_op_req)))
 			return -EFAULT;
 		}

@@ -1105,6 +1105,12 @@ static int irda_create(struct net *net, struct socket *sock, int protocol,
 
 	IRDA_DEBUG(2, "%s()\n", __func__);
 
+<<<<<<< HEAD
+=======
+	if (protocol < 0 || protocol > SK_PROTOCOL_MAX)
+		return -EINVAL;
+
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	if (net != &init_net)
 		return -EAFNOSUPPORT;
 

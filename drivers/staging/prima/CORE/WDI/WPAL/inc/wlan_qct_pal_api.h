@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2012-2013 The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2012-2015 The Linux Foundation. All rights reserved.
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -36,9 +40,12 @@
                
    Definitions for platform independent
   
+<<<<<<< HEAD
    Copyright 2010 (c) Qualcomm, Incorporated.  All Rights Reserved.
    
    Qualcomm Confidential and Proprietary.
+=======
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
   
   ========================================================================*/
 
@@ -329,6 +336,19 @@ void wpalWlanReload(void);
 void wpalWcnssResetIntr(void);
 
 /*---------------------------------------------------------------------------
+<<<<<<< HEAD
+=======
+    wpalWcnssIsProntoHwVer3 -  Check for Pronto ver3 HW
+
+    Param:
+       None
+    Return:
+       TRUE if Ponto Hw Ver 3
+       Therefore use WQ6 instead of WQ23 for TX Low/High Priority Channel
+---------------------------------------------------------------------------*/
+int wpalWcnssIsProntoHwVer3(void);
+/*---------------------------------------------------------------------------
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
     wpalFwDumpReq -  Trigger the dump commands to Firmware
 
     Param:
@@ -357,14 +377,22 @@ void wpalFwDumpReq(wpt_uint32 cmd, wpt_uint32 arg1, wpt_uint32 arg2,
 void wpalDevicePanic(void);
 
 /*---------------------------------------------------------------------------
+<<<<<<< HEAD
     wpalIsWDresetInProgress -  calls vos API isWDresetInProgress()
+=======
+    wpalIslogPInProgress -  calls vos API vos_is_logp_in_progress()
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
     Param:
        NONE
     Return:
        STATUS
 --------------------------------------------------------------------------*/
+<<<<<<< HEAD
 int  wpalIsWDresetInProgress(void);
+=======
+int  wpalIslogPInProgress(void);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 
 /*---------------------------------------------------------------------------
     wpalIsSsrPanicOnFailure -  calls vos API isSsrPanicOnFailure()
@@ -375,4 +403,14 @@ int  wpalIsWDresetInProgress(void);
        STATUS
 --------------------------------------------------------------------------*/
 int  wpalIsSsrPanicOnFailure(void);
+<<<<<<< HEAD
+=======
+
+int  wpalGetDxeReplenishRXTimerVal(void);
+int  wpalIsDxeSSREnable(void);
+
+wpt_uint8 wpalIsFwLoggingEnabled(void);
+wpt_uint8 wpalIsFwLoggingSupported(void);
+wpt_uint8 wpalIsFwEvLoggingEnabled(void);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 #endif // __WLAN_QCT_PAL_API_H

@@ -116,7 +116,11 @@ int mdss_mdp_video_addr_setup(struct mdss_data_type *mdata,
 
 	for (i = 0; i < count; i++) {
 		head[i].base = mdata->mdss_io.base + offsets[i];
+<<<<<<< HEAD
 		pr_debug("adding Video Intf #%d offset=0x%x virt=%p\n", i,
+=======
+		pr_debug("adding Video Intf #%d offset=0x%x virt=%pK\n", i,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 				offsets[i], head[i].base);
 		head[i].ref_cnt = 0;
 		head[i].intf_num = i + MDSS_MDP_INTF0;
@@ -442,7 +446,11 @@ static int mdss_mdp_video_intfs_stop(struct mdss_mdp_ctl *ctl,
 			pr_err("Intf %d not in use\n", (inum + MDSS_MDP_INTF0));
 			return -ENODEV;
 		}
+<<<<<<< HEAD
 		pr_debug("stop ctl=%d video Intf #%d base=%p", ctl->num,
+=======
+		pr_debug("stop ctl=%d video Intf #%d base=%pK", ctl->num,
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 			ctx->intf_num, ctx->base);
 	} else {
 		pr_err("Invalid intf number: %d\n", (inum + MDSS_MDP_INTF0));
@@ -1158,7 +1166,11 @@ static int mdss_mdp_video_intfs_setup(struct mdss_mdp_ctl *ctl,
 				(inum + MDSS_MDP_INTF0));
 			return -EBUSY;
 		}
+<<<<<<< HEAD
 		pr_debug("video Intf #%d base=%p", ctx->intf_num, ctx->base);
+=======
+		pr_debug("video Intf #%d base=%pK", ctx->intf_num, ctx->base);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 		ctx->ref_cnt++;
 	} else {
 		pr_err("Invalid intf number: %d\n", (inum + MDSS_MDP_INTF0));

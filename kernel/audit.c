@@ -1412,7 +1412,11 @@ void audit_log_cap(struct audit_buffer *ab, char *prefix, kernel_cap_t *cap)
 	audit_log_format(ab, " %s=", prefix);
 	CAP_FOR_EACH_U32(i) {
 		audit_log_format(ab, "%08x",
+<<<<<<< HEAD
 				 cap->cap[CAP_LAST_U32 - i]);
+=======
+				 cap->cap[(_KERNEL_CAPABILITY_U32S-1) - i]);
+>>>>>>> ff59b2a95bafd4a5ced1a0700067b39cf3b37bed
 	}
 }
 
